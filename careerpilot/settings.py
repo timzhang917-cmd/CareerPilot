@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'accounts',
+    'resumes',
+    'analyses', # 7.16 let django know 3 new apps
 ]
 
 MIDDLEWARE = [

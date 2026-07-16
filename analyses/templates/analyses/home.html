@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>CareerPilot</title>
+    <link rel="stylesheet" href="{% static 'analyses/home.css' %}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <strong>CareerPilot</strong>
+
+            <a href="#">CV Analysis</a>
+            <a href="#">Jobs</a>
+            <a href="#">Community</a>
+
+            <button>Login</button>
+            <button>Sign up</button>
+        </nav>
+    </header>
+
+    <main>
+        <h1>AI-CV Assistant</h1>
+        <p>Upload your resume and job description to get personalized analysis and optimization suggestions.</p>
+
+        <section class="steps">
+            <div class="step">
+                <span>1</span>
+                <h2>Upload CV&JD</h2>
+                <p>Add an existing resume and the target job description.</p>
+            </div>
+
+            <div class="step">
+                <span>2</span>
+                <h2>Add materials</h2>
+                <p>Optional: upload your experience notes, skills or certificates</p>
+            </div>
+
+            <div class="step">
+                <span>3</span>
+                <h2>Analyse and Optimize</h2>
+                <p>Display matching results and improvement suggestions</p>
+            </div>
+        </section>
+
+        <section class="examples">
+            <h2>Usage Examples</h2>
+
+            <div class="example-cards">
+                <article class="example-card">
+                    <h3>Example CV</h3>
+                    <p>Your initial version</p>
+                </article>
+
+                <article class="example-card">
+                    <h3>Example materials</h3>
+                    <p>include your own advantages</p>
+                </article>
+
+                <article class="example-card">
+                    <h3>AI version</h3>
+                    <p>with highlight and suggestions</p>
+                </article>
+            </div>
+        </section>
+        
+        <section class="start-area">
+            <button type="button">Start Analysis</button>
+        </section>
+
+    </main>
+</body>
+
+</html>
