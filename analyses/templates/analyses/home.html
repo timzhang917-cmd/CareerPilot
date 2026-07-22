@@ -16,14 +16,25 @@
             <a href="#">Jobs</a>
             <a href="#">Community</a>
 
-            <button>Login</button>
-            <button>Sign up</button>
+            {% if user.is_authenticated %} <!-- verify if user is logged in -->
+                <span>Hello, {{ user.username }}</span>
+
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form> <!--退出表单-->
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Sign up</a><!--让 Django自动找到accounts/urls.py中定义的path-->
+            {% endif %}
+            
         </nav>
     </header>
 
     <main>
+
         <h1>AI-CV Assistant</h1>
-        <p>Upload your resume and job description to get personalized analysis and optimization suggestions.</p>
+        <p>Upload your CV and JD to get personalized analysis and optimization suggestions.</p>
 
         <section class="steps">
             <div class="step">
@@ -45,30 +56,55 @@
             </div>
         </section>
 
-        <section class="examples">
-            <h2>Usage Examples</h2>
+        {% if user.is_authenticated %} <!-- verify if user is logged in, if yes, show the upload area -->
+            <section class="upload-area">
+                <h2>Start your analysis</h2>
 
-            <div class="example-cards">
-                <article class="example-card">
-                    <h3>Example CV</h3>
-                    <p>Your initial version</p>
-                </article>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ analysis_form.as_p }}
 
-                <article class="example-card">
-                    <h3>Example materials</h3>
-                    <p>include your own advantages</p>
-                </article>
+                    <div class="analysis-actions">
+                        <button type="submit">Start Analysis</button>
 
-                <article class="example-card">
-                    <h3>AI version</h3>
-                    <p>with highlight and suggestions</p>
-                </article>
-            </div>
-        </section>
+                        {% if messages %}
+                            <div class="messages">
+                                {% for message in messages %}
+                                    <span>{{ message }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </form>
+
+            </section>
+        {% else %} <!-- if user is not logged in, show the examples area -->
+            <section class="examples">
+                <h2>Usage Examples</h2>
+
+                <div class="example-cards">
+                    <article class="example-card">
+                        <h3>Example CV</h3>
+                        <p>Your initial version</p>
+                    </article>
+
+                    <article class="example-card">
+                        <h3>Example materials</h3>
+                        <p>include your own advantages</p>
+                    </article>
+
+                    <article class="example-card">
+                        <h3>AI version</h3>
+                        <p>with highlight and suggestions</p>
+                    </article>
+                </div>
+            </section>
         
         <section class="start-area">
             <button type="button">Start Analysis</button>
         </section>
+
+        {% endif %}
 
     </main>
 </body>

@@ -123,3 +123,13 @@ main {
 .start-area button:hover {
     background-color: #444444;
 }
+
+.analysis-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.messages {
+    color: #2e7d32;
+}
