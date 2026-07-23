@@ -133,3 +133,34 @@ main {
 .messages {
     color: #2e7d32;
 }
+
+/* 登录后的账户和退出按钮 */
+nav > span,
+nav > form button {
+    padding: 8px 14px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    background-color: rgb(166, 200, 177);
+    color: #222222;
+    font-size: 14px;
+}
+
+nav > form button {
+    cursor: pointer;
+}
+
+nav > form button:hover {
+    background-color: #71a696;
+}
+
+/* 登录前的 Login 和 Sign up 按钮 */
+.auth-button {
+    padding: 8px 14px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    background-color: rgb(192, 227, 198);
+}
+
+.auth-button:hover {
+    background-color: #9dcb91;
+}

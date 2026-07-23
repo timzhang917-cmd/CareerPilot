@@ -24,8 +24,8 @@
                     <button type="submit">Logout</button>
                 </form> <!--退出表单-->
             {% else %}
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'register' %}">Sign up</a><!--让 Django自动找到accounts/urls.py中定义的path-->
+                <a class="auth-button" href="{% url 'login' %}">Login</a>
+                <a class="auth-button" href="{% url 'register' %}">Sign up</a><!--让 Django自动找到accounts/urls.py中定义的path-->
             {% endif %}
             
         </nav>
