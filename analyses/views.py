@@ -1,3 +1,5 @@
+from .services import call_deepseek
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import redirect, render
 
@@ -35,7 +37,7 @@ def home(request):
                 content=analysis_form.cleaned_data["job_description"],
             )
 
-            Analysis.objects.create(
+            analysis = Analysis.objects.create(
                 user=request.user,
                 resume=resume,
                 job_description=job_description,
@@ -44,12 +46,21 @@ def home(request):
                 ],
             )
 
-            messages.success(
-                request,
-                "uploaded successfully",
-            )
+            analysis_text = call_deepseek(
+                resume.extracted_text,
+                job_description.job_title,
+                job_description.content,
+                analysis.supplementary_text,
+                )
 
-            return redirect("home")
+            analysis.result_data = {
+                "analysis_text": analysis_text,
+            }
+            analysis.status = Analysis.Status.COMPLETED
+            analysis.save()
+
+            return redirect("analysis_result")
+    
     else:
         analysis_form = AnalysisInputForm()
 
@@ -57,4 +68,27 @@ def home(request):
         request,
         "analyses/home.html",
         {"analysis_form": analysis_form},
+    )
+
+@login_required
+def analysis_result(request):
+    latest_analysis = (
+        Analysis.objects
+        .filter(user=request.user)
+        .order_by("-created_at")
+        .first()
+    )
+
+    analysis_text = ""
+
+    if latest_analysis:
+        analysis_text = latest_analysis.result_data.get(
+            "analysis_text",
+            "",
+        )
+
+    return render(
+        request,
+        "analyses/result.html",
+        {"analysis_text": analysis_text},
     )

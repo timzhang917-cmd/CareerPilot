@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CV Analysis - CareerPilot</title>
+
+    <link rel="stylesheet"
+          href="{% static 'analyses/home.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'analyses/result.css' %}">
+</head>
+
+<body>
+    {% include "analyses/header.html" %}
+    <main class="result-page">
+        <div class="result-heading">
+            <h1>Results</h1>
+
+            <a class="back-button" href="{% url 'home' %}">
+                ← Back to Home
+            </a>
+        </div>
+
+        <section class="result-box">
+            {% if analysis_text %}
+                {{ analysis_text|linebreaks }}
+            {% else %}
+                <p class="result-placeholder">
+                    AI analysis results will appear here.
+                </p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

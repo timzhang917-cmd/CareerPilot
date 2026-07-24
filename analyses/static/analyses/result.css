@@ -1,0 +1,61 @@
+.result-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 50px 60px;
+}
+
+.result-page h1 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 36px;
+}
+
+.result-box {
+    width: 100%;
+    min-height: 500px;
+    padding: 30px;
+    box-sizing: border-box;
+
+    border: 1px solid #cccccc;
+    border-radius: 14px;
+    background-color: #fafafa;
+
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.result-placeholder {
+    margin: 0;
+    color: #888888;
+}
+
+/* 返回按钮 */
+.result-heading {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 25px;
+}
+
+.result-heading h1 {
+    margin: 0;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 8px 14px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+
+    color: #222222;
+    background-color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-button:hover {
+    background-color: #f2f2f2;
+}

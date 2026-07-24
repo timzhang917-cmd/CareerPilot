@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("accounts.urls")), # 包含accounts应用的url
     path('',views.home,name='home'),
+    path('analysis/',views.analysis_result,name='analysis_result'),
 ]
 
 if settings.DEBUG:
