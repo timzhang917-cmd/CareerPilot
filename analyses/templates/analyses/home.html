@@ -37,11 +37,75 @@
 
         {% if user.is_authenticated %} <!-- verify if user is logged in, if yes, show the upload area -->
             <section class="upload-area">
-                <h2>Start your analysis</h2>
+                <!-- 上传表单卡片：后续统一控制背景、圆角、阴影和内边距 -->
+                <div class="analysis-card">
 
-                <form method="post" enctype="multipart/form-data">
+                    <div class="analysis-card-header">
+                        <h2>Start your analysis</h2>
+                        <p>
+                            Upload your resume and target job details
+                            to receive a personalized analysis.
+                        </p>
+                    </div>
+
+                    <!-- multipart/form-data 用于让表单能够上传简历文件 -->
+                    <form class="analysis-form"
+                        method="post"
+                        enctype="multipart/form-data">
+
                     {% csrf_token %}
-                    {{ analysis_form.as_p }}
+                    {{ analysis_form.non_field_errors }} <!-- 从原先的一个表单拆分成四个，方便css调整每个字段的位置和大小 -->
+
+                    <!-- 两栏区域：左侧上传简历，右侧填写岗位信息 -->
+                    <div class="analysis-grid">
+
+                        <div class="resume-column">
+                            <div class="form-field resume-field">
+                                <label for="{{ analysis_form.resume_file.id_for_label }}">
+                                    Resume
+                                </label>
+
+                                {{ analysis_form.resume_file }}
+                                
+                                <p class="file-hint">
+                                    PDF or DOCX · Max 5 MB
+                                </p>
+                    
+                                {{ analysis_form.resume_file.errors }}
+                            </div>
+                        </div>
+
+                        <div class="job-column">
+                            <div class="form-field">
+                                <label for="{{ analysis_form.job_title.id_for_label }}">
+                                    Job title
+                                </label>
+
+                                {{ analysis_form.job_title }}
+                                {{ analysis_form.job_title.errors }}
+                            </div>
+
+                            <div class="form-field">
+                                <label for="{{ analysis_form.job_description.id_for_label }}">
+                                    Job description
+                                </label>
+
+                                {{ analysis_form.job_description }}
+                                {{ analysis_form.job_description.errors }}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ analysis_form.supplementary_text.id_for_label }}">
+                            Supplementary materials
+                            <span class="optional-label">(optional)</span>
+                        </label>
+
+                        {{ analysis_form.supplementary_text }}
+                        {{ analysis_form.supplementary_text.errors }}
+                    </div>
 
                     <div class="analysis-actions">
                         <button type="submit">Start Analysis</button>
@@ -56,6 +120,7 @@
                     </div>
                 </form>
 
+                </div>
             </section>
         {% else %} <!-- if user is not logged in, show the examples area -->
             <section class="examples">
