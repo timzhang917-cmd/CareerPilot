@@ -1,3 +1,5 @@
+from pathlib import Path  # 帮程序构造文件路径
+
 from django.conf import settings
 from openai import OpenAI
 
@@ -7,34 +9,23 @@ def analysis_prompt(
     job_description,
     supplementary_text,
 ):
-    return f"""
-You are a professional resume analyst.
+    # services.py 所在目录就是 analyses，因此从这里定位提示词文件
+    prompt_path = (
+        Path(__file__).resolve().parent
+        / "prompts"
+        / "cv_analyse.txt"
+    )
 
-Compare the candidate's resume with the target job description.
-Use only the information provided by the candidate.
-Do not invent any experience, skills, qualifications, achievements, or numbers.
+    # 读取独立保存的提示词模板
+    prompt_template = prompt_path.read_text(encoding="utf-8")
 
-Respond in the same language as the job description.
-Use one consistent language throughout the response.
-
-Please provide:
-1. Overall match
-2. Main strengths
-3. Missing skills or keywords
-4. Specific resume improvement suggestions
-
-Resume:
-{resume_text}
-
-Target job title:
-{job_title}
-
-Job description:
-{job_description}
-
-Supplementary materials:
-{supplementary_text or "None provided."}
-""".strip()
+    # 把四个占位符替换成当前用户实际提交的内容
+    return prompt_template.format(
+        resume_text=resume_text,
+        job_title=job_title,
+        job_description=job_description,
+        supplementary_text=supplementary_text or "None provided.",
+    ).strip()
 
 
 def call_deepseek(
