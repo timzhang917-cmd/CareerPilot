@@ -2,9 +2,17 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8">  
     <title>CareerPilot</title>
-    <link rel="stylesheet" href="{% static 'analyses/home.css' %}">
+
+    <!-- 全站公共样式 -->
+    <link rel="stylesheet" href="{% static 'analyses/css/base.css' %}">
+
+    <!-- 首页专属样式 -->
+    <link rel="stylesheet" href="{% static 'analyses/css/home.css' %}">
+
+    <!-- 登录后的上传和分析表单样式 -->
+    <link rel="stylesheet" href="{% static 'analyses/css/form.css' %}">
 </head>
 
 <body>
@@ -49,9 +57,10 @@
                     </div>
 
                     <!-- multipart/form-data 用于让表单能够上传简历文件 -->
-                    <form class="analysis-form"
-                        method="post"
-                        enctype="multipart/form-data">
+                    <form id = "analysis-form"
+                          class="analysis-form"
+                          method="post"
+                          enctype="multipart/form-data">
 
                     {% csrf_token %}
                     {{ analysis_form.non_field_errors }} <!-- 从原先的一个表单拆分成四个，方便css调整每个字段的位置和大小 -->
@@ -108,7 +117,7 @@
                     </div>
 
                     <div class="analysis-actions">
-                        <button type="submit">Start Analysis</button>
+                        <button id="analyse-btn" type="submit">Start Analysis</button>
 
                         {% if messages %}
                             <div class="messages">
@@ -119,6 +128,14 @@
                         {% endif %}
                     </div>
                 </form>
+
+                <!-- 默认隐藏的分析中弹窗，提交表单后由 JavaScript 显示 -->
+                <div id="analyse-popup" class="analyse-popup" hidden>
+                    <div class="analyse-popup-content">
+                        <h2>Analysis in progress...</h2>
+                        <p>Please wait and do not refresh the page.</p>
+                    </div>
+                </div>
 
                 </div>
             </section>
@@ -151,6 +168,8 @@
         {% endif %}
 
     </main>
+    <!-- 首页交互：提交分析表单时显示等待弹窗 -->
+    <script src="{% static 'analyses/js/home.js' %}"></script>
 </body>
 
 </html>

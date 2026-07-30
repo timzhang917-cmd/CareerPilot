@@ -1,0 +1,68 @@
+/* 全站基础页面样式 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #222222;
+}
+
+header {
+    border-bottom: 1px solid #dddddd;
+}
+
+/* 全站共用的顶部导航栏 */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 20px 40px;
+}
+
+nav strong {
+    margin-right: auto;
+    font-size: 28px;
+}
+
+nav a {
+    color: #222222;
+    text-decoration: none;
+}
+
+nav button {
+    padding: 8px 16px;
+}
+
+/* 所有主要页面内容的基础边距 */
+main {
+    padding: 15px 40px;
+}
+
+/* 登录后的账户和退出按钮 */
+nav > span,
+nav > form button {
+    padding: 8px 14px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    background-color: rgb(166, 200, 177);
+    color: #222222;
+    font-size: 14px;
+}
+
+nav > form button {
+    cursor: pointer;
+}
+
+nav > form button:hover {
+    background-color: #71a696;
+}
+
+/* 登录前的 Login 和 Sign up 按钮 */
+.auth-button {
+    padding: 8px 14px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    background-color: rgb(192, 227, 198);
+}
+
+.auth-button:hover {
+    background-color: #9dcb91;
+}
