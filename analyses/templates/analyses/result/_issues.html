@@ -1,0 +1,38 @@
+<!-- 提交简历前必须处理的问题 -->
+<section class="issues-card">
+    <h2>Must-fix Issues</h2>
+
+    {% if result.must_fix_issues %}
+        <div class="issues-list">
+            {% for issue in result.must_fix_issues %}
+                <article class="issue-item">
+                    <div class="issue-number">
+                        {{ forloop.counter }}
+                    </div>
+
+                    <div class="issue-content">
+                        <p class="issue-location">
+                            {{ issue.location }}
+                        </p>
+
+                        <h3>{{ issue.problem }}</h3>
+
+                        <p class="issue-detail">
+                            <strong>Why it matters:</strong>
+                            {{ issue.why_it_matters }}
+                        </p>
+
+                        <p class="issue-correction">
+                            <strong>Suggested correction:</strong>
+                            {{ issue.suggested_correction }}
+                        </p>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="issues-empty">
+            No definite must-fix issue was identified.
+        </p>
+    {% endif %}
+</section>

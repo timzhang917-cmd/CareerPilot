@@ -10,9 +10,30 @@
     <link rel="stylesheet"
         href="{% static 'analyses/css/base.css' %}">
 
-    <!-- Results 页面专属样式 -->
+    <!-- Results 页面整体布局 -->
     <link rel="stylesheet"
-        href="{% static 'analyses/css/result.css' %}">
+        href="{% static 'analyses/css/result/layout.css' %}">
+
+    <!-- Results 顶部汇总卡样式 -->
+    <link rel="stylesheet"
+        href="{% static 'analyses/css/result/summary.css' %}">
+
+    <!-- Results 优势和短板卡片样式 -->
+    <link rel="stylesheet"
+        href="{% static 'analyses/css/result/pros_cons.css' %}">
+
+    <!-- Results 岗位要求对照表样式 -->
+    <link rel="stylesheet"
+        href="{% static 'analyses/css/result/comparison.css' %}">
+
+    <!-- Results 必须修改问题区域样式 -->
+    <link rel="stylesheet"
+        href="{% static 'analyses/css/result/issues.css' %}">
+        
+    <!-- Results 进阶优化建议区域样式 -->
+    <link rel="stylesheet"
+        href="{% static 'analyses/css/result/suggestion.css' %}">
+        
 </head>
 
 <body>
@@ -26,6 +47,15 @@
             </a>
         </div>
 
+        {% if result %}
+            {% include "analyses/result/_summary.html" %}
+            {% include "analyses/result/_pros_cons.html" %}
+            {% include "analyses/result/_comparison.html" %}
+            {% include "analyses/result/_issues.html" %}
+            {% include "analyses/result/_suggestions.html" %}
+        {% endif %}
+
+        <!-- 旧版纯文本结果暂时保留，后续会逐个替换成结构化卡片 -->
         <section class="result-box">
             {% if analysis_text %}
                 {{ analysis_text|linebreaks }}

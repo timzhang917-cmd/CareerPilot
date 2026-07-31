@@ -1,0 +1,72 @@
+<!-- 分析结果顶部汇总：总分、分类分数和简短结论 -->
+<section class="result-summary-card">
+    <div class="summary-scores">
+        <div
+            class="overall-score-ring"
+            style="--score: {{ result.overall.score }}%;"
+        >
+            <div class="score-ring-centre">
+                {{ result.overall.score }}%
+            </div>
+        </div>
+
+        <div class="category-scores">
+            <div class="category-score-row">
+                <span class="category-name">Hard Skills</span>
+                <div class="category-score-track">
+                    <div
+                        class="category-score-fill"
+                        style="width: {{ result.category_scores.hard_skills }}%;"
+                    ></div>
+                </div>
+                <span class="category-value">
+                    {{ result.category_scores.hard_skills }}%
+                </span>
+            </div>
+
+            <div class="category-score-row">
+                <span class="category-name">Soft Skills</span>
+                <div class="category-score-track">
+                    <div
+                        class="category-score-fill"
+                        style="width: {{ result.category_scores.soft_skills }}%;"
+                    ></div>
+                </div>
+                <span class="category-value">
+                    {{ result.category_scores.soft_skills }}%
+                </span>
+            </div>
+
+            <div class="category-score-row">
+                <span class="category-name">Experience</span>
+                <div class="category-score-track">
+                    <div
+                        class="category-score-fill"
+                        style="width: {{ result.category_scores.experience }}%;"
+                    ></div>
+                </div>
+                <span class="category-value">
+                    {{ result.category_scores.experience }}%
+                </span>
+            </div>
+
+            <div class="category-score-row">
+                <span class="category-name">Education</span>
+                <div class="category-score-track">
+                    <div
+                        class="category-score-fill"
+                        style="width: {{ result.category_scores.education }}%;"
+                    ></div>
+                </div>
+                <span class="category-value">
+                    {{ result.category_scores.education }}%
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary-conclusion">
+        <h2>{{ result.overall.level }}</h2>
+        <p>{{ result.overall.summary }}</p>
+    </div>
+</section>

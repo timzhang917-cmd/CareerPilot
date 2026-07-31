@@ -1,0 +1,150 @@
+/* 岗位要求对照表的外层卡片 */
+.comparison-card {
+    margin-bottom: 22px;
+    padding: 18px 20px 20px;
+
+    border: 1px solid #d9e1db;
+    border-radius: 14px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 14px rgba(28, 63, 42, 0.06);
+}
+
+.comparison-card h2 {
+    margin: 0 0 14px;
+    color: #1f6538;
+    font-size: 20px;
+}
+
+/*
+窄屏时允许横向滚动，
+避免三列表格被强行压缩。
+*/
+.comparison-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #d9e1db;
+    border-radius: 10px;
+}
+
+/* 表格整体结构 */
+.comparison-table {
+    width: 100%;
+    min-width: 850px;
+
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+/* 三列的宽度比例 */
+.comparison-table th:nth-child(1) {
+    width: 28%;
+}
+
+.comparison-table th:nth-child(2) {
+    width: 52%;
+}
+
+.comparison-table th:nth-child(3) {
+    width: 20%;
+}
+
+/* 表头和普通单元格的共同样式 */
+.comparison-table th,
+.comparison-table td {
+    padding: 12px 16px;
+
+    border-right: 1px solid #d9e1db;
+    border-bottom: 1px solid #d9e1db;
+
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+/* 删除每行最后一个单元格右侧的边框 */
+.comparison-table th:last-child,
+.comparison-table td:last-child {
+    border-right: 0;
+}
+
+/* 删除表格最后一行底部的边框 */
+.comparison-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* 表头使用浅绿色 */
+.comparison-table thead {
+    background-color: #edf5ef;
+}
+
+.comparison-table th {
+    color: #26362b;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.comparison-table td {
+    color: #333333;
+    font-size: 14px;
+}
+
+/* 鼠标经过时突出当前岗位要求 */
+.comparison-table tbody tr:hover {
+    background-color: #f8fbf9;
+}
+
+/* 所有评价标签共同使用的基础样式 */
+.assessment-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 96px;
+    padding: 5px 10px;
+
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* 明确且直接的匹配证据 */
+.assessment-strong-match {
+    color: #22623a;
+    background-color: #dcefe1;
+}
+
+/* 基本符合，但证据还不够充分 */
+.assessment-basic-match {
+    color: #45652c;
+    background-color: #e8f1d9;
+}
+
+/* 存在相关能力，但与岗位要求不够直接 */
+.assessment-weak-match {
+    color: #8a5a00;
+    background-color: #fff0c7;
+}
+
+/* 没有找到足够的支持证据 */
+.assessment-gap {
+    color: #a44724;
+    background-color: #ffe0d2;
+}
+
+/* 岗位核心要求存在明显缺口 */
+.assessment-clear-gap {
+    color: #a12626;
+    background-color: #ffdada;
+}
+
+/* 手机等窄屏设备下适当减小卡片内边距 */
+@media (max-width: 680px) {
+    .comparison-card {
+        padding: 16px;
+    }
+
+    .comparison-table {
+        min-width: 760px;
+    }
+}

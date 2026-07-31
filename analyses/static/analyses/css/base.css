@@ -11,6 +11,7 @@ header {
 
 /* 全站共用的顶部导航栏 */
 nav {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 30px;
@@ -25,10 +26,6 @@ nav strong {
 nav a {
     color: #222222;
     text-decoration: none;
-}
-
-nav button {
-    padding: 8px 16px;
 }
 
 /* 所有主要页面内容的基础边距 */
@@ -65,4 +62,38 @@ nav > form button:hover {
 
 .auth-button:hover {
     background-color: #9dcb91;
+}
+
+/* 中间三个主要功能按钮 */
+.main-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 24px;
+}
+
+.main-nav a {
+    min-width: 88px;
+    padding: 9px 18px;
+
+    border: 1px solid #8fb09a;
+    border-radius: 10px;
+
+    color: #315d3f;
+    background-color: #edf5ef;
+
+    text-align: center;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.main-nav a:hover {
+    border-color: #527d61;
+    background-color: #dcebe0;
+    transform: translateY(-1px);
 }

@@ -1,0 +1,125 @@
+/* Must-fix Issues 外层卡片 */
+.issues-card {
+    margin-bottom: 22px;
+    padding: 18px 20px 20px;
+
+    border: 1px solid #ead8d5;
+    border-radius: 14px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 14px rgba(86, 35, 28, 0.06);
+}
+
+.issues-card h2 {
+    margin: 0 0 14px;
+    color: #b32f26;
+    font-size: 20px;
+}
+
+/* 多条问题上下排列 */
+.issues-list {
+    display: grid;
+    gap: 12px;
+}
+
+/* 单条问题 */
+.issue-item {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+
+    padding: 16px;
+    border: 1px solid #f0cbc6;
+    border-radius: 10px;
+    background-color: #fffafa;
+}
+
+/* 左侧自动编号 */
+.issue-number {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+
+    border-radius: 8px;
+    background-color: #d84a43;
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* 防止长文字撑破布局 */
+.issue-content {
+    min-width: 0;
+}
+
+/* 问题所在位置 */
+.issue-location {
+    margin: 0 0 6px;
+
+    color: #9a4c42;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* 具体问题 */
+.issue-content h3 {
+    margin: 0 0 10px;
+
+    color: #2f2928;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Why it matters */
+.issue-detail {
+    margin: 0 0 10px;
+
+    color: #555555;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* 建议修改内容 */
+.issue-correction {
+    margin: 0;
+    padding: 10px 12px;
+
+    border-left: 3px solid #d84a43;
+    border-radius: 6px;
+    background-color: #fff0ee;
+
+    color: #4a3330;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* 没有 Must-fix 问题时的提示 */
+.issues-empty {
+    margin: 0;
+    padding: 14px 16px;
+
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    color: #666666;
+    font-size: 14px;
+}
+
+/* 窄屏时缩小卡片间距 */
+@media (max-width: 680px) {
+    .issues-card {
+        padding: 16px;
+    }
+
+    .issue-item {
+        grid-template-columns: 30px minmax(0, 1fr);
+        gap: 10px;
+        padding: 14px;
+    }
+
+    .issue-number {
+        width: 30px;
+        height: 30px;
+    }
+}

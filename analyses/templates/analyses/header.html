@@ -2,12 +2,14 @@
     <nav>
         <strong>CareerPilot</strong>
 
-        <a href="{% url 'analysis_result' %}">
-            CV Analysis
-        </a>
+        <div class="main-nav">
+            <a href="{% url 'analysis_result' %}">
+                CV Analysis
+            </a>
 
-        <a href="#">Jobs</a>
-        <a href="#">Community</a>
+            <a href="#">Jobs</a>
+            <a href="#">Community</a>
+        </div>
 
         {% if user.is_authenticated %}
             <span>Hello, {{ user.username }}</span>

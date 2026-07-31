@@ -1,0 +1,35 @@
+<!-- 针对目标岗位的进阶优化建议 -->
+<section class="suggestions-card">
+    <h2>Advanced Suggestions</h2>
+
+    {% if result.suggestions %}
+        <div class="suggestions-list">
+            {% for suggestion in result.suggestions %}
+                <article class="suggestion-item">
+                    <div class="suggestion-header">
+                        <span
+                            class="priority-badge priority-{{ suggestion.priority|slugify }}"
+                        >
+                            {{ suggestion.priority }}
+                        </span>
+
+                        <span class="suggestion-target">
+                            {{ suggestion.target_section }}
+                        </span>
+                    </div>
+
+                    <h3>{{ suggestion.recommendation }}</h3>
+
+                    <p class="suggestion-reason">
+                        <strong>Why this helps:</strong>
+                        {{ suggestion.reason }}
+                    </p>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="suggestions-empty">
+            No advanced suggestion is available.
+        </p>
+    {% endif %}
+</section>

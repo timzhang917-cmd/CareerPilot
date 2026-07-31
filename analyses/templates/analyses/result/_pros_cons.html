@@ -1,0 +1,28 @@
+<!-- 候选人的主要优势和短板 -->
+<section class="result-insights">
+    <article class="insight-card strengths-card">
+        <h2>Key Strengths</h2>
+
+        <ul class="insight-list">
+            {% for strength in result.strengths %}
+                <li class="insight-item">
+                    <span class="insight-icon">✓</span>
+                    <span>{{ strength }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </article>
+
+    <article class="insight-card gaps-card">
+        <h2>Main Gaps</h2>
+
+        <ul class="insight-list">
+            {% for gap in result.gaps %}
+                <li class="insight-item">
+                    <span class="insight-icon">!</span>
+                    <span>{{ gap }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </article>
+</section>

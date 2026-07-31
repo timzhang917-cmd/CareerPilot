@@ -1,0 +1,126 @@
+/* Advanced Suggestions 外层卡片 */
+.suggestions-card {
+    margin-bottom: 22px;
+    padding: 18px 20px 20px;
+
+    border: 1px solid #d9e1db;
+    border-radius: 14px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 14px rgba(28, 63, 42, 0.06);
+}
+
+.suggestions-card h2 {
+    margin: 0 0 14px;
+    color: #1f6538;
+    font-size: 20px;
+}
+
+/* 多条建议上下排列 */
+.suggestions-list {
+    display: grid;
+    gap: 12px;
+}
+
+/* 单条建议 */
+.suggestion-item {
+    padding: 16px;
+
+    border: 1px solid #d9e1db;
+    border-radius: 10px;
+    background-color: #fbfdfb;
+}
+
+/* 优先级和目标区域 */
+.suggestion-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+/* 优先级标签共同样式 */
+.priority-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 68px;
+    padding: 5px 10px;
+
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* 高优先级 */
+.priority-high {
+    color: #a12626;
+    background-color: #ffdada;
+}
+
+/* 中优先级 */
+.priority-medium {
+    color: #8a5a00;
+    background-color: #fff0c7;
+}
+
+/* 低优先级 */
+.priority-low {
+    color: #22623a;
+    background-color: #dcefe1;
+}
+
+/* 建议修改的简历区域 */
+.suggestion-target {
+    color: #54705c;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* 具体建议 */
+.suggestion-item h3 {
+    margin: 0 0 10px;
+
+    color: #26362b;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* 建议的原因 */
+.suggestion-reason {
+    margin: 0;
+    padding: 10px 12px;
+
+    border-left: 3px solid #4d8a60;
+    border-radius: 6px;
+    background-color: #f0f7f2;
+
+    color: #455048;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* 没有建议时的提示 */
+.suggestions-empty {
+    margin: 0;
+    padding: 14px 16px;
+
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    color: #666666;
+    font-size: 14px;
+}
+
+/* 窄屏时缩小内边距 */
+@media (max-width: 680px) {
+    .suggestions-card {
+        padding: 16px;
+    }
+
+    .suggestion-item {
+        padding: 14px;
+    }
+}

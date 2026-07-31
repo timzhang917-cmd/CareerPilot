@@ -8,6 +8,7 @@ from resumes.parsers import extract_resume_text
 
 from .forms import AnalysisInputForm
 from .models import Analysis
+from .sample import SAMPLE_ANALYSIS_RESULT
 
 
 def home(request):
@@ -90,5 +91,8 @@ def analysis_result(request):
     return render(
         request,
         "analyses/result.html",
-        {"analysis_text": analysis_text},
+        {
+            "analysis_text": analysis_text,
+            "result": SAMPLE_ANALYSIS_RESULT,
+        },
     )
