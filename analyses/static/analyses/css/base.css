@@ -14,7 +14,7 @@ nav {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 10px;
     padding: 20px 40px;
 }
 
@@ -39,8 +39,8 @@ nav > form button {
     padding: 8px 14px;
     border: 1px solid #cccccc;
     border-radius: 10px;
-    background-color: rgb(166, 200, 177);
-    color: #222222;
+    background-color: #b3cfaa;
+    color: #000000;
     font-size: 14px;
 }
 
@@ -49,15 +49,18 @@ nav > form button {
 }
 
 nav > form button:hover {
-    background-color: #71a696;
+    background-color: #9dcb91;
 }
 
 /* 登录前的 Login 和 Sign up 按钮 */
 .auth-button {
+    width: 55px;
     padding: 8px 14px;
-    border: 1px solid #cccccc;
+    text-align: center;
+    border: none;
     border-radius: 10px;
-    background-color: rgb(192, 227, 198);
+    background-color: #b3cfaa;
+    font-size: 14px;
 }
 
 .auth-button:hover {
@@ -78,22 +81,20 @@ nav > form button:hover {
     min-width: 88px;
     padding: 9px 18px;
 
-    border: 1px solid #8fb09a;
+    border: none;
     border-radius: 10px;
 
-    color: #315d3f;
-    background-color: #edf5ef;
+    color: #000000;
+    background-color: #b3cfaa;
 
     text-align: center;
 
     transition:
         background-color 0.2s ease,
-        border-color 0.2s ease,
         transform 0.2s ease;
 }
 
 .main-nav a:hover {
-    border-color: #527d61;
-    background-color: #dcebe0;
+    background-color: #9dcb91;
     transform: translateY(-1px);
 }
