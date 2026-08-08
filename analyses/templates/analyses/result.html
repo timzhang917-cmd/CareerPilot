@@ -55,16 +55,12 @@
             {% include "analyses/result/_suggestions.html" %}
         {% endif %}
 
-        <!-- 旧版纯文本结果暂时保留，后续会逐个替换成结构化卡片 -->
-        <section class="result-box">
-            {% if analysis_text %}
+        <!-- 只在查看旧版纯文本记录时显示 -->
+        {% if analysis_text %}
+            <section class="result-box">
                 {{ analysis_text|linebreaks }}
-            {% else %}
-                <p class="result-placeholder">
-                    AI analysis results will appear here.
-                </p>
-            {% endif %}
-        </section>
+            </section>
+        {% endif %}
     </main>
 </body>
 </html>

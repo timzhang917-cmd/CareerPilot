@@ -1,0 +1,82 @@
+{
+  "overall" : {
+    "score": 72,
+    "level": "Good Match",
+    "summary": "The candidate matches the target role in several important areas, but some key requirements still lack direct supporting evidence."
+  },
+
+  "category_scores" : {
+    "hard_skills": 78,
+    "soft_skills": 70,
+    "experience": 65,
+    "education": 80
+  },
+
+  "strengths" : [
+    "The candidate has relevant Python and Django development experience.",
+    "The candidate demonstrates experience with web application development.",
+    "The candidate has experience using Git and version control."
+  ],
+
+  "gaps" : [
+    "Limited evidence of cloud platform experience.",
+    "No supporting evidence of automated testing experience.",
+    "Limited evidence of front-end framework experience."
+  ],
+
+    "requirements": [
+    {
+      "requirement": "Django web development experience",
+      "evidence": "The resume includes experience developing web applications with Django.",
+      "assessment": "Strong Match"
+    },
+    {
+      "requirement": "Cloud deployment experience",
+      "evidence": "No supporting evidence found.",
+      "assessment": "Clear Gap"
+    },
+    {
+      "requirement": "Automated testing experience",
+      "evidence": "The resume mentions development experience but does not provide direct evidence of automated testing.",
+      "assessment": "Weak Match"
+    }
+  ],
+
+    "must_fix_issues": [
+    {
+      "location": "Work Experience - project description",
+      "problem": "The statement 'Improved system performance' is too vague.",
+      "why_it_matters": "The recruiter cannot understand what was improved or evaluate the candidate's contribution.",
+      "suggested_correction": "Explain the specific action taken and add a verified result or metric if one is available."
+    },
+    {
+      "location": "Project Experience",
+      "problem": "The statement 'Responsible for backend development' does not describe a specific contribution.",
+      "why_it_matters": "A responsibility-only statement does not demonstrate the candidate's actual technical impact.",
+      "suggested_correction": "Describe the backend feature developed, the technology used, and the verified outcome."
+    }
+  ],
+
+  "suggestions": [
+    {
+      "priority": "High",
+      "target_section": "Project Experience",
+      "recommendation": "Add a project that demonstrates cloud deployment experience with AWS or Azure.",
+      "reason": "The target role requires cloud platform experience, but no direct supporting evidence was found."
+    },
+    {
+      "priority": "Medium",
+      "target_section": "Technical Skills",
+      "recommendation": "Add verified automated testing experience such as unit tests or integration tests.",
+      "reason": "Testing experience would provide stronger evidence of production-ready development skills."
+    },
+    {
+      "priority": "Low",
+      "target_section": "Project Experience",
+      "recommendation": "Include relevant front-end framework experience if the candidate has used React or Vue.",
+      "reason": "Front-end knowledge is not essential, but it could strengthen the candidate's full-stack profile."
+    }
+  ]
+}
+
+ 

@@ -47,16 +47,17 @@ def home(request):
                 ],
             )
 
-            analysis_text = call_deepseek(
+            # 调用模型并取得已经解析完成的 JSON 字典
+            analysis_result_data = call_deepseek(
                 resume.extracted_text,
                 job_description.job_title,
                 job_description.content,
                 analysis.supplementary_text,
-                )
+            )
 
-            analysis.result_data = {
-                "analysis_text": analysis_text,
-            }
+            # JSONField 可以直接保存 Python 字典
+            analysis.result_data = analysis_result_data
+
             analysis.status = Analysis.Status.COMPLETED
             analysis.save()
 
@@ -80,19 +81,29 @@ def analysis_result(request):
         .first()
     )
 
+    # 默认使用样本数据，保证旧测试记录不会破坏页面
+    result = SAMPLE_ANALYSIS_RESULT
     analysis_text = ""
 
     if latest_analysis:
-        analysis_text = latest_analysis.result_data.get(
-            "analysis_text",
-            "",
-        )
+        saved_result = latest_analysis.result_data or {}
+
+        # 新版结构化 JSON 包含 overall，因此直接交给前端展示
+        if "overall" in saved_result:
+            result = saved_result
+
+        # 兼容以前保存的纯文本分析记录
+        else:
+            analysis_text = saved_result.get(
+                "analysis_text",
+                "",
+            )
 
     return render(
         request,
         "analyses/result.html",
         {
             "analysis_text": analysis_text,
-            "result": SAMPLE_ANALYSIS_RESULT,
+            "result": result,
         },
     )

@@ -1,3 +1,5 @@
+import json
+
 from pathlib import Path  # 帮程序构造文件路径
 
 from django.conf import settings
@@ -16,15 +18,24 @@ def analysis_prompt(
         / "cv_analyse.txt"
     )
 
+    # 定位 JSON 输出示例文件
+    json_example_path = (
+        Path(__file__).resolve().parent
+        / "json_example.json"
+    )
+
     # 读取独立保存的提示词模板
     prompt_template = prompt_path.read_text(encoding="utf-8")
+    # 读取固定的 JSON 结构示例
+    json_example = json_example_path.read_text(encoding="utf-8")
 
-    # 把四个占位符替换成当前用户实际提交的内容
+    # 把占位符替换成当前用户实际提交的内容
     return prompt_template.format(
         resume_text=resume_text,
         job_title=job_title,
         job_description=job_description,
         supplementary_text=supplementary_text or "None provided.",
+        json_example=json_example,
     ).strip()
 
 
@@ -58,7 +69,7 @@ def call_deepseek(
                 "content": prompt,
             },
         ],
-        max_tokens=1500,
+        max_tokens=6000,
         stream=False,
         extra_body={
             "thinking": {
@@ -67,4 +78,10 @@ def call_deepseek(
         },
     )
 
-    return (response.choices[0].message.content or "").strip()
+    # 模型返回的内容本质上仍是一段字符串
+    response_text = (
+        response.choices[0].message.content or ""
+    ).strip()   
+
+    # 把 JSON 字符串转换成 Python 字典，方便后续按 key 取值
+    return json.loads(response_text)
