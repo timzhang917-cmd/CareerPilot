@@ -48,7 +48,16 @@ suggestions[].priority:
 - Low
 
 Do not translate or create alternative versions of these enum values.
-Do not mix languages in descriptive content, except for quoted source text, proper nouns, product names, and necessary technical abbreviations such as AI, PRD, RAG, Python, SQL, AWS, and Django.
+Do not mix languages in descriptive content, except for quoted source text, proper nouns, product names, 
+and necessary technical abbreviations such as AI, PRD, RAG, Python, SQL, AWS, and Django.
+
+JOB DESCRIPTION COVERAGE RULE
+
+Analyse the entire job description regardless of its section headings.
+Include every substantive job-related item in the requirements array, including duties, responsibilities, expectations, skills, experience, education, and other candidate requirements.
+For numbered or bulleted content, each original item must produce exactly one requirements object.
+For unstructured paragraphs, identify each distinct job-related requirement as one requirements object.
+Preserve the original order. Do not omit, merge, or unnecessarily split items.
 
 SCORING GUIDE
 

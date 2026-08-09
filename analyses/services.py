@@ -69,6 +69,15 @@ def call_deepseek(
                 "content": prompt,
             },
         ],
+
+        # 要求 DeepSeek 使用 JSON 输出模式
+        response_format={
+            "type": "json_object",
+        },
+
+        # 降低生成随机性，让相同输入的结果尽量稳定
+        temperature=0,
+
         max_tokens=6000,
         stream=False,
         extra_body={
