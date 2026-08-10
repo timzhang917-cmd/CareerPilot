@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs - CareerPilot</title>
+
+    <!-- 复用现有的全站公共样式 -->
+    <link rel="stylesheet"
+          href="{% static 'analyses/css/base.css' %}">
+</head>
+
+<body>
+    <!-- 复用现有顶部导航栏 -->
+    {% include "analyses/header.html" %}
+
+    <main>
+        <h1>Job Search</h1>
+
+        <!-- 循环显示数据库中的岗位信息 -->
+        {% for job in job_listings %}
+            <article>
+                <h2>{{ job.company_name }}</h2>
+
+                <p>Industry: {{ job.industry }}</p>
+                <p>Positions: {{ job.job_positions }}</p>
+                <p>Location: {{ job.location }}</p>
+
+                <a href="{{ job.official_url }}"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Official Site
+                </a>
+            </article>
+        {% empty %}
+            <p>No job information is currently available.</p>
+        {% endfor %}
+    </main>
+</body>
+</html>

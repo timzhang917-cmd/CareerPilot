@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'accounts',
     'resumes',
     'analyses', # 7.16 let django know 3 new apps
+    'jobs', # 8.11 let django know 1 new app
 ]
 
 MIDDLEWARE = [
