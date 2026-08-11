@@ -1,0 +1,20 @@
+<h2>Job Search</h2>
+
+<!-- 循环显示数据库中的岗位信息 -->
+{% for job in job_listings %}
+    <article>
+        <h2>{{ job.company_name }}</h2>
+
+        <p>Industry: {{ job.industry }}</p>
+        <p>Positions: {{ job.job_positions }}</p>
+        <p>Location: {{ job.location }}</p>
+
+        <a href="{{ job.official_url }}"
+           target="_blank"
+           rel="noopener noreferrer">
+            Official Site
+        </a>
+    </article>
+{% empty %}
+    <p>No job information is currently available.</p>
+{% endfor %}

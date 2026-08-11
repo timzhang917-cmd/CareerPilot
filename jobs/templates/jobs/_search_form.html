@@ -1,0 +1,76 @@
+<!-- 岗位筛选条件区域 -->
+<section class="job-search-panel">
+    <form class="job-filter-form"
+          method="get"
+          action="{% url 'job_search' %}">
+
+        <!-- 公司关键词搜索 -->
+        <div class="job-filter-field">
+            <label for="company">Company Keyword</label>
+
+            <input id="company"
+                   type="text"
+                   name="company"
+                   value="{{ selected_company }}"
+                   placeholder="Search company name">
+        </div>
+
+        <!-- 岗位筛选 -->
+        <div class="job-filter-field">
+            <label for="position">Position</label>
+
+            <select id="position" name="position">
+                <option value="">All Positions</option>
+
+                {% for position in position_options %}
+                    <option value="{{ position }}"
+                            {% if selected_position == position %}
+                                selected
+                            {% endif %}>
+                        {{ position }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- 地点筛选 -->
+        <div class="job-filter-field">
+            <label for="location">Location</label>
+
+            <select id="location" name="location">
+                <option value="">All Locations</option>
+
+                {% for location in location_options %}
+                    <option value="{{ location }}"
+                            {% if selected_location == location %}
+                                selected
+                            {% endif %}>
+                        {{ location }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- 行业筛选 -->
+        <div class="job-filter-field">
+            <label for="industry">Industry</label>
+
+            <select id="industry" name="industry">
+                <option value="">All Industries</option>
+
+                {% for industry in industry_options %}
+                    <option value="{{ industry }}"
+                            {% if selected_industry == industry %}
+                                selected
+                            {% endif %}>
+                        {{ industry }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button class="job-search-button" type="submit">
+            Filter
+        </button>
+    </form>
+</section>

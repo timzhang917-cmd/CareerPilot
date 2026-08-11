@@ -1,0 +1,124 @@
+/* Jobs 页面专属样式 */
+
+
+/* Jobs 页面整体宽度和留白 */
+.jobs-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 48px 40px;
+}
+
+
+/* 页面标题区域 */
+.jobs-heading h1 {
+    margin: 0;
+    font-size: 40px;
+}
+
+.jobs-heading p {
+    margin: 12px 0 0;
+    color: #666666;
+    font-size: 17px;
+}
+
+
+/* Job Search 和 My Applications 页签容器 */
+.jobs-tabs {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    border-bottom: 1px solid #d9e4d7;
+}
+
+
+/* 单个页签 */
+.jobs-tab {
+    padding: 12px 26px;
+
+    border-radius: 10px 10px 0 0;
+
+    color: #31543c;
+    background-color: #eef4ec;
+
+    text-decoration: none;
+}
+
+
+/* 当前选中的页签 */
+.jobs-tab.active {
+    color: #1f4129;
+    background-color: #b3cfaa;
+    font-weight: 700;
+}
+
+
+/* 鼠标经过未选中页签 */
+.jobs-tab:hover {
+    background-color: #dcebd8;
+}
+
+
+/* 岗位搜索条件区域 */
+.job-search-panel {
+    margin-top: 28px;
+    padding: 22px;
+    border: 1px solid #dce6da;
+    border-radius: 12px;
+    background-color: #f8fbf7;
+}
+
+.job-filter-form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) auto;
+    gap: 16px;
+    align-items: end;
+}
+
+.job-filter-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    /* 允许字段在网格中正常缩小，避免互相覆盖 */
+    min-width: 0;
+}
+
+.job-filter-field label {
+    color: #31543c;
+    font-weight: 600;
+}
+
+/* 公司搜索框与其他下拉筛选框 */
+.job-filter-field input,
+.job-filter-field select {
+    width: 100%;
+    min-width: 0;
+    height: 48px;
+    padding: 0 12px;
+
+    /* 让 padding 和 border 计算在 100% 宽度以内 */
+    box-sizing: border-box;
+
+    border: 1px solid #cbd9c8;
+    border-radius: 8px;
+
+    color: #222222;
+    background-color: white;
+
+    font: inherit;
+}
+
+.job-filter-field select {
+    cursor: pointer;
+}
+
+.job-search-button {
+    height: 48px;
+    padding: 11px 24px;
+    border: none;
+    border-radius: 8px;
+    background-color: #719966;
+    color: white;
+    font: inherit;
+    cursor: pointer;
+}
