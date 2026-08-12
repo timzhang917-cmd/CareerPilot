@@ -32,34 +32,15 @@
     color: #888888;
 }
 
-/* 页面标题和返回按钮 */
+/* Results 页面标题 */
 .result-heading {
     display: flex;
     align-items: center;
-    gap: 50px;
     margin-bottom: 25px;
 }
 
 .result-heading h1 {
     margin: 0;
-}
-
-.back-button {
-    display: inline-flex;
-    align-items: center;
-
-    padding: 8px 14px;
-    border: 1px solid #cccccc;
-    border-radius: 10px;
-
-    color: #222222;
-    background-color: white;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.back-button:hover {
-    background-color: #f2f2f2;
 }
 
 @media (max-width: 680px) {

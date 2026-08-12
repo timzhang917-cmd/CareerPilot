@@ -1,0 +1,27 @@
+/* Result 和 History 页签的整体区域 */
+.analysis-tabs {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid #d7e2d4;
+}
+
+/* 单个页签 */
+.analysis-tab {
+    min-width: 120px;
+    padding: 13px 24px;
+
+    border-radius: 10px 10px 0 0;
+    background-color: #eef4eb;
+
+    color: #315b3d;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* 当前所在的页签 */
+.analysis-tab.active {
+    background-color: #b3cfaa;
+    color: #243f2c;
+}

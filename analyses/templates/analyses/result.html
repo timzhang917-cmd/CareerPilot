@@ -6,13 +6,21 @@
     <meta charset="UTF-8">
     <title>CV Analysis - CareerPilot</title>
 
-   <!-- 全站公共样式 -->
+    <!-- 全站公共样式 -->
     <link rel="stylesheet"
-        href="{% static 'analyses/css/base.css' %}">
+        href="{% static 'analyses/css/base.css' %}?v=0812-profile">
+
+    <!-- 用户资料弹窗样式 -->
+    <link rel="stylesheet"
+        href="{% static 'analyses/css/profile.css' %}?v=0812-profile">
 
     <!-- Results 页面整体布局 -->
     <link rel="stylesheet"
         href="{% static 'analyses/css/result/layout.css' %}">
+
+    <!-- Result 和 History 页签样式 -->
+    <link rel="stylesheet"
+        href="{% static 'analyses/css/result/tabs.css' %}?v=0813">
 
     <!-- Results 顶部汇总卡样式 -->
     <link rel="stylesheet"
@@ -41,11 +49,9 @@
     <main class="result-page">
         <div class="result-heading">
             <h1>Results</h1>
-
-            <a class="back-button" href="{% url 'home' %}">
-                ← Back to Home
-            </a>
         </div>
+
+        {% include "analyses/result/_tabs.html" %}
 
         {% if result %}
             {% include "analyses/result/_summary.html" %}

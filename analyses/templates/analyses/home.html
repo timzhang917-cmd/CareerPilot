@@ -6,7 +6,10 @@
     <title>CareerPilot</title>
 
     <!-- 全站公共样式 -->
-    <link rel="stylesheet" href="{% static 'analyses/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'analyses/css/base.css' %}?v=0812-profile">
+
+    <!-- 用户资料弹窗样式：直接加载，避免浏览器缓存旧版 base.css -->
+    <link rel="stylesheet" href="{% static 'analyses/css/profile.css' %}?v=0812-profile">
 
     <!-- 首页专属样式 -->
     <link rel="stylesheet" href="{% static 'analyses/css/home.css' %}">

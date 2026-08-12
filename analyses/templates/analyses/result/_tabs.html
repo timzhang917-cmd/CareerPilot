@@ -1,0 +1,16 @@
+<!-- CV 分析页面的两个功能页签 -->
+<nav class="analysis-tabs">
+    <a
+        class="analysis-tab {% if active_tab == 'result' %}active{% endif %}"
+        href="{% url 'analysis_result' %}"
+    >
+        Result
+    </a>
+
+    <a
+        class="analysis-tab {% if active_tab == 'history' %}active{% endif %}"
+        href="{% url 'analysis_history' %}"
+    >
+        History
+    </a>
+</nav>

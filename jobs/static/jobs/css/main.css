@@ -122,3 +122,110 @@
     font: inherit;
     cursor: pointer;
 }
+
+
+/* 岗位展示区域 */
+.job-results {
+    margin-top: 30px;
+}
+
+.job-results > h2 {
+    margin: 0 0 18px;
+    color: #1f2b22;
+    font-size: 26px;
+}
+
+.job-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+/* 单家公司招聘卡片 */
+.job-card {
+    display: grid;
+    grid-template-columns:
+        minmax(220px, 1.3fr)
+        minmax(120px, 0.7fr)
+        minmax(150px, 0.8fr)
+        minmax(260px, 1.5fr)
+        auto;
+
+    align-items: center;
+    gap: 20px;
+
+    padding: 16px 22px;
+
+    border: 1px solid #dce6da;
+    border-radius: 12px;
+    background-color: white;
+
+    box-shadow: 0 4px 12px rgba(45, 76, 52, 0.05);
+}
+
+.job-company-name {
+    margin: 0;
+    color: #1f4129;
+    font-size: 19px;
+}
+
+.job-card-field {
+    margin: 0;
+    min-width: 0;
+
+    color: #333333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.job-card-field span {
+    display: block;
+    margin-bottom: 4px;
+
+    color: #718075;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* 跳转公司招聘官网的按钮 */
+.official-site-button {
+    flex-shrink: 0;
+    padding: 9px 15px;
+
+    border: 1px solid #719966;
+    border-radius: 9px;
+
+    color: #31543c;
+    background-color: #eef4ec;
+
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.official-site-button:hover {
+    color: white;
+    background-color: #719966;
+}
+
+
+/* 筛选没有匹配结果时的提示 */
+.job-empty-state {
+    padding: 42px 24px;
+    border: 1px dashed #cbd9c8;
+    border-radius: 14px;
+    text-align: center;
+    background-color: #f8fbf7;
+}
+
+.job-empty-state h3 {
+    margin: 0;
+    color: #31543c;
+}
+
+.job-empty-state p {
+    margin: 10px 0 0;
+    color: #666666;
+}

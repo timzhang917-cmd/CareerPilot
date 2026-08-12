@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis History - CareerPilot</title>
+
+    <!-- 全站公共样式 -->
+    <link rel="stylesheet"
+        href="{% static 'analyses/css/base.css' %}?v=0813">
+
+    <!-- 用户资料弹窗样式 -->
+    <link rel="stylesheet"
+        href="{% static 'analyses/css/profile.css' %}?v=0813">
+
+    <!-- History 页面布局 -->
+    <link rel="stylesheet"
+        href="{% static 'analyses/css/result/history.css' %}?v=0813">
+
+    <!-- Result 和 History 页签 -->
+    <link rel="stylesheet"
+        href="{% static 'analyses/css/result/tabs.css' %}?v=0813">
+</head>
+
+<body>
+    {% include "analyses/header.html" %}
+
+    <main class="history-page">
+        <h1>Analysis History</h1>
+
+        {% include "analyses/result/_tabs.html" %}
+
+        {% if analyses %}
+            <div class="history-table-wrapper">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Analysis Time</th>
+                            <th>Job Title</th>
+                            <th>Score</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for analysis in analyses %}
+                            <tr>
+                                <td>
+                                    {{ analysis.created_at|date:"Y-m-d H:i" }}
+                                </td>
+
+                                <td>
+                                    {{ analysis.job_description.job_title }}
+                                </td>
+
+                                <td>
+                                    {% if analysis.result_data.overall.score %}
+                                        {{ analysis.result_data.overall.score }}%
+                                    {% else %}
+                                        —
+                                    {% endif %}
+                                </td>
+
+                                <td>
+                                    {{ analysis.get_status_display }}
+                                </td>
+
+                                <td>
+                                    <a
+                                        class="history-view-button"
+                                        href="{% url 'analysis_detail' analysis.id %}"
+                                    >
+                                        View
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="history-empty">
+                <h2>No analysis history yet</h2>
+                <p>Your completed resume analyses will appear here.</p>
+            </div>
+        {% endif %}
+    </main>
+</body>
+</html>

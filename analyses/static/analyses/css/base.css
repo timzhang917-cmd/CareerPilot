@@ -34,7 +34,7 @@ main {
 }
 
 /* 登录后的账户和退出按钮 */
-nav > span,
+#profile-open,
 nav > form button {
     padding: 8px 14px;
     border: 1px solid #cccccc;
@@ -46,6 +46,15 @@ nav > form button {
 
 nav > form button {
     cursor: pointer;
+}
+
+#profile-open {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+#profile-open:hover {
+    background-color: #9dcb91;
 }
 
 nav > form button:hover {

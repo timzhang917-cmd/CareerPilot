@@ -1,0 +1,116 @@
+/* 弹窗打开后禁止背景页面滚动 */
+body.profile-modal-open {
+    overflow: hidden;
+}
+
+/* 覆盖整个页面的半透明背景 */
+.profile-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+    background-color: rgba(0, 0, 0, 0.52);
+}
+
+/* hidden 属性负责默认隐藏弹窗 */
+.profile-overlay[hidden] {
+    display: none;
+}
+
+/* 中央用户资料卡片 */
+.profile-card {
+    width: min(520px, 100%);
+    overflow: hidden;
+
+    border: 1px solid #b3cfaa;
+    border-radius: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.22);
+}
+
+/* 弹窗顶部标题区域 */
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 28px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.profile-header h2 {
+    margin: 0;
+}
+
+/* 右上角关闭按钮 */
+.profile-close-x {
+    padding: 4px 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 28px;
+}
+
+/* 弹窗主体 */
+.profile-content {
+    padding: 28px 44px 30px;
+    text-align: center;
+}
+
+/* 用户名首字母头像 */
+.profile-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 16px;
+
+    border-radius: 50%;
+    background-color: #b3cfaa;
+    color: #315c3d;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.profile-content h3 {
+    margin: 0 0 26px;
+    font-size: 24px;
+}
+
+/* 用户资料信息区域 */
+.profile-information {
+    margin-bottom: 28px;
+    border-top: 1px solid #dddddd;
+}
+
+.profile-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    padding: 16px 20px;
+    border-bottom: 1px solid #dddddd;
+    text-align: left;
+}
+
+/* 底部关闭按钮 */
+.profile-close-button {
+    min-width: 130px;
+    padding: 10px 24px;
+
+    border: none;
+    border-radius: 10px;
+    background-color: #b3cfaa;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.profile-close-button:hover {
+    background-color: #9dcb91;
+}

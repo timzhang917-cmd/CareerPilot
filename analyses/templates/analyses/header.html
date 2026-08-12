@@ -1,10 +1,15 @@
+{% load static %}
+
 <header>
     <nav>
         <strong>CareerPilot</strong>
 
         <div class="main-nav">
+            <!-- 返回网站首页 -->
+            <a href="{% url 'home' %}">Home</a>
+
             <a href="{% url 'analysis_result' %}">
-                CV Analysis
+                Analysis
             </a>
 
             <a href="{% url 'job_search' %}">Jobs</a> <!--8.11改动，建立映射联系-->
@@ -12,7 +17,14 @@
         </div>
 
         {% if user.is_authenticated %}
-            <span>Hello, {{ user.username }}</span>
+            <!-- 点击这个按钮打开用户资料弹窗 -->
+            <button
+                type="button"
+                id="profile-open"
+                aria-haspopup="dialog"
+                aria-controls="profile-modal">
+                Hello, {{ user.username }}
+            </button>
 
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
@@ -31,3 +43,59 @@
         {% endif %}
     </nav>
 </header>
+
+{% if user.is_authenticated %}
+    <!-- 用户资料弹窗，默认使用 hidden 隐藏 -->
+    <div id="profile-modal"
+         class="profile-overlay"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="profile-title"
+         hidden>
+
+        <section class="profile-card">
+            <div class="profile-header">
+                <h2 id="profile-title">User Profile</h2>
+
+                <button
+                    type="button"
+                    id="profile-close-x"
+                    class="profile-close-x"
+                    aria-label="Close profile">
+                    ×
+                </button>
+            </div>
+
+            <div class="profile-content">
+                <!-- 使用用户名第一个字母作为临时头像 -->
+                <div class="profile-avatar">
+                    {{ user.username|first|upper }}
+                </div>
+
+                <h3>Hello, {{ user.username }}</h3>
+
+                <div class="profile-information">
+                    <div class="profile-row">
+                        <strong>Username</strong>
+                        <span>{{ user.username }}</span>
+                    </div>
+
+                    <div class="profile-row">
+                        <strong>Joined</strong>
+                        <span>{{ user.date_joined|date:"F j, Y" }}</span>
+                    </div>
+                </div>
+
+                <button
+                    type="button"
+                    id="profile-close-button"
+                    class="profile-close-button">
+                    Close
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- 控制用户资料弹窗打开和关闭 -->
+    <script src="{% static 'analyses/js/profile.js' %}?v=0812-profile"></script>
+{% endif %}

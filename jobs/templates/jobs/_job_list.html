@@ -1,20 +1,43 @@
-<h2>Job Search</h2>
+<section class="job-results">
+    <h2>Available Companies</h2>
 
-<!-- 循环显示数据库中的岗位信息 -->
-{% for job in job_listings %}
-    <article>
-        <h2>{{ job.company_name }}</h2>
+    <div class="job-card-list">
+        <!-- 循环显示筛选后的公司招聘信息 -->
+        {% for job in job_listings %}
+            <article class="job-card">
+                <h3 class="job-company-name">
+                    {{ job.company_name }}
+                </h3>
 
-        <p>Industry: {{ job.industry }}</p>
-        <p>Positions: {{ job.job_positions }}</p>
-        <p>Location: {{ job.location }}</p>
+                <p class="job-card-field">
+                    <span>Industry</span>
+                    {{ job.industry }}
+                </p>
 
-        <a href="{{ job.official_url }}"
-           target="_blank"
-           rel="noopener noreferrer">
-            Official Site
-        </a>
-    </article>
-{% empty %}
-    <p>No job information is currently available.</p>
-{% endfor %}
+                <p class="job-card-field"
+                   title="{{ job.location }}">
+                    <span>Location</span>
+                    {{ job.location }}
+                </p>
+
+                <p class="job-card-field job-position-field"
+                   title="{{ job.job_positions }}">
+                    <span>Positions</span>
+                    {{ job.job_positions }}
+                </p>
+
+                <a class="official-site-button"
+                   href="{{ job.official_url }}"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Official Site →
+                </a>
+            </article>
+        {% empty %}
+            <div class="job-empty-state">
+                <h3>No matching companies found</h3>
+                <p>Try changing or clearing the current filters.</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
