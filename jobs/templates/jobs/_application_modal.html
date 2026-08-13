@@ -1,0 +1,79 @@
+<dialog class="application-modal"
+        id="application-modal"
+        data-open-automatically="{{ open_application_modal|yesno:'true,false' }}">
+    <div class="application-modal-header">
+        <div>
+            <h2 id="application-modal-title">
+                {% if editing_application %}Edit Application{% else %}Add Application{% endif %}
+            </h2>
+            <p>Record a job application and update its progress later.</p>
+        </div>
+
+        <button class="application-modal-close"
+                type="button"
+                data-close-application-modal
+                aria-label="Close">
+            &times;
+        </button>
+    </div>
+
+    <form method="post" action="{% url 'my_applications' %}">
+        {% csrf_token %}
+
+        <!-- 空值表示新增；有 ID 表示更新对应记录 -->
+        <input id="application-id"
+               type="hidden"
+               name="application_id"
+               value="{{ editing_application.id|default:'' }}">
+
+        {{ form.non_field_errors }}
+
+        <!-- 四个短字段保持在同一行 -->
+        <div class="application-modal-fields">
+            <div class="application-modal-field">
+                {{ form.application_date.label_tag }}
+                {{ form.application_date }}
+                {{ form.application_date.errors }}
+            </div>
+
+            <div class="application-modal-field">
+                {{ form.company_name.label_tag }}
+                {{ form.company_name }}
+                {{ form.company_name.errors }}
+            </div>
+
+            <div class="application-modal-field">
+                {{ form.position_name.label_tag }}
+                {{ form.position_name }}
+                {{ form.position_name.errors }}
+            </div>
+
+            <div class="application-modal-field">
+                {{ form.location.label_tag }}
+                {{ form.location }}
+                {{ form.location.errors }}
+            </div>
+        </div>
+
+        <!-- 进展记录单独占据第二行 -->
+        <div class="application-modal-notes">
+            {{ form.progress_notes.label_tag }}
+            {{ form.progress_notes }}
+            {{ form.progress_notes.errors }}
+        </div>
+
+        <div class="application-modal-actions">
+            <button class="application-modal-cancel"
+                    type="button"
+                    data-close-application-modal>
+                Cancel
+            </button>
+
+            <button class="application-modal-save"
+                    id="application-modal-save"
+                    type="submit">
+                {% if editing_application %}Save Changes{% else %}Save Application{% endif %}
+            </button>
+        </div>
+    </form>
+</dialog>

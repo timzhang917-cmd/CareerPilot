@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from datetime import date
 
-from .models import JobListing
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
+
+from .forms import JobApplicationForm
+from .models import JobApplication, JobListing
 
 
 def split_options(values):
@@ -88,6 +92,7 @@ def job_search(request):
     context = {
         # 筛选后的岗位信息
         "job_listings": job_listings,
+        "active_tab": "search",
 
         # 三个下拉框的可选内容
         "position_options": position_options,
@@ -105,4 +110,75 @@ def job_search(request):
         request,
         "jobs/main.html",
         context,
+    )
+
+
+@login_required
+def my_applications(request):
+    """展示当前用户的投递记录，并接收弹窗提交的新增或编辑。"""
+    open_application_modal = False
+    editing_application = None
+
+    if request.method == "POST":
+        action = request.POST.get("action")
+        application_id = request.POST.get("application_id")
+
+        # 删除操作：后端同时校验记录属于当前登录用户
+        if action == "delete" and application_id:
+            application = get_object_or_404(
+                JobApplication,
+                id=application_id,
+                user=request.user,
+            )
+            application.delete()
+
+            return redirect("my_applications")
+
+        if application_id:
+            # 只有记录本人可以编辑这条投递信息
+            editing_application = get_object_or_404(
+                JobApplication,
+                id=application_id,
+                user=request.user,
+            )
+
+        # 有 instance 时更新原记录；没有时创建新记录
+        form = JobApplicationForm(
+            request.POST,
+            instance=editing_application,
+        )
+
+        if form.is_valid():
+            # user 不由浏览器提交，后端强制绑定当前登录用户
+            application = form.save(commit=False)
+            application.user = request.user
+            application.save()
+
+            return redirect("my_applications")
+
+        # 校验失败时重新打开弹窗，让用户看到错误信息
+        open_application_modal = True
+    else:
+        form = JobApplicationForm(
+            initial={
+                "application_date": date.today(),
+            }
+        )
+
+    applications = (
+        JobApplication.objects
+        .filter(user=request.user)
+        .order_by("-application_date", "-created_at")
+    )
+
+    return render(
+        request,
+        "jobs/main.html",
+        {
+            "applications": applications,
+            "form": form,
+            "editing_application": editing_application,
+            "open_application_modal": open_application_modal,
+            "active_tab": "applications",
+        },
     )

@@ -17,6 +17,12 @@
     <!-- Jobs 页面专属样式 -->
     <link rel="stylesheet"
           href="{% static 'jobs/css/main.css' %}?v=0812">
+
+    {% if active_tab == "applications" %}
+        <!-- 只在 My Applications 页签加载投递记录样式 -->
+        <link rel="stylesheet"
+              href="{% static 'jobs/css/application.css' %}?v=0813-edit">
+    {% endif %}
 </head>
 
 <body>
@@ -29,10 +35,20 @@
             <p>Discover new opportunities and manage your applications.</p>
         </div>
 
-        <!-- 组合 Jobs 页面的三个独立区域 -->
+        <!-- 根据当前页签，只显示对应的页面内容 -->
         {% include "jobs/_tabs.html" %}
-        {% include "jobs/_search_form.html" %}
-        {% include "jobs/_job_list.html" %}
+
+        {% if active_tab == "search" %}
+            {% include "jobs/_search_form.html" %}
+            {% include "jobs/_job_list.html" %}
+        {% elif active_tab == "applications" %}
+            {% include "jobs/_application_list.html" %}
+        {% endif %}
     </main>
+
+    {% if active_tab == "applications" %}
+        <!-- 只在 My Applications 页签加载弹窗交互 -->
+        <script src="{% static 'jobs/js/application_modal.js' %}?v=0813-edit"></script>
+    {% endif %}
 </body>
 </html>

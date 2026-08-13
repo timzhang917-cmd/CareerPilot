@@ -1,0 +1,76 @@
+<section class="application-list-section">
+    <div class="application-list-heading">
+        <h2>My Applications</h2>
+
+        <button class="add-application-button"
+                id="open-application-modal"
+                type="button">
+            Add Application
+        </button>
+    </div>
+
+    {% if applications %}
+        <div class="application-table-wrapper">
+            <table class="application-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Company</th>
+                        <th>Position</th>
+                        <th>Location</th>
+                        <th>Notes</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for application in applications %}
+                        <tr>
+                            <td>{{ application.application_date|date:"Y-m-d" }}</td>
+                            <td>{{ application.company_name }}</td>
+                            <td>{{ application.position_name }}</td>
+                            <td>{{ application.location|default:"—" }}</td>
+                            <td>{{ application.progress_notes|default:"—"|linebreaksbr }}</td>
+                            <td>
+                                <div class="application-row-actions">
+                                    <button class="edit-application-button"
+                                            type="button"
+                                            data-edit-application
+                                            data-application-id="{{ application.id }}"
+                                            data-application-date="{{ application.application_date|date:'Y-m-d' }}"
+                                            data-company-name="{{ application.company_name|escape }}"
+                                            data-position-name="{{ application.position_name|escape }}"
+                                            data-location="{{ application.location|escape }}"
+                                            data-progress-notes="{{ application.progress_notes|escape }}">
+                                        Edit
+                                    </button>
+
+                                    <form class="delete-application-form"
+                                          method="post"
+                                          data-delete-application>
+                                        {% csrf_token %}
+                                        <input type="hidden"
+                                               name="action"
+                                               value="delete">
+                                        <input type="hidden"
+                                               name="application_id"
+                                               value="{{ application.id }}">
+
+                                        <button class="delete-application-button"
+                                                type="submit">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>You have not added any application records yet.</p>
+    {% endif %}
+</section>
+
+<!-- 新增投递记录弹窗，与列表放在同一个页面中 -->
+{% include "jobs/_application_modal.html" %}

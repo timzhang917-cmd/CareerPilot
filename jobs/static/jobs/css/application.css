@@ -1,0 +1,296 @@
+/* My Applications 内容区域 */
+.application-list-section {
+    margin-top: 32px;
+}
+
+.application-list-section h2 {
+    margin: 0 0 20px;
+    color: #1f2f24;
+    font-size: 30px;
+}
+
+/* 表格外层允许在较窄屏幕上横向滚动 */
+.application-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #dce6d9;
+    border-radius: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 22px rgba(42, 67, 48, 0.08);
+}
+
+.application-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.application-table th,
+.application-table td {
+    padding: 18px 24px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #e3e9e1;
+}
+
+/* 浅牛油果绿表头 */
+.application-table th {
+    color: #31543a;
+    background-color: #f1f6ef;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.application-table td {
+    color: #333333;
+    font-size: 16px;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+.application-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Current Progress 获得最大展示空间 */
+.application-table th:nth-child(1),
+.application-table td:nth-child(1) {
+    width: 12%;
+}
+
+.application-table th:nth-child(2),
+.application-table td:nth-child(2) {
+    width: 13%;
+}
+
+.application-table th:nth-child(3),
+.application-table td:nth-child(3) {
+    width: 13%;
+}
+
+.application-table th:nth-child(4),
+.application-table td:nth-child(4) {
+    width: 14%;
+}
+
+.application-table th:nth-child(5),
+.application-table td:nth-child(5) {
+    width: 33%;
+}
+
+.application-table th:nth-child(6),
+.application-table td:nth-child(6) {
+    width: 15%;
+}
+
+/* 每条投递记录右侧的操作按钮 */
+.application-row-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.delete-application-form {
+    margin: 0;
+}
+
+.edit-application-button {
+    padding: 7px 14px;
+    border: 1px solid #8aa47f;
+    border-radius: 8px;
+    color: #31543a;
+    background-color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.delete-application-button {
+    padding: 7px 12px;
+    border: 1px solid #c96b61;
+    border-radius: 8px;
+    color: #a64037;
+    background-color: #fff7f6;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.delete-application-button:hover {
+    color: #ffffff;
+    background-color: #c9564b;
+}
+
+/* 没有投递记录时的提示文字 */
+.application-list-section > p {
+    padding: 28px;
+    border: 1px solid #dce6d9;
+    border-radius: 16px;
+    color: #687169;
+    background-color: #ffffff;
+}
+
+/* My Applications 标题与新增按钮 */
+.application-list-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.application-list-heading h2 {
+    margin: 0;
+}
+
+.add-application-button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    background-color: #7f9f72;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* 新增投递记录弹窗 */
+.application-modal {
+    box-sizing: border-box;
+    width: min(1180px, calc(100% - 64px));
+    max-width: none;
+    padding: 28px 30px 24px;
+    border: 1px solid #dce6d9;
+    border-radius: 16px;
+    color: #253128;
+    background-color: #ffffff;
+    box-shadow: 0 20px 60px rgba(24, 42, 29, 0.18);
+}
+
+.application-modal::backdrop {
+    background-color: rgba(24, 35, 27, 0.48);
+}
+
+.application-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.application-modal-header h2 {
+    margin: 0 0 6px;
+    color: #1f2f24;
+    font-size: 28px;
+}
+
+.application-modal-header p {
+    margin: 0;
+    color: #687169;
+}
+
+.application-modal-close {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    color: #4b5b50;
+    background-color: #eef4ec;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+    place-items: center;
+}
+
+.application-modal-fields {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.application-modal-field label,
+.application-modal-notes label {
+    display: block;
+    margin-bottom: 8px;
+    color: #31543a;
+    font-weight: 600;
+}
+
+.application-modal input,
+.application-modal textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cfd9cc;
+    border-radius: 10px;
+    color: #2f3531;
+    background-color: #ffffff;
+    font: inherit;
+}
+
+.application-modal-notes {
+    margin-top: 18px;
+}
+
+.application-modal-notes textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.application-modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.application-modal-cancel,
+.application-modal-save {
+    padding: 11px 20px;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.application-modal-cancel {
+    border: 1px solid #b9c8b5;
+    color: #526257;
+    background-color: #ffffff;
+}
+
+.application-modal-save {
+    border: none;
+    color: #ffffff;
+    background-color: #7f9f72;
+}
+
+/* Django 表单校验错误 */
+.application-modal .errorlist {
+    margin: 7px 0 0;
+    padding: 0;
+    color: #b44738;
+    font-size: 14px;
+    list-style: none;
+}
+
+@media (max-width: 900px) {
+    .application-modal-fields {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .application-modal {
+        width: calc(100% - 28px);
+        padding: 22px 18px;
+    }
+
+    .application-modal-fields {
+        grid-template-columns: 1fr;
+    }
+}
