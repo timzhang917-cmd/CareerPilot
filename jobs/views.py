@@ -1,9 +1,10 @@
 from datetime import date
 
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import JobApplicationForm
+from .forms import JobApplicationForm, JobListingForm
 from .models import JobApplication, JobListing
 
 
@@ -117,6 +118,7 @@ def job_search(request):
 def my_applications(request):
     """展示当前用户的投递记录，并接收弹窗提交的新增或编辑。"""
     open_application_modal = False
+    editing_job = None
     editing_application = None
 
     if request.method == "POST":
@@ -180,5 +182,100 @@ def my_applications(request):
             "editing_application": editing_application,
             "open_application_modal": open_application_modal,
             "active_tab": "applications",
+        },
+    )
+
+@login_required
+def hr_dashboard(request):
+    """
+    显示当前 HR 的招聘记录，
+    并接收新的招聘信息提交。
+    """
+
+    is_hr = request.user.groups.filter(
+        name="HR",
+    ).exists()
+
+    # 普通用户不能进入 HR Dashboard。
+    # 超级管理员仍然允许访问，方便开发和维护。
+    if not is_hr and not request.user.is_superuser:
+        raise PermissionDenied(
+            "This page is only available to HR users."
+        )
+
+    # 控制表单校验失败后是否重新打开发布弹窗。
+    open_job_post_modal = False
+    # 默认没有正在编辑的招聘记录。
+    editing_job = None
+
+    if request.method == "POST":
+        action = request.POST.get("action")
+
+        # 删除招聘记录。
+        if action == "delete":
+            job_id = request.POST.get("job_id")
+
+            # 同时检查记录编号和创建者，
+            # 防止 HR 删除其他用户的招聘信息。
+            job_listing = get_object_or_404(
+                JobListing,
+                id=job_id,
+                created_by=request.user,
+            )
+
+            job_listing.delete()
+
+            return redirect("hr_dashboard")
+
+        # 如果请求中存在 job_id，说明当前是编辑操作。
+        job_id = request.POST.get("job_id")
+
+        if job_id:
+            # 同时检查记录 ID 和创建者，
+            # 防止 HR 编辑其他用户的招聘记录。
+            editing_job = get_object_or_404(
+                JobListing,
+                id=job_id,
+                created_by=request.user,
+            )
+
+        # 有 instance 时更新原记录；
+        # 没有 instance 时创建新记录。
+        form = JobListingForm(
+            request.POST,
+            instance=editing_job,
+        )
+
+        if form.is_valid():
+            job_listing = form.save(commit=False)
+
+            # 招聘信息所有者只能由后端指定。
+            job_listing.created_by = request.user
+            job_listing.save()
+
+            # 避免刷新页面后重复提交。
+            return redirect("hr_dashboard")
+
+        # 发布表单校验失败后重新打开弹窗。
+        open_job_post_modal = True
+    else:
+        # GET 请求使用空白发布表单。
+        form = JobListingForm()
+
+    # 只读取当前 HR 自己创建的招聘记录。
+    job_listings = (
+        JobListing.objects
+        .filter(created_by=request.user)
+        .order_by("-id")
+    )
+
+    return render(
+        request,
+        "jobs/hr_dashboard.html",
+        {
+            "form": form,
+            "job_listings": job_listings,
+            "editing_job": editing_job,
+            "open_job_post_modal": open_job_post_modal,
         },
     )

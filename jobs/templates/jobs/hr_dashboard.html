@@ -1,0 +1,164 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HR Dashboard - CareerPilot</title>
+
+    <!-- 全站基础样式 -->
+    <link rel="stylesheet"
+          href="{% static 'analyses/css/base.css' %}">
+
+    <!-- 用户资料弹窗样式 -->
+    <link rel="stylesheet"
+          href="{% static 'analyses/css/profile.css' %}">
+
+    <!-- HR Dashboard 主体样式 -->
+    <link rel="stylesheet"
+          href="{% static 'jobs/css/hr_dashboard.css' %}?v=0814-hr-dashboard">
+
+    <!-- 发布岗位弹窗样式，暂时保留拆分后的引用 -->
+    <link rel="stylesheet"
+          href="{% static 'jobs/css/hr_post.css' %}?v=0814">
+</head>
+
+<body>
+    <!-- 使用 HR 专属 Header -->
+    {% include "jobs/hr_header.html" %}
+
+    <main class="hr-dashboard-page">
+        <!-- 页面标题和发布按钮 -->
+        <section class="hr-dashboard-heading">
+            <div>
+                <h1>HR Dashboard</h1>
+
+            </div>
+
+            <button
+                type="button"
+                class="create-job-post-button"
+                id="open-job-post-modal">
+                <span aria-hidden="true">+</span>
+                Create Job Post
+            </button>
+        </section>
+
+        <!-- 当前 HR 的招聘信息 -->
+        <section class="job-management-card">
+            <div class="job-management-heading">
+                <h2>Recent Posts</h2>
+
+            </div>
+
+            {% if job_listings %}
+                <div class="job-post-table-wrapper">
+                    <table class="job-post-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Company</th>
+                                <th scope="col">Industry</th>
+                                <th scope="col">Positions</th>
+                                <th scope="col">Location</th>
+                                <th scope="col">Official Site</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for job in job_listings %}
+                                <tr>
+                                    <td>
+                                        <strong>
+                                            {{ job.company_name }}
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        {{ job.industry }}
+                                    </td>
+
+                                    <td>
+                                        {{ job.job_positions }}
+                                    </td>
+
+                                    <td>
+                                        {{ job.location }}
+                                    </td>
+
+                                    <td>
+                                        <a
+                                            class="job-official-link"
+                                            href="{{ job.official_url }}"
+                                            target="_blank"
+                                            rel="noopener noreferrer">
+                                            Visit site
+                                        </a>
+                                    </td>
+
+                                    <td>
+                                        <div class="job-post-actions">
+                                            <button
+                                                type="button"
+                                                class="edit-job-post-button"
+                                                data-edit-job-post
+                                                data-job-id="{{ job.id }}">
+                                                Edit
+                                            </button>
+
+                                            <form
+                                                method="post"
+                                                action="{% url 'hr_dashboard' %}"
+                                                onsubmit="return confirm('Delete this job post?');">
+
+                                                {% csrf_token %}
+
+                                                <input
+                                                    type="hidden"
+                                                    name="action"
+                                                    value="delete">
+
+                                                <input
+                                                    type="hidden"
+                                                    name="job_id"
+                                                    value="{{ job.id }}">
+
+                                                <button
+                                                    type="submit"
+                                                    class="delete-job-post-button">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <!-- 当前 HR 没有发布记录 -->
+                <div class="job-post-empty-state">
+                    <div class="job-post-empty-icon"
+                         aria-hidden="true">
+                        +
+                    </div>
+
+                    <h3>No job posts yet</h3>
+
+                </div>
+            {% endif %}
+        </section>
+
+        <!-- 发布岗位弹窗 -->
+        {% include "jobs/hr_job_post.html" %}
+    </main>
+
+    <!-- 控制发布弹窗打开和关闭 -->
+    <script src="{% static 'jobs/js/job_post_modal.js' %}?v=0814">
+    </script>
+</body>
+</html>

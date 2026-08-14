@@ -4,6 +4,16 @@ from django.db import models
 
 class JobListing(models.Model):
 
+    # 招聘信息的创建者。
+    # 允许为空，用来兼容以前由管理员录入的招聘信息。
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="job_listings",
+        null=True,
+        blank=True,
+    )
+
     company_name = models.CharField(max_length=200)
 
     # 所属行业

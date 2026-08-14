@@ -1,0 +1,283 @@
+/* 注册、登录页面的内容背景 */
+.auth-page {
+    min-height: 100vh;
+    background-color: #f7f9f7;
+}
+
+.auth-main {
+    display: flex;
+    justify-content: center;
+    padding: 48px 24px 70px;
+}
+
+/* 注册页面中央卡片 */
+.auth-card {
+    width: min(100%, 760px);
+    box-sizing: border-box;
+    padding: 36px;
+
+    border: 1px solid #dfe5e0;
+    border-radius: 16px;
+    background-color: #ffffff;
+
+    box-shadow: 0 12px 34px rgba(30, 60, 45, 0.09);
+}
+
+.auth-card-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.auth-card-header h1 {
+    margin: 0 0 10px;
+    font-size: 30px;
+}
+
+.auth-card-header p {
+    margin: 0;
+    color: #666666;
+    line-height: 1.5;
+}
+
+/* 身份选择区域 */
+.account-type-fieldset {
+    min-width: 0;
+    margin: 0 0 26px;
+    padding: 0;
+    border: 0;
+}
+
+.account-type-fieldset legend {
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.account-type-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.account-type-option {
+    position: relative;
+    cursor: pointer;
+}
+
+/* 隐藏原生单选圆点，但保留键盘操作 */
+.account-type-option input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.account-type-card {
+    position: relative;
+    display: flex;
+    min-height: 150px;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 22px;
+
+    border: 1px solid #cfd6d1;
+    border-radius: 12px;
+    background-color: #ffffff;
+
+    text-align: center;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.account-type-option:hover .account-type-card {
+    border-color: #7e9e86;
+    background-color: #f8fbf8;
+}
+
+.account-type-option input:checked + .account-type-card {
+    border-color: #527d61;
+    background-color: #f1f7f2;
+    box-shadow: 0 0 0 2px rgba(82, 125, 97, 0.12);
+}
+
+/* 选中后的右上角对勾 */
+.account-type-option input:checked + .account-type-card::after {
+    content: "✓";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    display: grid;
+    width: 24px;
+    height: 24px;
+    place-items: center;
+
+    border-radius: 50%;
+    background-color: #527d61;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.account-type-option input:focus-visible + .account-type-card {
+    outline: 3px solid rgba(82, 125, 97, 0.25);
+    outline-offset: 3px;
+}
+
+.account-type-icon {
+    display: grid;
+    width: 52px;
+    height: 52px;
+    place-items: center;
+
+    border-radius: 50%;
+    background-color: #e7f0e5;
+    color: #41684d;
+}
+
+.account-type-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.account-type-card strong {
+    font-size: 18px;
+}
+
+.account-type-description {
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+/* 用户名和密码字段 */
+.auth-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.auth-field label {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.auth-field input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 14px;
+
+    border: 1px solid #cfd6d1;
+    border-radius: 10px;
+    background-color: #ffffff;
+
+    color: #222222;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.auth-field input:focus {
+    outline: none;
+    border-color: #527d61;
+    box-shadow: 0 0 0 3px rgba(82, 125, 97, 0.12);
+}
+
+.field-help {
+    margin: 0;
+    color: #777777;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.field-errors {
+    color: #a03232;
+    font-size: 13px;
+}
+
+.field-errors ul,
+.auth-form-errors ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+/* 注册按钮 */
+.auth-submit-button {
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px 24px;
+
+    border: none;
+    border-radius: 10px;
+    background-color: #315d3f;
+
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.auth-submit-button:hover {
+    background-color: #264d33;
+    transform: translateY(-1px);
+}
+
+.auth-submit-button:active {
+    transform: translateY(0);
+}
+
+.auth-alternative {
+    margin: 24px 0 0;
+    text-align: center;
+    color: #555555;
+}
+
+.auth-alternative a {
+    color: #315d3f;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.auth-alternative a:hover {
+    text-decoration: underline;
+}
+
+/* 小屏幕时身份卡上下排列 */
+@media (max-width: 680px) {
+    .auth-main {
+        padding: 28px 16px 50px;
+    }
+
+    .auth-card {
+        padding: 24px 18px;
+    }
+
+    .auth-card-header h1 {
+        font-size: 25px;
+    }
+
+    .account-type-options {
+        grid-template-columns: 1fr;
+    }
+
+    .account-type-card {
+        min-height: 130px;
+    }
+}

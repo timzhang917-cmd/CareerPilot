@@ -1,0 +1,311 @@
+/* HR Dashboard 页面背景 */
+body {
+    background-color: #f8faf8;
+}
+
+/* Header 保持白色，与主体区域区分 */
+header {
+    background-color: #ffffff;
+}
+
+/* Dashboard 主体宽度和页面边距 */
+.hr-dashboard-page {
+    width: min(100%, 1480px);
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 48px 40px 70px;
+}
+
+/* 页面标题和发布按钮 */
+.hr-dashboard-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.hr-dashboard-heading h1 {
+    margin: 0 0 12px;
+    font-size: 44px;
+    line-height: 1.1;
+}
+
+.hr-dashboard-heading p {
+    margin: 0;
+    color: #5f6561;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* Create Job Post 主按钮 */
+.create-job-post-button {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 22px;
+
+    border: none;
+    border-radius: 10px;
+    background-color: #315d3f;
+
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 6px 16px rgba(49, 93, 63, 0.18);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.create-job-post-button span {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.create-job-post-button:hover {
+    background-color: #264d33;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(49, 93, 63, 0.24);
+}
+
+.create-job-post-button:active {
+    transform: translateY(0);
+}
+
+/* 招聘信息管理卡片 */
+.job-management-card {
+    overflow: hidden;
+
+    border: 1px solid #dbe2dd;
+    border-radius: 14px;
+    background-color: #ffffff;
+
+    box-shadow: 0 8px 26px rgba(30, 60, 45, 0.06);
+}
+
+.job-management-heading {
+    padding: 28px 30px 22px;
+    border-bottom: 1px solid #e2e7e3;
+}
+
+.job-management-heading h2 {
+    margin: 0 0 8px;
+    font-size: 26px;
+}
+
+.job-management-heading p {
+    margin: 0;
+    color: #666d68;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* 表格外层允许小屏幕横向滚动 */
+.job-post-table-wrapper {
+    overflow-x: auto;
+}
+
+.job-post-table {
+    width: 100%;
+    min-width: 1000px;
+    border-collapse: collapse;
+}
+
+.job-post-table th,
+.job-post-table td {
+    padding: 18px 22px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.job-post-table th {
+    background-color: #f7faf7;
+    color: #315d3f;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.job-post-table td {
+    border-top: 1px solid #e5e9e6;
+    color: #333333;
+    font-size: 15px;
+    line-height: 1.45;
+}
+
+.job-post-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.job-post-table tbody tr:hover {
+    background-color: #fafcfa;
+}
+
+.job-post-table td strong {
+    color: #222222;
+    font-size: 16px;
+}
+
+/* 官网链接 */
+.job-official-link {
+    color: #315d3f;
+    font-weight: 600;
+    text-underline-offset: 3px;
+}
+
+.job-official-link:hover {
+    color: #244a31;
+}
+
+/* 编辑和删除按钮区域 */
+.job-post-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.edit-job-post-button,
+.delete-job-post-button {
+    padding: 8px 14px;
+
+    border-radius: 8px;
+    background-color: #ffffff;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.edit-job-post-button {
+    border: 1px solid #527d61;
+    color: #315d3f;
+}
+
+.edit-job-post-button:hover {
+    background-color: #edf5ef;
+}
+
+.delete-job-post-button {
+    border: 1px solid #bd5b5b;
+    color: #a53e3e;
+}
+
+.delete-job-post-button:hover {
+    background-color: #fff1f1;
+    color: #8f2f2f;
+}
+
+/* 尚无招聘记录时的空状态 */
+.job-post-empty-state {
+    padding: 60px 24px;
+    text-align: center;
+}
+
+.job-post-empty-icon {
+    display: grid;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 18px;
+    place-items: center;
+
+    border-radius: 50%;
+    background-color: #e7f0e5;
+    color: #315d3f;
+
+    font-size: 30px;
+    line-height: 1;
+}
+
+.job-post-empty-state h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+}
+
+.job-post-empty-state p {
+    margin: 0;
+    color: #6a706c;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* 页面底部提示 */
+.job-post-notice {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 28px;
+    padding: 18px 22px;
+
+    border: 1px solid #d3e0d2;
+    border-radius: 12px;
+    background-color: #f0f6ee;
+
+    color: #294d34;
+}
+
+.job-post-notice-icon {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    place-items: center;
+
+    border: 2px solid #315d3f;
+    border-radius: 50%;
+
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.job-post-notice p {
+    margin: 0;
+    color: #2f4134;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* 平板和小屏幕布局 */
+@media (max-width: 800px) {
+    .hr-dashboard-page {
+        padding: 32px 18px 50px;
+    }
+
+    .hr-dashboard-heading {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .hr-dashboard-heading h1 {
+        font-size: 34px;
+    }
+
+    .create-job-post-button {
+        width: 100%;
+    }
+
+    .job-management-heading {
+        padding: 24px 20px 18px;
+    }
+
+    .job-post-empty-state {
+        padding: 48px 20px;
+    }
+}

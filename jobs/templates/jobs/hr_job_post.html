@@ -1,0 +1,119 @@
+<dialog
+    class="job-post-modal"
+    id="job-post-modal"
+    aria-labelledby="job-post-modal-title"
+    data-open-automatically="{{ open_job_post_modal|yesno:'true,false' }}">
+
+    <!-- 弹窗标题区域 -->
+    <div class="job-post-modal-header">
+        <div>
+            <h2 id="job-post-modal-title">
+                Create Job Post
+            </h2>
+        </div>
+
+        <button
+            type="button"
+            class="job-post-modal-close"
+            data-close-job-post-modal
+            aria-label="Close job post form">
+            x
+        </button>
+    </div>
+
+    <!-- 发布招聘信息表单 -->
+    <form
+        method="post"
+        action="{% url 'hr_dashboard' %}"
+        class="job-post-form">
+
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="job-post-form-errors">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <!-- 公司和行业使用两栏布局 -->
+        <div class="job-post-form-grid">
+            <div class="job-post-field">
+                {{ form.company_name.label_tag }}
+                {{ form.company_name }}
+
+                {% if form.company_name.errors %}
+                    <div class="job-post-field-errors">
+                        {{ form.company_name.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="job-post-field">
+                {{ form.industry.label_tag }}
+                {{ form.industry }}
+
+                {% if form.industry.errors %}
+                    <div class="job-post-field-errors">
+                        {{ form.industry.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- 岗位名称允许输入多个岗位 -->
+        <div class="job-post-field">
+            {{ form.job_positions.label_tag }}
+            {{ form.job_positions }}
+
+            <p class="job-post-field-help">
+                Separate multiple positions with /.
+            </p>
+
+            {% if form.job_positions.errors %}
+                <div class="job-post-field-errors">
+                    {{ form.job_positions.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- 工作地点 -->
+        <div class="job-post-field">
+            {{ form.location.label_tag }}
+            {{ form.location }}
+
+            {% if form.location.errors %}
+                <div class="job-post-field-errors">
+                    {{ form.location.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- 官方招聘网址 -->
+        <div class="job-post-field">
+            {{ form.official_url.label_tag }}
+            {{ form.official_url }}
+
+            {% if form.official_url.errors %}
+                <div class="job-post-field-errors">
+                    {{ form.official_url.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- 弹窗底部按钮 -->
+        <div class="job-post-modal-actions">
+            <button
+                type="button"
+                class="job-post-cancel-button"
+                data-close-job-post-modal>
+                Cancel
+            </button>
+
+            <button
+                type="submit"
+                class="job-post-publish-button">
+                Publish Post
+            </button>
+        </div>
+    </form>
+</dialog>

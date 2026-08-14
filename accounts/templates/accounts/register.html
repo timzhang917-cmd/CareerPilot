@@ -1,24 +1,168 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Sign up - CareerPilot</title>
+
+    <!-- 保留当前全站 Header 样式 -->
+    <link rel="stylesheet"
+          href="{% static 'analyses/css/base.css' %}">
+
+    <!-- 注册和登录页面专属样式 -->
+    <link rel="stylesheet"
+          href="{% static 'accounts/register.css' %}?v=0814">
 </head>
 
-<body>
-    <main>
-        <h1>Create your account</h1>
+<body class="auth-page">
+    <!-- 原样复用当前 Header -->
+    {% include "analyses/header.html" %}
 
-        <form method="post">
-            {% csrf_token %}  <!-- 防止CSRF攻击 -->
-            {{ form.as_p }}   <!-- 让Django自动显示用户名、两次密码输入框、帮助文字和错误提示 -->
+    <main class="auth-main">
+        <section class="auth-card">
+            <div class="auth-card-header">
+                <h1>Create account</h1>
+            </div>
 
-            <button type="submit">Sign up</button>
-        </form>
+            <form method="post" class="auth-form">
+                {% csrf_token %}
 
-        <p>
-            <a href="{% url 'home' %}">Back to home</a>
-        </p>
+                {% if form.non_field_errors %}
+                    <div class="auth-form-errors">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <fieldset class="account-type-fieldset">
+                    <legend>Choose your role</legend>
+
+                    <div class="account-type-options">
+                        {% for value, label in form.account_type.field.choices %}
+                            <label class="account-type-option"
+                                   for="id_account_type_{{ forloop.counter0 }}">
+
+                                <input
+                                    id="id_account_type_{{ forloop.counter0 }}"
+                                    type="radio"
+                                    name="{{ form.account_type.html_name }}"
+                                    value="{{ value }}"
+                                    {% if form.account_type.value == value %}
+                                        checked
+                                    {% endif %}
+                                    required
+                                >
+
+                                <span class="account-type-card">
+                                    <span class="account-type-icon"
+                                          aria-hidden="true">
+
+                                        {% if value == "hr" %}
+                                            <!-- HR 公文包图标 -->
+                                            <svg viewBox="0 0 24 24">
+                                                <rect x="3"
+                                                      y="7"
+                                                      width="18"
+                                                      height="13"
+                                                      rx="2">
+                                                </rect>
+                                                <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                </path>
+                                                <path d="M3 12h18"></path>
+                                            </svg>
+                                        {% else %}
+                                            <!-- 求职者用户图标 -->
+                                            <svg viewBox="0 0 24 24">
+                                                <circle cx="12"
+                                                        cy="7"
+                                                        r="4">
+                                                </circle>
+                                                <path d="M4 21a8 8 0 0 1 16 0">
+                                                </path>
+                                            </svg>
+                                        {% endif %}
+                                    </span>
+
+                                    <strong>{{ label }}</strong>
+
+                                    <span class="account-type-description">
+                                        {% if value == "hr" %}
+                                            Post and manage job opportunities
+                                        {% else %}
+                                            Analyze CV and track applications
+                                        {% endif %}
+                                    </span>
+                                </span>
+                            </label>
+                        {% endfor %}
+                    </div>
+
+                    {% if form.account_type.errors %}
+                        <div class="field-errors">
+                            {{ form.account_type.errors }}
+                        </div>
+                    {% endif %}
+                </fieldset>
+
+                <div class="auth-field">
+                    <label for="{{ form.username.id_for_label }}">
+                        Username
+                    </label>
+
+                    {{ form.username }}
+
+                    {% if form.username.errors %}
+                        <div class="field-errors">
+                            {{ form.username.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="auth-field">
+                    <label for="{{ form.password1.id_for_label }}">
+                        Password
+                    </label>
+
+                    {{ form.password1 }}
+
+                    <p class="field-help">
+                        at least 8 characters
+                    </p>
+
+                    {% if form.password1.errors %}
+                        <div class="field-errors">
+                            {{ form.password1.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="auth-field">
+                    <label for="{{ form.password2.id_for_label }}">
+                        Confirm password
+                    </label>
+
+                    {{ form.password2 }}
+
+                    {% if form.password2.errors %}
+                        <div class="field-errors">
+                            {{ form.password2.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <button class="auth-submit-button" type="submit">
+                    Create account
+                </button>
+            </form>
+
+            <p class="auth-alternative">
+                Already have an account?
+                <a href="{% url 'login' %}">Log in</a>
+            </p>
+        </section>
     </main>
 </body>
 </html>
