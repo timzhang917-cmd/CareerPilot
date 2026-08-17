@@ -1,4 +1,4 @@
-from .services import call_deepseek
+from .services import call_deepseek, call_openai
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
@@ -47,8 +47,17 @@ def home(request):
                 ],
             )
 
-            # 调用模型并取得已经解析完成的 JSON 字典
-            analysis_result_data = call_deepseek(
+           # 读取用户在表单中选择的模型
+            selected_model = analysis_form.cleaned_data["ai_model"]
+
+            # 根据选择决定使用哪个模型调用函数
+            if selected_model == "openai":
+                call_model = call_openai
+            else:
+                call_model = call_deepseek
+
+            # 两个函数接收相同参数，并返回相同结构的 JSON 字典
+            analysis_result_data = call_model(
                 resume.extracted_text,
                 job_description.job_title,
                 job_description.content,

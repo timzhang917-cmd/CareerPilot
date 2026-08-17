@@ -94,3 +94,44 @@ def call_deepseek(
 
     # 把 JSON 字符串转换成 Python 字典，方便后续按 key 取值
     return json.loads(response_text)
+
+
+def call_openai(
+    resume_text,
+    job_title,
+    job_description,
+    supplementary_text,
+):
+    prompt = analysis_prompt(
+        resume_text,
+        job_title,
+        job_description,
+        supplementary_text,
+    )
+
+    client = OpenAI(
+        api_key=settings.OPENAI_API_KEY,
+    )
+
+    response = client.responses.create(
+        model=settings.OPENAI_MODEL,
+        instructions=(
+            "You are a careful and professional career advisor. "
+            "Return the result as one valid JSON object."
+        ),
+        input=prompt,
+        reasoning={
+            "effort": "low",
+        },
+        text={
+            "format": {
+                "type": "json_object",
+            },
+        },
+        max_output_tokens=6000,
+        store=False,
+    )
+
+    response_text = response.output_text.strip()
+
+    return json.loads(response_text)

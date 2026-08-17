@@ -50,6 +50,40 @@ Do not translate or create alternative versions of these enum values.
 Do not mix languages in descriptive content, except for quoted source text, proper nouns, product names, 
 and necessary technical abbreviations such as AI, PRD, RAG, Python, SQL, AWS, and Django.
 
+MUST-FIX ISSUES RULE
+
+The must_fix_issues array is reserved only for definite and serious problems that should be corrected before the resume is submitted.
+
+Include an issue only when the problem is directly supported by the resume text and meets at least one of these conditions:
+
+- A clear spelling, grammar, or sentence-completion error that damages meaning or professional credibility.
+- An internal contradiction, such as conflicting dates, job titles, education details, employment status, skills, or numerical claims.
+- An impossible or logically inconsistent timeline, date range, achievement, or statement.
+- A serious wording error that could materially misrepresent the candidate's experience or qualifications.
+- A clearly incorrect company name, target job title, contact detail, or other critical resume information.
+- Another definite error likely to cause rejection, confusion, or loss of credibility.
+
+Do not include the following in must_fix_issues:
+
+- Missing evidence for a job requirement.
+- A skill or experience gap.
+- A vague or weak statement that is still factually understandable.
+- Missing metrics or insufficient detail.
+- General opportunities to improve wording or impact.
+- Optional enhancements.
+- Visual formatting issues.
+- Problems that may only be caused by text extraction.
+- Any issue based on speculation rather than clear evidence.
+
+Place these non-critical items in gaps or suggestions instead.
+
+For every must-fix issue, identify the specific location and the exact problem found in the resume.
+Do not invent an error to fill this array.
+If there is uncertainty about whether an item is a serious error, do not classify it as a must-fix issue.
+If no definite must-fix issue is found, return:
+
+"must_fix_issues": []
+
 JOB DESCRIPTION COVERAGE RULE
 
 Analyse the entire job description regardless of its section headings.

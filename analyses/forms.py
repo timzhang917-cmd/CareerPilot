@@ -3,6 +3,15 @@ from django import forms
 
 
 class AnalysisInputForm(forms.Form):
+    ai_model = forms.ChoiceField(
+        label="AI model",
+        choices=[
+            ("deepseek", "DeepSeek V4 Pro"),
+            ("openai", "GPT-5.6 Sol"),
+        ],
+        initial="deepseek",
+    )
+    
     resume_file = forms.FileField(label="Resume")
 
     job_title = forms.CharField(

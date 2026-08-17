@@ -68,6 +68,15 @@
                     {% csrf_token %}
                     {{ analysis_form.non_field_errors }} <!-- 从原先的一个表单拆分成四个，方便css调整每个字段的位置和大小 -->
 
+                    <div class="form-field">
+                        <label for="{{ analysis_form.ai_model.id_for_label }}">
+                            AI model
+                        </label>
+
+                        {{ analysis_form.ai_model }}
+                        {{ analysis_form.ai_model.errors }}
+                    </div>
+
                     <!-- 两栏区域：左侧上传简历，右侧填写岗位信息 -->
                     <div class="analysis-grid">
 
@@ -77,7 +86,19 @@
                                     Resume
                                 </label>
 
-                                {{ analysis_form.resume_file }}
+                                <div class="custom-file-upload">
+                                    {{ analysis_form.resume_file }}
+
+                                    <label
+                                        for="{{ analysis_form.resume_file.id_for_label }}"
+                                        class="choose-cv-button">
+                                        Choose CV
+                                    </label>
+
+                                    <span id="resume-file-name">
+                                        No file chosen
+                                    </span>
+                                </div>
                                 
                                 <p class="file-hint">
                                     PDF or DOCX · Max 5 MB
