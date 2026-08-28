@@ -167,14 +167,6 @@ header {
 }
 
 /* 编辑和删除按钮区域 */
-.job-post-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-}
-
-.edit-job-post-button,
 .delete-job-post-button {
     padding: 8px 14px;
 
@@ -190,15 +182,6 @@ header {
     transition:
         background-color 0.2s ease,
         color 0.2s ease;
-}
-
-.edit-job-post-button {
-    border: 1px solid #527d61;
-    color: #315d3f;
-}
-
-.edit-job-post-button:hover {
-    background-color: #edf5ef;
 }
 
 .delete-job-post-button {

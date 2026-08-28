@@ -1,6 +1,5 @@
 from .services import call_deepseek, call_openai
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
 from resumes.models import JobDescription, Resume
@@ -8,10 +7,10 @@ from resumes.parsers import extract_resume_text
 
 from .forms import AnalysisInputForm
 from .models import Analysis
-from .sample import SAMPLE_ANALYSIS_RESULT
 
 
-def home(request):
+def home(request): #控制首页和分析流程
+
     if request.method == "POST":
         if not request.user.is_authenticated:
             return redirect("login")
@@ -19,18 +18,19 @@ def home(request):
         analysis_form = AnalysisInputForm(
             request.POST,
             request.FILES,
-        )
+        ) # 创建一个表单
 
         if analysis_form.is_valid():
-            resume = Resume.objects.create(
+
+            resume = Resume.objects.create( # 执行数据库insert
                 user=request.user,
                 file=analysis_form.cleaned_data["resume_file"],
-            )  # 文件保存到media/resumes,db创建resume记录
+            )  #创建数据库记录，但是提取建立文本字段暂时为空等待提取
 
-            extracted_text = extract_resume_text(resume.file.path) #读取刚才保存的pdf/docx
+            extracted_text = extract_resume_text(resume.file.path) # 提取文本
 
-            resume.extracted_text = extracted_text
-            resume.save(update_fields=["extracted_text"])
+            resume.extracted_text = extracted_text # 把刚提取出来的文本写入数据库模型对象的extracted_text字段
+            resume.save()
 
             job_description = JobDescription.objects.create(
                 user=request.user,
@@ -42,15 +42,11 @@ def home(request):
                 user=request.user,
                 resume=resume,
                 job_description=job_description,
-                supplementary_text=analysis_form.cleaned_data[
-                    "supplementary_text"
-                ],
+                supplementary_text=analysis_form.cleaned_data["supplementary_text"],
             )
 
-           # 读取用户在表单中选择的模型
-            selected_model = analysis_form.cleaned_data["ai_model"]
+            selected_model = analysis_form.cleaned_data["ai_model"] # model choice
 
-            # 根据选择决定使用哪个模型调用函数
             if selected_model == "openai":
                 call_model = call_openai
             else:
@@ -66,8 +62,6 @@ def home(request):
 
             # JSONField 可以直接保存 Python 字典
             analysis.result_data = analysis_result_data
-
-            analysis.status = Analysis.Status.COMPLETED
             analysis.save()
 
             return redirect("analysis_result")
@@ -83,10 +77,7 @@ def home(request):
 
 @login_required
 def analysis_result(request, analysis_id=None):
-    """
-    不传 analysis_id：显示当前用户最新一次分析。
-    传入 analysis_id：显示当前用户指定的一次历史分析。
-    """
+    # 没有analyseid时展示最新结果，有id时作为历史记录呈现
 
     if analysis_id is None:
         analysis = (
@@ -96,37 +87,20 @@ def analysis_result(request, analysis_id=None):
             .first()
         )
     else:
-        # 同时检查记录编号和所属用户，防止查看别人的记录
+        # 检查id和所属用户，防偷窥
         analysis = get_object_or_404(
             Analysis,
             id=analysis_id,
             user=request.user,
         )
 
-    # 默认使用样本数据，保证旧测试记录不会破坏页面
-    result = SAMPLE_ANALYSIS_RESULT
-    analysis_text = ""
-
-    if analysis:
-        saved_result = analysis.result_data or {}
-
-        # 新版结构化 JSON 包含 overall，因此直接交给前端展示
-        if "overall" in saved_result:
-            result = saved_result
-
-        # 兼容以前保存的纯文本分析记录
-        else:
-            analysis_text = saved_result.get(
-                "analysis_text",
-                "",
-            )
+    result = analysis.result_data if analysis else {}
 
     return render(
         request,
         "analyses/result.html",
         {
             "analysis": analysis,
-            "analysis_text": analysis_text,
             "result": result,
             "active_tab": "result",
         },
@@ -134,8 +108,7 @@ def analysis_result(request, analysis_id=None):
 
 
 @login_required
-def analysis_history(request):
-    """显示当前登录用户的全部历史分析记录。"""
+def analysis_history(request): # 显示历史信息
 
     analyses = (
         Analysis.objects
@@ -144,11 +117,10 @@ def analysis_history(request):
         .order_by("-created_at")
     )
 
-    return render(
-        request,
+    return render(request,
         "analyses/history.html",
         {
-            "analyses": analyses,
-            "active_tab": "history",
+        "analyses": analyses,
+        "active_tab": "history",
         },
     )

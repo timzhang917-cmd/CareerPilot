@@ -31,8 +31,8 @@
                             <td>{{ application.location|default:"—" }}</td>
                             <td>{{ application.progress_notes|default:"—"|linebreaksbr }}</td>
                             <td>
-                                <div class="application-row-actions">
-                                    <button class="edit-application-button"
+                                <div class="application-row-actions"> <!--只显示edit按钮，但是内部data属性保存了信息 -->
+                                    <button class="edit-application-button" 
                                             type="button"
                                             data-edit-application
                                             data-application-id="{{ application.id }}"

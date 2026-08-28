@@ -1,20 +1,3 @@
-"""
-URL configuration for careerpilot project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -31,15 +14,11 @@ urlpatterns = [
     path("analysis/", views.analysis_result, name="analysis_result"),
 
     # 当前用户的历史分析列表
-    path(
-        "analysis/history/",
-        views.analysis_history,
-        name="analysis_history",
-    ),
+    path("analysis/history/", views.analysis_history, name="analysis_history",),
 
     # 查看当前用户指定的一次历史分析结果
     path(
-        "analysis/<int:analysis_id>/",
+        "analysis/<int:analysis_id>/",  # 数字非随机，来自analysis数据库表中的主键id
         views.analysis_result,
         name="analysis_detail",
     ),

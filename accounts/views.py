@@ -3,23 +3,18 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import Group
 from django.db import transaction
 from django.shortcuts import redirect, render
-
 from .forms import RegisterForm
 
-def get_user_home_route(user):
-     # 根据用户身份返回登录后的目标路由名称
+def decide_where_you_go(user): # 根据用户身份决定登录后去哪里
 
     is_hr = user.groups.filter(
         name="HR",
-    ).exists()
-
+    ).exists()  #只筛选并判断hr是否存在
     if is_hr:
         return "hr_dashboard"
+    return "home" #普通用户回home
 
-    return "home"
-
-
-def register(request):
+def register(request): #用户注册全过程
     if request.method == "POST":
         form = RegisterForm(request.POST)
 
@@ -39,7 +34,7 @@ def register(request):
 
             # 根据刚刚保存的账户身份决定注册后的页面。
             return redirect(
-                get_user_home_route(user)
+                decide_where_you_go(user)
             )
     else:
         form = RegisterForm()
@@ -53,7 +48,7 @@ def register(request):
     )
 
 
-def login_view(request):
+def login_view(request):  # 验证用户账密
     if request.method == "POST":
         form = AuthenticationForm(
             request,
@@ -66,7 +61,7 @@ def login_view(request):
             # HR 登录后进入 Dashboard，
             # 普通用户继续进入网站首页。
             return redirect(
-                get_user_home_route(user)
+                decide_where_you_go(user)
             )
     else:
         form = AuthenticationForm()

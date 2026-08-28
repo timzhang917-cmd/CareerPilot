@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("job-post-modal");
-    const openButton = document.getElementById("open-job-post-modal");
+    const openButton = document.getElementById("open-job-post-modal"); //打开弹窗
 
     if (!modal || !openButton) {
         return;

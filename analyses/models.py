@@ -2,11 +2,7 @@ from django.conf import settings
 from django.db import models
 
 
-class Analysis(models.Model):
-    class Status(models.TextChoices):
-        PENDING = "pending", "Pending"
-        COMPLETED = "completed", "Completed"
-        FAILED = "failed", "Failed"
+class Analysis(models.Model): # 一条AI分析记录
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -24,11 +20,6 @@ class Analysis(models.Model):
         related_name="analyses",
     )
     supplementary_text = models.TextField(blank=True)
-    status = models.CharField(
-        max_length=20,
-        choices=Status.choices,
-        default=Status.PENDING,
-    )
     result_data = models.JSONField(default=dict, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

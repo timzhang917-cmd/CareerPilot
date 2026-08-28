@@ -60,13 +60,6 @@
             {% include "analyses/result/_issues.html" %}
             {% include "analyses/result/_suggestions.html" %}
         {% endif %}
-
-        <!-- 只在查看旧版纯文本记录时显示 -->
-        {% if analysis_text %}
-            <section class="result-box">
-                {{ analysis_text|linebreaks }}
-            </section>
-        {% endif %}
     </main>
 </body>
 </html>

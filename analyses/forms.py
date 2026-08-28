@@ -1,8 +1,9 @@
 from pathlib import Path
 from django import forms
 
+class AnalysisInputForm(forms.Form): 
+# 首页简历分析输入表单
 
-class AnalysisInputForm(forms.Form):
     ai_model = forms.ChoiceField(
         label="AI model",
         choices=[
@@ -30,7 +31,7 @@ class AnalysisInputForm(forms.Form):
         widget=forms.Textarea(attrs={"rows": 5}),
     )
 
-    def clean_resume_file(self):
+    def clean_resume_file(self):  # 检验用户上传的简历
         resume_file = self.cleaned_data["resume_file"]
         extension = Path(resume_file.name).suffix.lower()
 

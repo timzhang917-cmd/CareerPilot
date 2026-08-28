@@ -44,7 +44,7 @@
                 id="open-job-post-modal">
                 <span aria-hidden="true">+</span>
                 Create Job Post
-            </button>
+            </button> <!--投递按钮-->
         </section>
 
         <!-- 当前 HR 的招聘信息 -->
@@ -100,15 +100,6 @@
                                     </td>
 
                                     <td>
-                                        <div class="job-post-actions">
-                                            <button
-                                                type="button"
-                                                class="edit-job-post-button"
-                                                data-edit-job-post
-                                                data-job-id="{{ job.id }}">
-                                                Edit
-                                            </button>
-
                                             <form
                                                 method="post"
                                                 action="{% url 'hr_dashboard' %}"
@@ -132,7 +123,6 @@
                                                     Delete
                                                 </button>
                                             </form>
-                                        </div>
                                     </td>
                                 </tr>
                             {% endfor %}

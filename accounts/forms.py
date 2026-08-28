@@ -1,15 +1,15 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm # 内置模块，已提供账密验证功能
 from django.contrib.auth.models import User
 
 
 class RegisterForm(UserCreationForm):
     ACCOUNT_TYPE_CHOICES = [
-        ("job_seeker", "Job Seeker"),
+        ("job_seeker", "Job Seeker"), # 提交给后端的值和显示的文字
         ("hr", "HR / Recruiter"),
     ]
 
-    account_type = forms.ChoiceField(
+    account_type = forms.ChoiceField( # 必须从选项里选一个
         label="Account type",
         choices=ACCOUNT_TYPE_CHOICES,
         initial="job_seeker",

@@ -15,15 +15,14 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent # 表示当前文件，经此得到项目根目录，可以解析后续
 
 load_dotenv(BASE_DIR / ".env") # Django启动python-dotenv读取.env文件
 
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 DEEPSEEK_MODEL = os.getenv(
     "DEEPSEEK_MODEL",
-    "deepseek-v4-flash",
+    "deepseek-v4-pro",
 )
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -39,9 +38,9 @@ OPENAI_MODEL = os.getenv(
 SECRET_KEY = 'django-insecure-$)0e(!=#c0_e94nvczv79q774we-%$^pn6aka%cu0fjz@c$g4b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True #开发者模式，会详细展示报错内容，部署时要调整成False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [] #部署后需要加入正式域名
 
 
 # Application definition
@@ -56,8 +55,8 @@ INSTALLED_APPS = [
 
     'accounts',
     'resumes',
-    'analyses', # 7.16 let django know 3 new apps
-    'jobs', # 8.11 let django know 1 new app
+    'analyses', # 7.16 build
+    'jobs', # 8.11 build
 ]
 
 MIDDLEWARE = [
@@ -70,7 +69,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'careerpilot.urls'
+ROOT_URLCONF = 'careerpilot.urls' #收到请求后先去这里找总路由
 
 TEMPLATES = [
     {

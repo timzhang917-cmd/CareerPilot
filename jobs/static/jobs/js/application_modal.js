@@ -29,8 +29,8 @@ if (applicationModal && openApplicationModalButton) {
 
     editApplicationButtons.forEach((button) => {
         button.addEventListener("click", () => {
-            // 把当前这一行的数据放入已有弹窗中
-            applicationIdInput.value = button.dataset.applicationId;
+            // 把刚才保存的数据写入弹窗中
+            applicationIdInput.value = button.dataset.applicationId; //把当前记录写入了隐藏输入框
             applicationForm.elements.application_date.value =
                 button.dataset.applicationDate;
             applicationForm.elements.company_name.value =
@@ -68,7 +68,7 @@ const deleteApplicationForms = document.querySelectorAll(
 deleteApplicationForms.forEach((form) => {
     form.addEventListener("submit", (event) => {
         const confirmed = window.confirm(
-            "Delete this application record? This action cannot be undone."
+            "Are you sure?"
         );
 
         if (!confirmed) {

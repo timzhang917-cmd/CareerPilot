@@ -132,7 +132,7 @@
 
                     <div class="form-field">
                         <label for="{{ analysis_form.supplementary_text.id_for_label }}">
-                            Supplementary materials
+                            Supplementary materials —— your experience notes, skills or certificates
                             <span class="optional-label">(optional)</span>
                         </label>
 
@@ -142,14 +142,6 @@
 
                     <div class="analysis-actions">
                         <button id="analyse-btn" type="submit">Start Analysis</button>
-
-                        {% if messages %}
-                            <div class="messages">
-                                {% for message in messages %}
-                                    <span>{{ message }}</span>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
                     </div>
                 </form>
 

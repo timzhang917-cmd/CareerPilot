@@ -1,11 +1,10 @@
 import json
-
 from pathlib import Path  # 帮程序构造文件路径
 
 from django.conf import settings
 from openai import OpenAI
 
-def analysis_prompt(
+def analysis_prompt( # 拼装提示词
     resume_text,
     job_title,
     job_description,
@@ -24,9 +23,9 @@ def analysis_prompt(
         / "json_example.json"
     )
 
-    # 读取独立保存的提示词模板
+    # 读取提示词模板
     prompt_template = prompt_path.read_text(encoding="utf-8")
-    # 读取固定的 JSON 结构示例
+    # 读取JSON 结构示例
     json_example = json_example_path.read_text(encoding="utf-8")
 
     # 把占位符替换成当前用户实际提交的内容
@@ -34,12 +33,12 @@ def analysis_prompt(
         resume_text=resume_text,
         job_title=job_title,
         job_description=job_description,
-        supplementary_text=supplementary_text or "None provided.",
+        supplementary_text=supplementary_text,
         json_example=json_example,
     ).strip()
 
 
-def call_deepseek(
+def call_deepseek( # 调用deepseek模型
     resume_text,
     job_title,
     job_description,
@@ -70,13 +69,12 @@ def call_deepseek(
             },
         ],
 
-        # 要求 DeepSeek 使用 JSON 输出模式
+        # 让DeepSeek 使用 JSON 输出模式
         response_format={
             "type": "json_object",
         },
-
-        # 降低生成随机性，让相同输入的结果尽量稳定
-        temperature=0,
+                
+        temperature=0,  # 降低生成随机性，让相同输入的结果尽量稳定
 
         max_tokens=6000,
         stream=False,
@@ -96,7 +94,7 @@ def call_deepseek(
     return json.loads(response_text)
 
 
-def call_openai(
+def call_openai( # 调用gpt
     resume_text,
     job_title,
     job_description,
@@ -111,6 +109,7 @@ def call_openai(
 
     client = OpenAI(
         api_key=settings.OPENAI_API_KEY,
+        base_url="https://api.openai.com/v1",
     )
 
     response = client.responses.create(

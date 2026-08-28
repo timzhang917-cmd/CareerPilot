@@ -1,14 +1,11 @@
 from django import forms
-
 from .models import JobApplication, JobListing
 
-
-class JobApplicationForm(forms.ModelForm):
+class JobApplicationForm(forms.ModelForm): # 申请记录新建和编辑
     class Meta:
         model = JobApplication
 
-        # 这里专门不写user，因为不能让用户选择记录从而访问别的user的记录
-        fields = [
+        fields = [  # 少了user起到保护效果
             "application_date",
             "company_name",
             "position_name",
@@ -16,36 +13,9 @@ class JobApplicationForm(forms.ModelForm):
             "progress_notes",
         ]
 
-        # 调整浏览器显示的输入控件
-        widgets = {
-            "application_date": forms.DateInput(
-                attrs={
-                    "type": "date",
-                }
-            ),
-            "company_name": forms.TextInput(
-                attrs={
-                    "placeholder": "e.g. Apple",
-                }
-            ),
-            "position_name": forms.TextInput(
-                attrs={
-                    "placeholder": "e.g. Sales Manager",
-                }
-            ),
-            "location": forms.TextInput(
-                attrs={
-                    "placeholder": "e.g. Los Angeles",
-                }
-            ),
+        widgets = { # 固定高度
             "progress_notes": forms.Textarea(
-                attrs={
-                    "rows": 6,
-                    "placeholder": (
-                        "8.13 Submitted resume\n"
-                        "8.20 Completed first interview"
-                    ),
-                }
+                attrs={"rows": 6,}
             ),
         }
 
@@ -53,9 +23,7 @@ class JobApplicationForm(forms.ModelForm):
 class JobListingForm(forms.ModelForm):
     class Meta:
         model = JobListing
-
-        # created_by 不允许由浏览器提交，
-        # 后续在 view 中强制绑定当前 HR 用户。
+        # created_by 不允许由浏览器提交
         fields = [
             "company_name",
             "industry",
@@ -73,33 +41,9 @@ class JobListingForm(forms.ModelForm):
         }
 
         widgets = {
-            "company_name": forms.TextInput(
-                attrs={
-                    "placeholder": "e.g. Apple",
-                }
-            ),
-            "industry": forms.TextInput(
-                attrs={
-                    "placeholder": "e.g. Technology",
-                }
-            ),
             "job_positions": forms.Textarea(
                 attrs={
                     "rows": 4,
-                    "placeholder": (
-                        "e.g. Sales Manager / "
-                        "Marketing Graduate"
-                    ),
-                }
-            ),
-            "location": forms.TextInput(
-                attrs={
-                    "placeholder": "e.g. Shanghai / Beijing",
-                }
-            ),
-            "official_url": forms.URLInput(
-                attrs={
-                    "placeholder": "https://jobs.example.com",
                 }
             ),
         }

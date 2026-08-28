@@ -1,27 +1,40 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login - CareerPilot</title>
+
+    <link rel="stylesheet"
+          href="{% static 'analyses/css/base.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'accounts/login.css' %}">
 </head>
 
-<body>
-    <main>
-        <h1>Login to CareerPilot</h1>
+<body class="login-page">
+    {% include "analyses/header.html" %}
+
+    <main class="login-card">
+        <h1>Welcome back</h1>
+        <p class="login-intro">
+            Log in to continue using CareerPilot.
+        </p>
 
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
 
-            <button type="submit">Login</button>
+            <button type="submit">Log in</button>
         </form>
 
-        <p>
+        <p class="login-link">
             Do not have an account?
             <a href="{% url 'register' %}">Sign up</a>
         </p>
 
-        <p>
+        <p class="login-link">
             <a href="{% url 'home' %}">Back to home</a>
         </p>
     </main>
