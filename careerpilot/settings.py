@@ -19,6 +19,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent # 表示当前文件，经此�
 
 load_dotenv(BASE_DIR / ".env") # Django启动python-dotenv读取.env文件
 
+def get_env_list(name, default=""):
+    return [
+        item.strip()
+        for item in os.getenv(name, default).split(",")
+        if item.strip()
+    ]
+
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 DEEPSEEK_MODEL = os.getenv(
     "DEEPSEEK_MODEL",
@@ -34,14 +41,31 @@ OPENAI_MODEL = os.getenv(
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$)0e(!=#c0_e94nvczv79q774we-%$^pn6aka%cu0fjz@c$g4b'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #开发者模式，会详细展示报错内容，部署时要调整成False
+if not SECRET_KEY:
+    raise RuntimeError("SECRET_KEY environment variable is required.")
 
-ALLOWED_HOSTS = [] #部署后需要加入正式域名
+DEBUG = os.getenv("DEBUG", "False").strip().lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}
 
+ALLOWED_HOSTS = get_env_list(
+    "ALLOWED_HOSTS",
+    "localhost,127.0.0.1",
+)
+
+CSRF_TRUSTED_ORIGINS = get_env_list(
+    "CSRF_TRUSTED_ORIGINS",
+)
+
+SECURE_PROXY_SSL_HEADER = (
+    "HTTP_X_FORWARDED_PROTO",
+    "https",
+)
 
 # Application definition
 
@@ -61,6 +85,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -134,7 +159,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/' # css, js, images
+STATIC_URL = "/static/" # css, js, images
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    },
+}
+
 # user uploaded files
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
