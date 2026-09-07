@@ -2,7 +2,7 @@
   "overall" : {
     "score": 72,
     "level": "Good Match",
-    "summary": "The candidate matches the target role in several important areas, but some key requirements still lack direct supporting evidence."
+    "summary": "The applicant matches the target role in several important areas, but some key requirements still lack direct supporting evidence."
   },
 
   "category_scores" : {
@@ -13,9 +13,9 @@
   },
 
   "strengths" : [
-    "The candidate has relevant Python and Django development experience.",
-    "The candidate demonstrates experience with web application development.",
-    "The candidate has experience using Git and version control."
+    "The applicant has relevant Python and Django development experience.",
+    "The applicant demonstrates experience with web application development.",
+    "The applicant has experience using Git and version control."
   ],
 
   "gaps" : [
@@ -46,13 +46,13 @@
     {
       "location": "Work Experience - project description",
       "problem": "The statement 'Improved system performance' is too vague.",
-      "why_it_matters": "The recruiter cannot understand what was improved or evaluate the candidate's contribution.",
-      "suggested_correction": "Explain the specific action taken and add a verified result or metric if one is available."
+      "why_it_matters": "The recruiter cannot understand what was improved or evaluate the applicant's contribution.",
+      "suggested_correction": "Explain the specific action taken and add a verified result."
     },
     {
       "location": "Project Experience",
       "problem": "The statement 'Responsible for backend development' does not describe a specific contribution.",
-      "why_it_matters": "A responsibility-only statement does not demonstrate the candidate's actual technical impact.",
+      "why_it_matters": "A responsibility-only statement does not demonstrate the applicant's actual technical impact.",
       "suggested_correction": "Describe the backend feature developed, the technology used, and the verified outcome."
     }
   ],
@@ -73,8 +73,8 @@
     {
       "priority": "Low",
       "target_section": "Project Experience",
-      "recommendation": "Include relevant front-end framework experience if the candidate has used React or Vue.",
-      "reason": "Front-end knowledge is not essential, but it could strengthen the candidate's full-stack profile."
+      "recommendation": "Include relevant front-end framework experience if the applicant has used React or Vue.",
+      "reason": "Front-end knowledge is not essential, but it could strengthen the applicant's full-stack profile."
     }
   ]
 }

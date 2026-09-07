@@ -1,4 +1,4 @@
-/* History 页面整体布局 */
+/* History page overall layout */
 .history-page {
     max-width: 1400px;
     margin: 0 auto;
@@ -11,7 +11,7 @@
     font-size: 36px;
 }
 
-/* 表格外层卡片 */
+/* Table outer card */
 .history-table-wrapper {
     overflow-x: auto;
     border: 1px solid #d7e2d4;
@@ -19,7 +19,7 @@
     background-color: #ffffff;
 }
 
-/* 历史记录表格 */
+/* History table */
 .history-table {
     width: 100%;
     border-collapse: collapse;
@@ -41,7 +41,7 @@
     border-bottom: none;
 }
 
-/* 查看历史结果按钮 */
+/* view result button */
 .history-view-button {
     display: inline-block;
     padding: 8px 18px;
@@ -58,12 +58,11 @@
     background-color: #eef4eb;
 }
 
-/* 没有历史记录时的提示 */
+/* No history message */
 .history-empty {
     padding: 60px 30px;
     border: 1px solid #d7e2d4;
     border-radius: 14px;
-
     background-color: #fafcf9;
     text-align: center;
 }

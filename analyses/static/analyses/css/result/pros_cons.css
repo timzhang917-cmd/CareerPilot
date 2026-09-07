@@ -1,4 +1,4 @@
-/* 优势和短板的两列布局 */
+
 .result-insights {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -7,7 +7,6 @@
     margin-bottom: 22px;
 }
 
-/* 两张卡片共同使用的基础样式 */
 .insight-card {
     padding: 20px 24px;
     border: 1px solid #d9e1db;
@@ -21,7 +20,6 @@
     font-size: 20px;
 }
 
-/* 去除 ul 默认的圆点和缩进 */
 .insight-list {
     display: grid;
     gap: 12px;
@@ -31,7 +29,6 @@
     list-style: none;
 }
 
-/* 每一条优势或短板 */
 .insight-item {
     display: flex;
     align-items: flex-start;
@@ -42,7 +39,6 @@
     line-height: 1.5;
 }
 
-/* 圆形图标的共同样式 */
 .insight-icon {
     display: inline-grid;
     flex: 0 0 24px;
@@ -56,7 +52,6 @@
     font-weight: 700;
 }
 
-/* 优势使用绿色 */
 .strengths-card h2 {
     color: #1f6538;
 }
@@ -65,7 +60,6 @@
     background-color: #3e8857;
 }
 
-/* 短板使用橙红色 */
 .gaps-card h2 {
     color: #b43a24;
 }
@@ -74,7 +68,6 @@
     background-color: #d45a3a;
 }
 
-/* 窄屏时改成上下排列 */
 @media (max-width: 800px) {
     .result-insights {
         grid-template-columns: 1fr;

@@ -1,34 +1,46 @@
+"""
+AI Usage Declaration:
+-This file contains code generated with help of AI tools.
+-Tool Used: ChatGPT
+-Date Generated: 2026-08
+-ChatGPT was used to assist in building the basic code framework for the DeepSeek and OpenAI model-calling functions. 
+the author configured the models, output formats, token limits, reasoning effort, and other specific parameters, 
+and further adjusted and optimised these settings based on subsequent testing.
+
+I have reviewed, tested, and understood the AI-generated code.
+"""
+
 import json
-from pathlib import Path  # 帮程序构造文件路径
+from pathlib import Path  # help with file path construction
 
 from django.conf import settings
 from openai import OpenAI
 
-def analysis_prompt( # 拼装提示词
+def analysis_prompt( # assemble prompt
     resume_text,
     job_title,
     job_description,
     supplementary_text,
 ):
-    # services.py 所在目录就是 analyses，因此从这里定位提示词文件
+    # services.py is in analyses, so locate the prompt file from here
     prompt_path = (
         Path(__file__).resolve().parent
         / "prompts"
         / "cv_analyse.txt"
     )
 
-    # 定位 JSON 输出示例文件
+    # locate JSON output example file
     json_example_path = (
         Path(__file__).resolve().parent
         / "json_example.json"
     )
 
-    # 读取提示词模板
+    # read prompt template
     prompt_template = prompt_path.read_text(encoding="utf-8")
-    # 读取JSON 结构示例
+    # read JSON structure example
     json_example = json_example_path.read_text(encoding="utf-8")
 
-    # 把占位符替换成当前用户实际提交的内容
+    # replace placeholders with actual user-submitted content
     return prompt_template.format(
         resume_text=resume_text,
         job_title=job_title,
@@ -38,7 +50,7 @@ def analysis_prompt( # 拼装提示词
     ).strip()
 
 
-def call_deepseek( # 调用deepseek模型
+def call_deepseek(
     resume_text,
     job_title,
     job_description,
@@ -69,12 +81,12 @@ def call_deepseek( # 调用deepseek模型
             },
         ],
 
-        # 让DeepSeek 使用 JSON 输出模式
+        # ask ds to use JSON output mode
         response_format={
             "type": "json_object",
         },
                 
-        temperature=0,  # 降低生成随机性，让相同输入的结果尽量稳定
+        temperature=0,  # reduce randomness, from 1 to 0
 
         max_tokens=6000,
         stream=False,
@@ -85,16 +97,16 @@ def call_deepseek( # 调用deepseek模型
         },
     )
 
-    # 模型返回的内容本质上仍是一段字符串
+    # The content returned by the model is essentially still a string
     response_text = (
         response.choices[0].message.content or ""
     ).strip()   
 
-    # 把 JSON 字符串转换成 Python 字典，方便后续按 key 取值
+    # Convert the JSON string into a Python dictionary for easy access by key
     return json.loads(response_text)
 
 
-def call_openai( # 调用gpt
+def call_openai( 
     resume_text,
     job_title,
     job_description,

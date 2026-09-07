@@ -1,3 +1,16 @@
+<!-- 
+ AI Usage Declaration:
+ Files: jobs/templates/jobs/ html files
+-These files contain code generated with help of AI tools.
+-Tool Used: ChatGPT
+-Date Generated: 2026-08
+-ChatGPT was used to assist with dynamic job filtering, conditional tab switching and the rendering of job listings and application records
+The page structure, business workflows, and displayed content were designed by the author.
+
+I have reviewed, tested, and understood the AI-generated code.
+-->
+
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -6,27 +19,23 @@
     <meta charset="UTF-8">
     <title>Jobs - CareerPilot</title>
 
-    <!-- 复用现有的全站公共样式 -->
     <link rel="stylesheet"
           href="{% static 'analyses/css/base.css' %}?v=0812-profile">
 
-    <!-- 用户资料弹窗样式 -->
     <link rel="stylesheet"
           href="{% static 'analyses/css/profile.css' %}?v=0812-profile">
 
-    <!-- Jobs 页面专属样式 -->
     <link rel="stylesheet"
           href="{% static 'jobs/css/main.css' %}?v=0812">
 
     {% if active_tab == "applications" %}
-        <!-- 只在 My Applications 页签加载投递记录样式 -->
         <link rel="stylesheet"
               href="{% static 'jobs/css/application.css' %}?v=0813-edit">
     {% endif %}
 </head>
 
 <body>
-    <!-- 复用现有顶部导航栏 -->
+    <!-- reuse existing top navigation bar -->
     {% include "analyses/header.html" %}
 
     <main class="jobs-page">
@@ -35,7 +44,6 @@
             <p>Discover new opportunities and manage your applications.</p>
         </div>
 
-        <!-- 根据当前页签，只显示对应的页面内容 -->
         {% include "jobs/_tabs.html" %}
 
         {% if active_tab == "search" %}
@@ -47,7 +55,6 @@
     </main>
 
     {% if active_tab == "applications" %}
-        <!-- 只在 My Applications 页签加载弹窗交互 -->
         <script src="{% static 'jobs/js/application_modal.js' %}?v=0813-edit"></script>
     {% endif %}
 </body>

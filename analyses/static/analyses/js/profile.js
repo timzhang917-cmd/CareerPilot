@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeX = document.getElementById("profile-close-x");
     const closeButton = document.getElementById("profile-close-button");
 
-    // 未登录时页面不存在这些元素，因此停止执行
+
     if (!openButton || !modal) {
         return;
     }
@@ -24,14 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
     closeX.addEventListener("click", closeProfile);
     closeButton.addEventListener("click", closeProfile);
 
-    // 点击弹窗外面的灰色遮罩时关闭
+    // close when clicking outside the modal
     modal.addEventListener("click", function (event) {
         if (event.target === modal) {
             closeProfile();
         }
     });
 
-    // 按下 Esc 键时关闭
+    // close when pressing the Esc key
     document.addEventListener("keydown", function (event) {
         if (event.key === "Escape" && !modal.hidden) {
             closeProfile();

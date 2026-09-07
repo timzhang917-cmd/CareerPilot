@@ -2,11 +2,9 @@
 
 <header>
     <nav>
-        <!-- HR 页面左上角只显示网站名称 -->
         <strong>CareerPilot</strong>
 
         {% if user.is_authenticated %}
-            <!-- 点击用户名后打开用户资料弹窗 -->
             <button
                 type="button"
                 id="profile-open"
@@ -15,7 +13,6 @@
                 Hello, {{ user.username }}
             </button>
 
-            <!-- Django Logout 使用 POST，不能改成普通链接 -->
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
 
@@ -28,7 +25,7 @@
 </header>
 
 {% if user.is_authenticated %}
-    <!-- 用户资料弹窗，默认隐藏 -->
+    <!-- User profile modal, hidden by default -->
     <div id="profile-modal"
          class="profile-overlay"
          role="dialog"
@@ -52,7 +49,6 @@
             </div>
 
             <div class="profile-content">
-                <!-- 暂时使用用户名首字母作为头像 -->
                 <div class="profile-avatar">
                     {{ user.username|first|upper }}
                 </div>
@@ -83,7 +79,6 @@
         </section>
     </div>
 
-    <!-- 继续复用当前用户资料弹窗 JavaScript -->
     <script src="{% static 'analyses/js/profile.js' %}?v=0812-profile">
     </script>
 {% endif %}

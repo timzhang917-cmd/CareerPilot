@@ -1,4 +1,4 @@
-/* Results 顶部汇总卡 */
+
 .result-summary-card {
     display: grid;
     grid-template-columns: minmax(520px, 1fr) minmax(360px, 1fr);
@@ -19,7 +19,6 @@
     gap: 42px;
 }
 
-/* 用 conic-gradient 根据 --score 变量绘制圆形得分盘 */
 .overall-score-ring {
     --score: 0;
 
@@ -105,7 +104,6 @@
     line-height: 1.7;
 }
 
-/* 窄屏时把总结移动到分数区域下方 */
 @media (max-width: 1000px) {
     .result-summary-card {
         grid-template-columns: 1fr;

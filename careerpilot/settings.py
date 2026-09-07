@@ -15,9 +15,9 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-BASE_DIR = Path(__file__).resolve().parent.parent # 表示当前文件，经此得到项目根目录，可以解析后续
+BASE_DIR = Path(__file__).resolve().parent.parent # 
 
-load_dotenv(BASE_DIR / ".env") # Django启动python-dotenv读取.env文件
+load_dotenv(BASE_DIR / ".env") 
 
 def get_env_list(name, default=""):
     return [
@@ -94,7 +94,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'careerpilot.urls' #收到请求后先去这里找总路由
+ROOT_URLCONF = 'careerpilot.urls' 
 
 TEMPLATES = [
     {

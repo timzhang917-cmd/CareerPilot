@@ -2,9 +2,9 @@ from pathlib import Path
 from docx import Document
 from pypdf import PdfReader
 
-def extract_text_from_docx(file_path): # 提取word文本信息
-    document = Document(file_path) # 打开文件后，返回Document对象
-    text_parts = [] # 空列表，逐步收集文字
+def extract_text_from_docx(file_path): # extract text from docx file
+    document = Document(file_path) 
+    text_parts = [] # empty list to collect text
 
     for paragraph in document.paragraphs:
         text = paragraph.text.strip()
@@ -12,7 +12,7 @@ def extract_text_from_docx(file_path): # 提取word文本信息
         if text:
             text_parts.append(text)
 
-    for table in document.tables: # 要考虑到有些简历使用的内嵌表格布局
+    for table in document.tables: # considering some embedded tables in resumes
         for row in table.rows:
             cells = [
                 cell.text.strip()
@@ -39,7 +39,7 @@ def extract_text_from_pdf(file_path):
     return "\n".join(text_parts)
 
 
-def extract_resume_text(file_path):  # 分发函数
+def extract_resume_text(file_path):  # router function
     extension = Path(file_path).suffix.lower()
 
     if extension == ".docx":

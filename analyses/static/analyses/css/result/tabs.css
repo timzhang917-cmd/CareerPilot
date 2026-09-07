@@ -1,4 +1,4 @@
-/* Result 和 History 页签的整体区域 */
+/* Result and History */
 .analysis-tabs {
     display: flex;
     gap: 14px;
@@ -6,7 +6,6 @@
     border-bottom: 1px solid #d7e2d4;
 }
 
-/* 单个页签 */
 .analysis-tab {
     min-width: 120px;
     padding: 13px 24px;
@@ -20,7 +19,6 @@
     text-decoration: none;
 }
 
-/* 当前所在的页签 */
 .analysis-tab.active {
     background-color: #b3cfaa;
     color: #243f2c;

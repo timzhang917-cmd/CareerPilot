@@ -31,7 +31,7 @@
     line-height: 1.5;
 }
 
-/* 登录前页面的下半部示例区 */
+/* example area */
 .examples {
     margin-top: 35px;
 }
@@ -67,7 +67,6 @@
     line-height: 1.5;
 }
 
-/* 示例截图容器 */
 .example-preview {
     position: relative;
     display: block;
@@ -79,7 +78,6 @@
     border-radius: 8px;
 }
 
-/* 截图保持比例并缩小到卡片内部 */
 .example-preview img {
     display: block;
     width: 100%;
@@ -87,7 +85,6 @@
     object-fit: contain;
 }
 
-/* 右下角的放大提示 */
 .example-preview::after {
     content: "⌕  Click to enlarge";
     position: absolute;
@@ -100,7 +97,6 @@
     font-size: 12px;
 }
 
-/* 分析按钮 */
 .start-area {
     margin-top: 35px;
     text-align: center;

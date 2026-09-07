@@ -1,4 +1,15 @@
-/* 注册、登录页面的内容背景 */
+/* 
+AI Usage Declaration:
+-This file contains code generated with help of AI tools.
+-Tool Used: ChatGPT
+-Date Generated: 2026-07
+-ChatGPT was used to assist with parts of the interactive and responsive,
+styling in this file, particularly the account-type selection cards,
+selection states, accessibility focus styles, and small-screen adoption.
+I have reviewed, tested, and understood the AI-generated code.
+*/
+
+/* register, login, background */
 .auth-page {
     min-height: 100vh;
     background-color: #f7f9f7;
@@ -10,17 +21,15 @@
     padding: 48px 24px 70px;
 }
 
-/* 注册页面中央卡片 */
+/* register card */
 .auth-card {
     width: min(100%, 760px);
     box-sizing: border-box;
     padding: 36px;
-
     border: 1px solid #dfe5e0;
     border-radius: 16px;
     background-color: #ffffff;
-
-    box-shadow: 0 12px 34px rgba(30, 60, 45, 0.09);
+    box-shadow: 0 12px 34px rgba(30, 60, 45, 0.1);
 }
 
 .auth-card-header {
@@ -39,7 +48,7 @@
     line-height: 1.5;
 }
 
-/* 身份选择区域 */
+/* Role selection area */
 .account-type-fieldset {
     min-width: 0;
     margin: 0 0 26px;
@@ -64,7 +73,6 @@
     cursor: pointer;
 }
 
-/* 隐藏原生单选圆点，但保留键盘操作 */
 .account-type-option input {
     position: absolute;
     width: 1px;
@@ -82,13 +90,10 @@
     justify-content: center;
     gap: 9px;
     padding: 22px;
-
     border: 1px solid #cfd6d1;
     border-radius: 12px;
     background-color: #ffffff;
-
     text-align: center;
-
     transition:
         border-color 0.2s ease,
         background-color 0.2s ease,
@@ -103,10 +108,10 @@
 .account-type-option input:checked + .account-type-card {
     border-color: #527d61;
     background-color: #f1f7f2;
-    box-shadow: 0 0 0 2px rgba(82, 125, 97, 0.12);
+    box-shadow: 0 0 0 2px rgba(82, 125, 97, 0.1);
 }
 
-/* 选中后的右上角对勾 */
+/* selected state indicator */
 .account-type-option input:checked + .account-type-card::after {
     content: "✓";
     position: absolute;
@@ -161,7 +166,7 @@
     line-height: 1.45;
 }
 
-/* 用户名和密码字段 */
+/* field username and password */
 .auth-field {
     display: flex;
     flex-direction: column;
@@ -191,7 +196,7 @@
 .auth-field input:focus {
     outline: none;
     border-color: #527d61;
-    box-shadow: 0 0 0 3px rgba(82, 125, 97, 0.12);
+    box-shadow: 0 0 0 3px rgba(82, 125, 97, 0.1);
 }
 
 .field-help {
@@ -212,7 +217,7 @@
     padding-left: 18px;
 }
 
-/* 注册按钮 */
+/* register button */
 .auth-submit-button {
     width: 100%;
     margin-top: 8px;
@@ -259,7 +264,7 @@
     text-decoration: underline;
 }
 
-/* 小屏幕时身份卡上下排列 */
+/* small‑screen adaptation */
 @media (max-width: 680px) {
     .auth-main {
         padding: 28px 16px 50px;

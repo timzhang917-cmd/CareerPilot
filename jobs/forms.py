@@ -1,11 +1,11 @@
 from django import forms
 from .models import JobApplication, JobListing
 
-class JobApplicationForm(forms.ModelForm): # 申请记录新建和编辑
+class JobApplicationForm(forms.ModelForm):
     class Meta:
         model = JobApplication
 
-        fields = [  # 少了user起到保护效果
+        fields = [  # no user field to protect against malicious users
             "application_date",
             "company_name",
             "position_name",
@@ -13,7 +13,7 @@ class JobApplicationForm(forms.ModelForm): # 申请记录新建和编辑
             "progress_notes",
         ]
 
-        widgets = { # 固定高度
+        widgets = { # fixed height
             "progress_notes": forms.Textarea(
                 attrs={"rows": 6,}
             ),
@@ -23,7 +23,7 @@ class JobApplicationForm(forms.ModelForm): # 申请记录新建和编辑
 class JobListingForm(forms.ModelForm):
     class Meta:
         model = JobListing
-        # created_by 不允许由浏览器提交
+        # created_by is not allowed to be submitted by the browser
         fields = [
             "company_name",
             "industry",

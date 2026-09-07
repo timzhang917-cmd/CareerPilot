@@ -1,3 +1,19 @@
+"""
+AI Usage Declaration:
+-This file contains code generated with help of AI tools.
+-Tool Used: ChatGPT
+-Date Generated: 2026-08
+-ChatGPT was used to assist with refactoring the home() and analysis_result()
+During the early stages, the author designed and implemented the core workflow, 
+including CV upload/text extraction/model calling
+As support for second model and analysis history was introduced, 
+the author encountered difficulties in organising existing logic. 
+AI assistance was therefore used to refactor these two main functions.
+
+I have reviewed, tested, and understood the AI-generated code.
+"""
+
+
 from .services import call_deepseek, call_openai
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
@@ -9,7 +25,7 @@ from .forms import AnalysisInputForm
 from .models import Analysis
 
 
-def home(request): #控制首页和分析流程
+def home(request): # manage homepage and analysis workflow
 
     if request.method == "POST":
         if not request.user.is_authenticated:
@@ -18,18 +34,18 @@ def home(request): #控制首页和分析流程
         analysis_form = AnalysisInputForm(
             request.POST,
             request.FILES,
-        ) # 创建一个表单
+        ) # create a form
 
         if analysis_form.is_valid():
 
-            resume = Resume.objects.create( # 执行数据库insert
+            resume = Resume.objects.create( # execute database insert
                 user=request.user,
                 file=analysis_form.cleaned_data["resume_file"],
-            )  #创建数据库记录，但是提取建立文本字段暂时为空等待提取
+            )  # create database record, but the extracted text field is temporarily empty and waiting to be extracted
 
-            extracted_text = extract_resume_text(resume.file.path) # 提取文本
+            extracted_text = extract_resume_text(resume.file.path) # extract text
 
-            resume.extracted_text = extracted_text # 把刚提取出来的文本写入数据库模型对象的extracted_text字段
+            resume.extracted_text = extracted_text # write the extracted text into the extracted_text field of the database model object
             resume.save()
 
             job_description = JobDescription.objects.create(
@@ -52,7 +68,8 @@ def home(request): #控制首页和分析流程
             else:
                 call_model = call_deepseek
 
-            # 两个函数接收相同参数，并返回相同结构的 JSON 字典
+            # two functions receive the same parameters 
+            # and return the same structure of JSON dict
             analysis_result_data = call_model(
                 resume.extracted_text,
                 job_description.job_title,
@@ -60,7 +77,7 @@ def home(request): #控制首页和分析流程
                 analysis.supplementary_text,
             )
 
-            # JSONField 可以直接保存 Python 字典
+            # JSONField can store a Python dict directly
             analysis.result_data = analysis_result_data
             analysis.save()
 
@@ -77,7 +94,7 @@ def home(request): #控制首页和分析流程
 
 @login_required
 def analysis_result(request, analysis_id=None):
-    # 没有analyseid时展示最新结果，有id时作为历史记录呈现
+    # display latest result without id, display historical record with id
 
     if analysis_id is None:
         analysis = (
@@ -87,7 +104,7 @@ def analysis_result(request, analysis_id=None):
             .first()
         )
     else:
-        # 检查id和所属用户，防偷窥
+        # check id and user to prevent peeking
         analysis = get_object_or_404(
             Analysis,
             id=analysis_id,
@@ -108,7 +125,7 @@ def analysis_result(request, analysis_id=None):
 
 
 @login_required
-def analysis_history(request): # 显示历史信息
+def analysis_history(request): # display historical information
 
     analyses = (
         Analysis.objects

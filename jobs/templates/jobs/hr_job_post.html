@@ -4,7 +4,6 @@
     aria-labelledby="job-post-modal-title"
     data-open-automatically="{{ open_job_post_modal|yesno:'true,false' }}">
 
-    <!-- 弹窗标题区域 -->
     <div class="job-post-modal-header">
         <div>
             <h2 id="job-post-modal-title">
@@ -21,7 +20,7 @@
         </button>
     </div>
 
-    <!-- 发布招聘信息表单 -->
+    <!-- job posting form -->
     <form
         method="post"
         action="{% url 'hr_dashboard' %}"
@@ -35,7 +34,7 @@
             </div>
         {% endif %}
 
-        <!-- 公司和行业使用两栏布局 -->
+        <!-- two fields layout -->
         <div class="job-post-form-grid">
             <div class="job-post-field">
                 {{ form.company_name.label_tag }}
@@ -60,7 +59,6 @@
             </div>
         </div>
 
-        <!-- 岗位名称允许输入多个岗位 -->
         <div class="job-post-field">
             {{ form.job_positions.label_tag }}
             {{ form.job_positions }}
@@ -76,7 +74,6 @@
             {% endif %}
         </div>
 
-        <!-- 工作地点 -->
         <div class="job-post-field">
             {{ form.location.label_tag }}
             {{ form.location }}
@@ -88,7 +85,6 @@
             {% endif %}
         </div>
 
-        <!-- 官方招聘网址 -->
         <div class="job-post-field">
             {{ form.official_url.label_tag }}
             {{ form.official_url }}
@@ -100,7 +96,6 @@
             {% endif %}
         </div>
 
-        <!-- 弹窗底部按钮 -->
         <div class="job-post-modal-actions">
             <button
                 type="button"

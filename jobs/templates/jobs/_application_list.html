@@ -31,7 +31,7 @@
                             <td>{{ application.location|default:"—" }}</td>
                             <td>{{ application.progress_notes|default:"—"|linebreaksbr }}</td>
                             <td>
-                                <div class="application-row-actions"> <!--只显示edit按钮，但是内部data属性保存了信息 -->
+                                <div class="application-row-actions"> 
                                     <button class="edit-application-button" 
                                             type="button"
                                             data-edit-application
@@ -72,5 +72,4 @@
     {% endif %}
 </section>
 
-<!-- 新增投递记录弹窗，与列表放在同一个页面中 -->
 {% include "jobs/_application_modal.html" %}

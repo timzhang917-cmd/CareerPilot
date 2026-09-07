@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 
 
-class Analysis(models.Model): # 一条AI分析记录
+class Analysis(models.Model): 
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,

@@ -1,4 +1,4 @@
-/* Must-fix Issues 外层卡片 */
+/* Must-fix Issues outer card */
 .issues-card {
     margin-bottom: 22px;
     padding: 18px 20px 20px;
@@ -15,13 +15,13 @@
     font-size: 20px;
 }
 
-/* 多条问题上下排列 */
+/* Multiple issues stacked vertically */
 .issues-list {
     display: grid;
     gap: 12px;
 }
 
-/* 单条问题 */
+/* Single issue */
 .issue-item {
     display: grid;
     grid-template-columns: 34px minmax(0, 1fr);
@@ -34,27 +34,25 @@
     background-color: #fffafa;
 }
 
-/* 左侧自动编号 */
+/* Left-side auto numbering */
 .issue-number {
     display: grid;
     width: 34px;
     height: 34px;
     place-items: center;
-
     border-radius: 8px;
     background-color: #d84a43;
     color: #ffffff;
-
     font-size: 15px;
     font-weight: 700;
 }
 
-/* 防止长文字撑破布局 */
+/* Prevent long text from breaking the layout */
 .issue-content {
     min-width: 0;
 }
 
-/* 问题所在位置 */
+/* Issue location */
 .issue-location {
     margin: 0 0 6px;
 
@@ -63,7 +61,7 @@
     font-weight: 600;
 }
 
-/* 具体问题 */
+/* Specific issue */
 .issue-content h3 {
     margin: 0 0 10px;
 
@@ -81,7 +79,7 @@
     line-height: 1.6;
 }
 
-/* 建议修改内容 */
+/* Suggested content modifications */
 .issue-correction {
     margin: 0;
     padding: 10px 12px;
@@ -95,7 +93,7 @@
     line-height: 1.6;
 }
 
-/* 没有 Must-fix 问题时的提示 */
+/* No must-fix issues message */
 .issues-empty {
     margin: 0;
     padding: 14px 16px;
@@ -106,7 +104,7 @@
     font-size: 14px;
 }
 
-/* 窄屏时缩小卡片间距 */
+/* narrow the gap when screen is small */
 @media (max-width: 680px) {
     .issues-card {
         padding: 16px;

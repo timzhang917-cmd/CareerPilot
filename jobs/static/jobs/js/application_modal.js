@@ -1,3 +1,12 @@
+// AI Usage Declaration:
+// This file contains code generated with help of AI tools.
+// Tool Used: ChatGPT
+// Date Generated: 2026-08
+// AI was used to assist with switching the application record modal between add and edit modes, 
+// automatically populating form fields, reopening the modal after validation failure, and implementing deletion confirmation.
+// The interaction flow was designed by the author.
+// I have reviewed, tested, and understood the AI-generated code.
+
 const applicationModal = document.getElementById("application-modal");
 const openApplicationModalButton = document.getElementById(
     "open-application-modal"
@@ -19,7 +28,6 @@ const applicationModalSave = document.getElementById(
 
 if (applicationModal && openApplicationModalButton) {
     openApplicationModalButton.addEventListener("click", () => {
-        // 新增时清空可能残留的编辑内容
         applicationForm.reset();
         applicationIdInput.value = "";
         applicationModalTitle.textContent = "Add Application";
@@ -29,8 +37,7 @@ if (applicationModal && openApplicationModalButton) {
 
     editApplicationButtons.forEach((button) => {
         button.addEventListener("click", () => {
-            // 把刚才保存的数据写入弹窗中
-            applicationIdInput.value = button.dataset.applicationId; //把当前记录写入了隐藏输入框
+            applicationIdInput.value = button.dataset.applicationId; 
             applicationForm.elements.application_date.value =
                 button.dataset.applicationDate;
             applicationForm.elements.company_name.value =
@@ -54,13 +61,13 @@ if (applicationModal && openApplicationModalButton) {
         });
     });
 
-    // 如果表单校验失败，页面刷新后自动重新展示错误信息
+    // if validation fails, automatically redisplay the error message after the page refreshes
     if (applicationModal.dataset.openAutomatically === "true") {
         applicationModal.showModal();
     }
 }
 
-// 删除前二次确认，避免用户误删投递记录
+// make sure that the user really wants to delete the application
 const deleteApplicationForms = document.querySelectorAll(
     "[data-delete-application]"
 );

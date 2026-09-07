@@ -9,29 +9,25 @@
 
     <title>HR Dashboard - CareerPilot</title>
 
-    <!-- 全站基础样式 -->
     <link rel="stylesheet"
           href="{% static 'analyses/css/base.css' %}">
 
-    <!-- 用户资料弹窗样式 -->
     <link rel="stylesheet"
           href="{% static 'analyses/css/profile.css' %}">
 
-    <!-- HR Dashboard 主体样式 -->
     <link rel="stylesheet"
           href="{% static 'jobs/css/hr_dashboard.css' %}?v=0814-hr-dashboard">
 
-    <!-- 发布岗位弹窗样式，暂时保留拆分后的引用 -->
     <link rel="stylesheet"
           href="{% static 'jobs/css/hr_post.css' %}?v=0814">
 </head>
 
 <body>
-    <!-- 使用 HR 专属 Header -->
+    <!-- HR Dashboard Header -->
     {% include "jobs/hr_header.html" %}
 
     <main class="hr-dashboard-page">
-        <!-- 页面标题和发布按钮 -->
+        <!-- Page title and create job post button -->
         <section class="hr-dashboard-heading">
             <div>
                 <h1>HR Dashboard</h1>
@@ -44,10 +40,10 @@
                 id="open-job-post-modal">
                 <span aria-hidden="true">+</span>
                 Create Job Post
-            </button> <!--投递按钮-->
+            </button> <!-- Create job post button -->
         </section>
 
-        <!-- 当前 HR 的招聘信息 -->
+        <!-- Current HR job postings -->
         <section class="job-management-card">
             <div class="job-management-heading">
                 <h2>Recent Posts</h2>
@@ -130,7 +126,6 @@
                     </table>
                 </div>
             {% else %}
-                <!-- 当前 HR 没有发布记录 -->
                 <div class="job-post-empty-state">
                     <div class="job-post-empty-icon"
                          aria-hidden="true">
@@ -143,11 +138,11 @@
             {% endif %}
         </section>
 
-        <!-- 发布岗位弹窗 -->
+        <!-- Create job post modal -->
         {% include "jobs/hr_job_post.html" %}
     </main>
 
-    <!-- 控制发布弹窗打开和关闭 -->
+    <!-- Control create job post modal open and close -->
     <script src="{% static 'jobs/js/job_post_modal.js' %}?v=0814">
     </script>
 </body>

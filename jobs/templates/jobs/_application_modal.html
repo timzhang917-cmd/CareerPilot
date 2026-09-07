@@ -19,7 +19,6 @@
     <form method="post" action="{% url 'my_applications' %}">
         {% csrf_token %}
 
-        <!-- 空值表示新增；有 ID 表示更新对应记录 -->
         <input id="application-id"
                type="hidden"
                name="application_id"
@@ -27,7 +26,7 @@
 
         {{ form.non_field_errors }}
 
-        <!-- 四个短字段保持在同一行 -->
+        <!-- 4 fields keep in the same line -->
         <div class="application-modal-fields">
             <div class="application-modal-field">
                 {{ form.application_date.label_tag }}
@@ -54,7 +53,7 @@
             </div>
         </div>
 
-        <!-- 进展记录单独占据第二行 -->
+        <!-- Progress notes occupy a separate row -->
         <div class="application-modal-notes">
             {{ form.progress_notes.label_tag }}
             {{ form.progress_notes }}

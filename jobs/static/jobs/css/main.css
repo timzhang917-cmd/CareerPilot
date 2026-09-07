@@ -1,15 +1,23 @@
-/* Jobs 页面专属样式 */
+/* 
+AI Usage Declaration:
+ Files: jobs/templates/jobs/ css files
+-These files contain code generated with help of AI tools.
+-Tool Used: ChatGPT
+-Date Generated: 2026-08
+-ChatGPT was used to assist with implementing grid layouts for job filters and 
+job cards, horizontal scrolling and column-width control for the application and HR tables, 
+form styling, and responsive layouts. 
+The overall visual style and functional requirements were designed by the author.
 
+I have reviewed, tested, and understood the AI-generated code.
+*/
 
-/* Jobs 页面整体宽度和留白 */
 .jobs-page {
     max-width: 1400px;
     margin: 0 auto;
     padding: 48px 40px;
 }
 
-
-/* 页面标题区域 */
 .jobs-heading h1 {
     margin: 0;
     font-size: 40px;
@@ -21,8 +29,6 @@
     font-size: 17px;
 }
 
-
-/* Job Search 和 My Applications 页签容器 */
 .jobs-tabs {
     display: flex;
     gap: 12px;
@@ -30,8 +36,6 @@
     border-bottom: 1px solid #d9e4d7;
 }
 
-
-/* 单个页签 */
 .jobs-tab {
     padding: 12px 26px;
 
@@ -44,7 +48,6 @@
 }
 
 
-/* 当前选中的页签 */
 .jobs-tab.active {
     color: #1f4129;
     background-color: #b3cfaa;
@@ -52,13 +55,10 @@
 }
 
 
-/* 鼠标经过未选中页签 */
 .jobs-tab:hover {
     background-color: #dcebd8;
 }
 
-
-/* 岗位搜索条件区域 */
 .job-search-panel {
     margin-top: 28px;
     padding: 22px;
@@ -79,7 +79,6 @@
     flex-direction: column;
     gap: 8px;
 
-    /* 允许字段在网格中正常缩小，避免互相覆盖 */
     min-width: 0;
 }
 
@@ -88,7 +87,6 @@
     font-weight: 600;
 }
 
-/* 公司搜索框与其他下拉筛选框 */
 .job-filter-field input,
 .job-filter-field select {
     width: 100%;
@@ -96,7 +94,6 @@
     height: 48px;
     padding: 0 12px;
 
-    /* 让 padding 和 border 计算在 100% 宽度以内 */
     box-sizing: border-box;
 
     border: 1px solid #cbd9c8;
@@ -123,8 +120,6 @@
     cursor: pointer;
 }
 
-
-/* 岗位展示区域 */
 .job-results {
     margin-top: 30px;
 }
@@ -141,8 +136,6 @@
     gap: 16px;
 }
 
-
-/* 单家公司招聘卡片 */
 .job-card {
     display: grid;
     grid-template-columns:
@@ -189,8 +182,6 @@
     font-weight: 600;
 }
 
-
-/* 跳转公司招聘官网的按钮 */
 .official-site-button {
     flex-shrink: 0;
     padding: 9px 15px;
@@ -210,8 +201,6 @@
     background-color: #719966;
 }
 
-
-/* 筛选没有匹配结果时的提示 */
 .job-empty-state {
     padding: 42px 24px;
     border: 1px dashed #cbd9c8;

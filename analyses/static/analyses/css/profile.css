@@ -1,9 +1,7 @@
-/* 弹窗打开后禁止背景页面滚动 */
 body.profile-modal-open {
     overflow: hidden;
 }
 
-/* 覆盖整个页面的半透明背景 */
 .profile-overlay {
     position: fixed;
     inset: 0;
@@ -17,12 +15,10 @@ body.profile-modal-open {
     background-color: rgba(0, 0, 0, 0.52);
 }
 
-/* hidden 属性负责默认隐藏弹窗 */
 .profile-overlay[hidden] {
     display: none;
 }
 
-/* 中央用户资料卡片 */
 .profile-card {
     width: min(520px, 100%);
     overflow: hidden;
@@ -33,7 +29,6 @@ body.profile-modal-open {
     box-shadow: 0 16px 45px rgba(0, 0, 0, 0.22);
 }
 
-/* 弹窗顶部标题区域 */
 .profile-header {
     display: flex;
     align-items: center;
@@ -47,7 +42,6 @@ body.profile-modal-open {
     margin: 0;
 }
 
-/* 右上角关闭按钮 */
 .profile-close-x {
     padding: 4px 8px;
     border: none;
@@ -56,13 +50,11 @@ body.profile-modal-open {
     font-size: 28px;
 }
 
-/* 弹窗主体 */
 .profile-content {
     padding: 28px 44px 30px;
     text-align: center;
 }
 
-/* 用户名首字母头像 */
 .profile-avatar {
     display: flex;
     align-items: center;
@@ -84,7 +76,6 @@ body.profile-modal-open {
     font-size: 24px;
 }
 
-/* 用户资料信息区域 */
 .profile-information {
     margin-bottom: 28px;
     border-top: 1px solid #dddddd;
@@ -99,7 +90,6 @@ body.profile-modal-open {
     text-align: left;
 }
 
-/* 底部关闭按钮 */
 .profile-close-button {
     min-width: 130px;
     padding: 10px 24px;

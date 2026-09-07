@@ -1,14 +1,14 @@
 from django.conf import settings
 from django.db import models
 
-class JobListing(models.Model): # hr发布的岗位信息
+class JobListing(models.Model): 
    
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="job_listings",
         null=True,
-        blank=True,  # 允许为空，用来兼容以前由管理员录入的招聘信息。
+        blank=True,  # blank is allowed, for compatibility with previously entered job information by administrators.
     )
     company_name = models.CharField(max_length=200)
     industry = models.CharField(max_length=200)
@@ -20,7 +20,7 @@ class JobListing(models.Model): # hr发布的岗位信息
         return self.company_name
 
 
-class JobApplication(models.Model): # 用户自己的管理记录
+class JobApplication(models.Model): 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -31,9 +31,8 @@ class JobApplication(models.Model): # 用户自己的管理记录
     company_name = models.CharField(max_length=200)
     position_name = models.CharField(max_length=200)
     location = models.CharField(max_length=200, blank=True,)
-    progress_notes = models.TextField(blank=True) # 更新进展
+    progress_notes = models.TextField(blank=True) 
 
-    # 记录创建和最后修改时间
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

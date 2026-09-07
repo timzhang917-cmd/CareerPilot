@@ -1,8 +1,20 @@
-// 找到简历输入框和文件名显示区域
+//AI Usage Declaration:
+//-Line 35-47
+//-This file contains code generated with help of AI tools.
+//-Tool Used: ChatGPT
+//-Date Generated: 2026-08
+//-ChatGPT was used to solve the problem that
+// the implemented loading pop-up did not appear when the form was submitted. 
+// The suggested solution was to display the pop-up first and submit the form after a short delay.
+//I have reviewed, tested, and understood the AI-generated code.
+
+
+
+// find the resume file input and the span to display the file name
 const resumeFileInput = document.getElementById("id_resume_file");
 const resumeFileName = document.getElementById("resume-file-name");
 
-// 用户选择简历后，显示真实文件名
+// When the user selects a resume, display the real file name
 if (resumeFileInput && resumeFileName) {
     resumeFileInput.addEventListener("change", function () {
         if (resumeFileInput.files.length > 0) {
@@ -13,19 +25,19 @@ if (resumeFileInput && resumeFileName) {
     });
 }
 
-// 找到分析表单和等待弹窗
+// find the analysis form and the popup
 const analysisForm = document.getElementById("analysis-form");
 const analysePopup = document.getElementById("analyse-popup");
 
-// 提交表单时显示弹窗
+// Show the popup when the form is submitted
 if (analysisForm) {
     analysisForm.addEventListener("submit", function (event) {
-        // 暂停浏览器立即提交，让弹窗有时间显示
+        // pause the browser's immediate submission to allow the popup to display
         event.preventDefault();
 
         analysePopup.hidden = false;
 
-        // 弹窗显示后，再正常提交表单
+        // After the popup is displayed, submit the form normally
         setTimeout(function () {
             analysisForm.submit();
         }, 100);

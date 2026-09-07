@@ -1,4 +1,18 @@
-/* 全站基础页面样式 */
+/* 
+AI Usage Declaration:
+-File: analyses/templates/analyses/ css files  
+-These files contain code generated with help of AI tools.
+-Tool Used: ChatGPT
+-Date Generated: 2026-07
+-In App analyses, ChatGPT was used to assist with implementing selected complex styles to improve development efficiency, 
+including responsive pages and grid layouts, customised forms and file-upload controls, loading and user-profile pop-ups, 
+card layouts for structured analysis results, dynamic score rings and progress bars, horizontally scrollable tables, and assessment-level and priority badges. 
+The author was responsible for the overall visual design and specific functional requirements.
+
+I have reviewed, tested, and understood the AI-generated code.
+*/
+
+/* basic styles */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -9,7 +23,7 @@ header {
     border-bottom: 1px solid #dddddd;
 }
 
-/* 全站共用的顶部导航栏 */
+/* common top navigation bar */
 nav {
     position: relative;
     display: flex;
@@ -28,12 +42,12 @@ nav a {
     text-decoration: none;
 }
 
-/* 所有主要页面内容的基础边距 */
+/* all main page content basic margin */
 main {
     padding: 15px 40px;
 }
 
-/* 登录后的账户和退出按钮 */
+/* logged-in user's account and logout button */
 #profile-open,
 nav > form button {
     padding: 8px 14px;
@@ -61,7 +75,7 @@ nav > form button:hover {
     background-color: #9dcb91;
 }
 
-/* 登录前的 Login 和 Sign up 按钮 */
+/* Login and Sign up buttons before logging in */
 .auth-button {
     width: 55px;
     padding: 8px 14px;
@@ -76,7 +90,7 @@ nav > form button:hover {
     background-color: #9dcb91;
 }
 
-/* 中间三个主要功能按钮 */
+/* 3 main functional buttons */
 .main-nav {
     position: absolute;
     left: 50%;

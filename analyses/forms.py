@@ -1,8 +1,19 @@
+"""
+AI Usage Declaration:
+-This file contains code generated with help of AI tools.
+-Tool Used: ChatGPT
+-Date Generated: 2026-08
+-ChatGPT was used to define clean_resume_file() (line 45-59) 
+
+I have reviewed, tested, and understood the AI-generated code.
+"""
+
+
 from pathlib import Path
 from django import forms
 
 class AnalysisInputForm(forms.Form): 
-# 首页简历分析输入表单
+# resume and job description input form for AI analysis
 
     ai_model = forms.ChoiceField(
         label="AI model",
@@ -31,7 +42,7 @@ class AnalysisInputForm(forms.Form):
         widget=forms.Textarea(attrs={"rows": 5}),
     )
 
-    def clean_resume_file(self):  # 检验用户上传的简历
+    def clean_resume_file(self):  # validate the uploaded resumes
         resume_file = self.cleaned_data["resume_file"]
         extension = Path(resume_file.name).suffix.lower()
 

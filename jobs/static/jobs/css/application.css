@@ -1,4 +1,4 @@
-/* My Applications 内容区域 */
+/* My Applications */
 .application-list-section {
     margin-top: 32px;
 }
@@ -9,7 +9,7 @@
     font-size: 30px;
 }
 
-/* 表格外层允许在较窄屏幕上横向滚动 */
+/* allow horizontal scrolling on narrower screens */
 .application-table-wrapper {
     overflow-x: auto;
     border: 1px solid #dce6d9;
@@ -33,7 +33,6 @@
     border-bottom: 1px solid #e3e9e1;
 }
 
-/* 浅牛油果绿表头 */
 .application-table th {
     color: #31543a;
     background-color: #f1f6ef;
@@ -52,7 +51,6 @@
     border-bottom: none;
 }
 
-/* Current Progress 获得最大展示空间 */
 .application-table th:nth-child(1),
 .application-table td:nth-child(1) {
     width: 12%;
@@ -83,7 +81,6 @@
     width: 15%;
 }
 
-/* 每条投递记录右侧的操作按钮 */
 .application-row-actions {
     display: flex;
     align-items: center;
@@ -122,7 +119,7 @@
     background-color: #c9564b;
 }
 
-/* 没有投递记录时的提示文字 */
+/* remainder */
 .application-list-section > p {
     padding: 28px;
     border: 1px solid #dce6d9;
@@ -131,7 +128,7 @@
     background-color: #ffffff;
 }
 
-/* My Applications 标题与新增按钮 */
+/* My Applications heading */
 .application-list-heading {
     display: flex;
     align-items: center;
@@ -154,7 +151,6 @@
     cursor: pointer;
 }
 
-/* 新增投递记录弹窗 */
 .application-modal {
     box-sizing: border-box;
     width: min(1180px, calc(100% - 64px));
@@ -269,7 +265,6 @@
     background-color: #7f9f72;
 }
 
-/* Django 表单校验错误 */
 .application-modal .errorlist {
     margin: 7px 0 0;
     padding: 0;

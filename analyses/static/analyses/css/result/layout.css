@@ -1,4 +1,4 @@
-/* Results 页面整体布局 */
+/* Results layout */
 .result-page {
     max-width: 1400px;
     margin: 0 auto;
@@ -11,28 +11,7 @@
     font-size: 36px;
 }
 
-/* 旧版纯文本结果区域，结构化页面完成前暂时保留 */
-.result-box {
-    width: 100%;
-    min-height: 500px;
-    padding: 30px;
-    box-sizing: border-box;
-
-    border: 1px solid #cccccc;
-    border-radius: 14px;
-    background-color: #fafafa;
-
-    font-size: 16px;
-    line-height: 1.7;
-    overflow-wrap: anywhere;
-}
-
-.result-placeholder {
-    margin: 0;
-    color: #888888;
-}
-
-/* Results 页面标题 */
+/* Results heading */
 .result-heading {
     display: flex;
     align-items: center;

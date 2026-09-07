@@ -5,19 +5,19 @@
         <strong>CareerPilot</strong>
 
         <div class="main-nav">
-            <!-- 返回网站首页 -->
+            <!-- back home -->
             <a href="{% url 'home' %}">Home</a>
 
             <a href="{% url 'analysis_result' %}">
                 Analysis
             </a>
 
-            <a href="{% url 'job_search' %}">Jobs</a> <!--8.11改动，建立映射联系-->
+            <a href="{% url 'job_search' %}">Jobs</a> <!--8.11changed, build mapping-->
             <a href="#">Community</a>
         </div>
 
         {% if user.is_authenticated %}
-            <!-- 点击这个按钮打开用户资料弹窗 -->
+            <!-- press to open profile modal -->
             <button
                 type="button"
                 id="profile-open"
@@ -45,7 +45,7 @@
 </header>
 
 {% if user.is_authenticated %}
-    <!-- 用户资料弹窗，默认使用 hidden 隐藏 -->
+    <!-- User profile modal -->
     <div id="profile-modal"
          class="profile-overlay"
          role="dialog"
@@ -67,7 +67,7 @@
             </div>
 
             <div class="profile-content">
-                <!-- 使用用户名第一个字母作为临时头像 -->
+                <!-- Use the first letter of the username as a temporary avatar -->
                 <div class="profile-avatar">
                     {{ user.username|first|upper }}
                 </div>
@@ -96,6 +96,6 @@
         </section>
     </div>
 
-    <!-- 控制用户资料弹窗打开和关闭 -->
+    <!-- Control the opening and closing of the user profile modal -->
     <script src="{% static 'analyses/js/profile.js' %}?v=0812-profile"></script>
 {% endif %}

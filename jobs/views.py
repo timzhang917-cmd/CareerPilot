@@ -1,3 +1,14 @@
+"""
+AI Usage Declaration:
+-This file contains code generated with help of AI tools.
+-Tool Used: ChatGPT
+-Date Generated: 2026-08
+-ChatGPT was used to assist with the deletion, editing, and current-user ownership validation logic in my_applications().
+ It was also used to handle different separators in split_options().
+
+I have reviewed, tested, and understood the AI-generated code.
+"""
+
 from datetime import date
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -7,13 +18,13 @@ from .forms import JobApplicationForm, JobListingForm
 from .models import JobApplication, JobListing
 
 def split_options(values):
-    # 把数据库中的多项文本拆成独立选项，如：上海/北京/深圳 -> 上海、北京、深圳
+    # divide multiple items into separate options, e.g. shanghai/beijing/ -> shanghai, beijing
     options = set()
 
     for value in values:
-        # 兼容管理员可能使用的不同分隔符
+        # compatible with different separators that administrators may use
         normalized_value = (
-            value.replace("/", "/")
+            value.replace("／", "/")
                  .replace("、", "/")
                  .replace(",", "/")
         )
@@ -24,21 +35,19 @@ def split_options(values):
             if item:
                 options.add(item)
 
-    # 转换成排序后的列表，方便前端稳定显示
     return sorted(options)
 
 
-def job_search(request): # 显示岗位并根据用户选择筛选
-    
-    job_listings = JobListing.objects.all() # 先读取全部岗位信息
+def job_search(request): # show job listings based on user filtering
 
-    # 读取用户在 URL 中选择的筛选条件
+    job_listings = JobListing.objects.all() # read all job listings
+
     selected_company = request.GET.get("company", "")
     selected_position = request.GET.get("position", "")
     selected_location = request.GET.get("location", "")
     selected_industry = request.GET.get("industry", "")
 
-    # 只有用户选择了某项条件时，才进行对应筛选
+    # filtering is only applied if the user has selected a specific condition
     if selected_company:
         job_listings = job_listings.filter(
             company_name__icontains=selected_company
@@ -59,7 +68,6 @@ def job_search(request): # 显示岗位并根据用户选择筛选
             industry__icontains=selected_industry
         )
 
-    # 行业直接作为完整选项，不进行拆分
     industry_options = (
         JobListing.objects
         .values_list("industry", flat=True)
@@ -67,14 +75,14 @@ def job_search(request): # 显示岗位并根据用户选择筛选
         .order_by("industry")
     )
 
-    # 一个字段中可能包含多个岗位，因此需要拆分
+    # a field may contain multiple positions, so it needs to be split
     position_values = JobListing.objects.values_list(
         "job_positions",
         flat=True,
     )
     position_options = split_options(position_values)
 
-    # 一个字段中可能包含多个工作地点，因此需要拆分
+    # a field may contain multiple locations, so it needs to be split
     location_values = JobListing.objects.values_list(
         "location",
         flat=True,
@@ -82,16 +90,15 @@ def job_search(request): # 显示岗位并根据用户选择筛选
     location_options = split_options(location_values)
 
     context = {
-        # 筛选后的岗位信息
+        # job listings after filtering
         "job_listings": job_listings,
         "active_tab": "search",
 
-        # 三个下拉框的可选内容
+        # 3 select boxes
         "position_options": position_options,
         "location_options": location_options,
         "industry_options": industry_options,
 
-        # 保存用户当前选择，避免刷新后恢复为空
         "selected_company": selected_company,
         "selected_position": selected_position,
         "selected_location": selected_location,
@@ -106,16 +113,16 @@ def job_search(request): # 显示岗位并根据用户选择筛选
 
 
 @login_required
-def my_applications(request): # 管理用户自己的申请记录
+def my_applications(request): 
 
     open_application_modal = False
     editing_application = None
 
     if request.method == "POST":
         action = request.POST.get("action")
-        application_id = request.POST.get("application_id") #后端先读取隐藏字段，新增时js已清空，edit时js已写入所以不为空
+        application_id = request.POST.get("application_id") 
 
-        # 删除操作：后端同时校验记录属于当前登录用户
+        # delete operation: backend also checks if the record belongs to the current logged-in user
         if action == "delete" and application_id:
             application = get_object_or_404(
                 JobApplication,
@@ -126,26 +133,25 @@ def my_applications(request): # 管理用户自己的申请记录
 
             return redirect("my_applications")
 
-        if application_id: #新增id已被清空，所以不会走到这里，编辑时id被js写入会走到这里
+        if application_id: # id is only present when editing an existing record
             editing_application = get_object_or_404(
                 JobApplication,
                 id=application_id,
                 user=request.user,
             )
 
-        form = JobApplicationForm( # 有 instance 时更新原记录；没有时创建新记录
+        form = JobApplicationForm( # update if instance exists or create new one
             request.POST,
             instance=editing_application,
         )
 
         if form.is_valid():
             application = form.save(commit=False)
-            application.user = request.user # 绑定当前登录用户
+            application.user = request.user # ensure it is from current user
             application.save()
 
-            return redirect("my_applications")  # add or edit后跳转至appliation页面
+            return redirect("my_applications")  # jump to application page after add or edit
 
-        # 校验失败时重新打开弹窗，让用户看到错误信息
         open_application_modal = True
     else:
         form = JobApplicationForm(
@@ -173,25 +179,23 @@ def my_applications(request): # 管理用户自己的申请记录
     )
 
 @login_required
-def hr_dashboard(request): #hr专属面板
+def hr_dashboard(request): 
 
     is_hr = request.user.groups.filter(name="HR",).exists()
-    # 普通用户不能进入 HR Dashboard。
+    # job seekers cannot access HR dashboard
     if not is_hr and not request.user.is_superuser:
         raise PermissionDenied("This page is only available to HR users.")
 
-    # 控制表单校验失败后是否重新打开发布弹窗。
     open_job_post_modal = False
 
     if request.method == "POST":
         action = request.POST.get("action")
 
-        # 删除招聘记录。
+        # delete operation
         if action == "delete":
             job_id = request.POST.get("job_id")
 
-            # 同时检查记录编号和创建者，
-            # 防止 HR 删除其他用户的招聘信息。
+            # backend also checks if the record belongs to the current logged-in user
             job_listing = get_object_or_404(
                 JobListing,
                 id=job_id,
@@ -206,19 +210,18 @@ def hr_dashboard(request): #hr专属面板
 
         if form.is_valid():
             job_listing = form.save(commit=False)
-            job_listing.created_by = request.user #模型里没有createby字段，先把hr身份绑进去再保存
+            job_listing.created_by = request.user # bind HR identity before saving
             job_listing.save()
 
-            # 避免刷新页面后重复提交。
+            # avoid duplicate submission after refreshing the page
             return redirect("hr_dashboard")
 
-        # 发布表单校验失败后重新打开弹窗。
+        # open modal again if form validation fails
         open_job_post_modal = True
     else:
-        # GET 请求使用空白发布表单。
         form = JobListingForm()
 
-    # 只读取当前 HR 自己创建的招聘记录。
+    # only read the job listings created by the current HR user.
     job_listings = (
         JobListing.objects
         .filter(created_by=request.user)

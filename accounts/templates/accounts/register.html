@@ -1,3 +1,15 @@
+<!-- 
+ AI Usage Declaration:
+-This file contains code generated with help of AI tools.
+-Tool Used: ChatGPT
+-Date Generated: 2026-07
+-ChatGPT was used to assist with some parts of this file,
+including display of HR&job seeker icons (line75-99), the accessible form structure, 
+and the customised display of form validation errors.
+
+I have reviewed, tested, and understood the AI-generated code.
+-->
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -9,17 +21,17 @@
 
     <title>Sign up - CareerPilot</title>
 
-    <!-- 保留当前全站 Header 样式 -->
+    <!-- keep current Header format-->
     <link rel="stylesheet"
           href="{% static 'analyses/css/base.css' %}">
 
-    <!-- 注册和登录页面专属样式 -->
+    <!-- register and login page specific styles -->
     <link rel="stylesheet"
           href="{% static 'accounts/register.css' %}?v=0814">
 </head>
 
 <body class="auth-page">
-    <!-- 原样复用当前 Header -->
+    <!-- reuse current Header format -->
     {% include "analyses/header.html" %}
 
     <main class="auth-main">
@@ -61,7 +73,7 @@
                                           aria-hidden="true">
 
                                         {% if value == "hr" %}
-                                            <!-- HR 公文包图标 -->
+                                            <!-- HR document bag icon -->
                                             <svg viewBox="0 0 24 24">
                                                 <rect x="3"
                                                       y="7"
@@ -74,7 +86,7 @@
                                                 <path d="M3 12h18"></path>
                                             </svg>
                                         {% else %}
-                                            <!-- 求职者用户图标 -->
+                                            <!-- Job seeker user icon -->
                                             <svg viewBox="0 0 24 24">
                                                 <circle cx="12"
                                                         cy="7"
