@@ -119,3 +119,85 @@
 .start-area button:hover {
     background-color: #444444;
 }
+
+.auth-dialog {
+    width: min(440px, calc(100% - 40px));
+    padding: 0;
+    border: 1px solid #d7e3d3;
+    border-radius: 18px;
+    background-color: #ffffff;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.auth-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.auth-dialog-content {
+    position: relative;
+    padding: 42px 38px 38px;
+    text-align: center;
+}
+
+.auth-dialog-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    padding: 2px 8px;
+    border: none;
+    background: none;
+    color: #555555;
+    cursor: pointer;
+    font-size: 28px;
+}
+
+.auth-dialog-label {
+    margin: 0 0 12px;
+    color: #4f7d5b;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.auth-dialog-content h2 {
+    margin: 0 0 14px;
+    color: #315c3d;
+    font-size: 26px;
+}
+
+.auth-dialog-description {
+    margin: 0;
+    color: #666666;
+    line-height: 1.6;
+}
+
+.auth-dialog-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin-top: 28px;
+}
+
+.auth-dialog-actions a {
+    min-width: 120px;
+    padding: 11px 20px;
+    border-radius: 9px;
+    text-decoration: none;
+}
+
+.auth-dialog-login {
+    border: 1px solid #86aa7c;
+    color: #315c3d;
+    background-color: #ffffff;
+}
+
+.auth-dialog-register {
+    border: 1px solid #315c3d;
+    color: #ffffff;
+    background-color: #315c3d;
+}
+
+.auth-dialog-actions a:hover {
+    opacity: 0.85;
+}

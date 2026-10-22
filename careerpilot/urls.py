@@ -10,6 +10,7 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")), 
     path("jobs/", include("jobs.urls")),
     path('',views.home,name='home'),
+    path("community/", views.community, name="community"),
 
     path("analysis/", views.analysis_result, name="analysis_result"),
 
@@ -27,4 +28,4 @@ if settings.DEBUG:
     urlpatterns += static(
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT,
-    )   
+    )

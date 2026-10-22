@@ -13,7 +13,7 @@
             </a>
 
             <a href="{% url 'job_search' %}">Jobs</a> <!--8.11changed, build mapping-->
-            <a href="#">Community</a>
+            <a href="{% url 'community' %}">Community</a>
         </div>
 
         {% if user.is_authenticated %}

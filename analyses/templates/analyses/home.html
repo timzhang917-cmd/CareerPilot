@@ -229,8 +229,51 @@ I have reviewed, tested, and understood the AI-generated code.
             </section>
         
         <section class="start-area">
-            <button type="button">Start Analysis</button>
+            <button id="auth-dialog-open" type="button">
+                Start Analysis
+            </button>
         </section>
+
+        <dialog
+            id="auth-dialog"
+            class="auth-dialog"
+            aria-labelledby="auth-dialog-title">
+
+            <div class="auth-dialog-content">
+                <button
+                    id="auth-dialog-close"
+                    class="auth-dialog-close"
+                    type="button"
+                    aria-label="Close">
+                    ×
+                </button>
+
+                <p class="auth-dialog-label">CareerPilot</p>
+
+                <h2 id="auth-dialog-title">
+                    Sign in to start your analysis
+                </h2>
+
+                <p class="auth-dialog-description">
+                    Log in to your existing account or create a new account
+                    to upload your CV and receive a personalised analysis.
+                </p>
+
+                <div class="auth-dialog-actions">
+                    <a
+                        class="auth-dialog-login"
+                        href="{% url 'login' %}">
+                        Log in
+                    </a>
+
+                    <a
+                        class="auth-dialog-register"
+                        href="{% url 'register' %}">
+                        Create account
+                    </a>
+                </div>
+            </div>
+        </dialog>
 
         {% endif %}
 

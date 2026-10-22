@@ -79,7 +79,7 @@ def call_deepseek(
                 "role": "user",
                 "content": prompt,
             },
-        ],
+        ],  #deepseek调用时必须带这个参数，gpt可以不选instruction
 
         # ask ds to use JSON output mode
         response_format={
@@ -88,13 +88,11 @@ def call_deepseek(
                 
         temperature=0,  # reduce randomness, from 1 to 0
 
-        max_tokens=6000,
+        reasoning_effort="max",  # none, low, high, max
+
+        max_tokens=20000,
+
         stream=False,
-        extra_body={
-            "thinking": {
-                "type": "disabled",
-            }
-        },
     )
 
     # The content returned by the model is essentially still a string
@@ -129,7 +127,7 @@ def call_openai(
         instructions=(
             "You are a careful and professional career advisor. "
             "Return the result as one valid JSON object."
-        ),
+        ),  # 对于gpt来说该参数是可选的，input已经包含了实际任务
         input=prompt,
         reasoning={
             "effort": "low",

@@ -92,6 +92,10 @@ def home(request): # manage homepage and analysis workflow
         {"analysis_form": analysis_form},
     )
 
+
+def community(request):
+    return render(request, "analyses/community.html")
+
 @login_required
 def analysis_result(request, analysis_id=None):
     # display latest result without id, display historical record with id

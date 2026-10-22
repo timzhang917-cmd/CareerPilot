@@ -43,3 +43,32 @@ if (analysisForm) {
         }, 100);
     });
 }
+
+// Guide logged-out users to log in or create an account.
+const authDialogOpen = document.getElementById("auth-dialog-open");
+const authDialog = document.getElementById("auth-dialog");
+const authDialogClose = document.getElementById("auth-dialog-close");
+
+if (authDialogOpen && authDialog && authDialogClose) {
+    authDialogOpen.addEventListener("click", function () {
+        authDialog.showModal();
+    });
+
+    authDialogClose.addEventListener("click", function () {
+        authDialog.close();
+    });
+
+    authDialog.addEventListener("click", function (event) {
+        const dialogBox = authDialog.getBoundingClientRect();
+
+        const clickedOutside =
+            event.clientX < dialogBox.left ||
+            event.clientX > dialogBox.right ||
+            event.clientY < dialogBox.top ||
+            event.clientY > dialogBox.bottom;
+
+        if (clickedOutside) {
+            authDialog.close();
+        }
+    });
+}
