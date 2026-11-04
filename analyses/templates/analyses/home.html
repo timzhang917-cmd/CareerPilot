@@ -1,5 +1,8 @@
-<!-- 
- AI Usage Declaration:
+{% extends "analyses/base.html" %}
+{% load static %}
+
+{% comment %}
+AI Usage Declaration:
 -File: analyses/templates/analyses/ html files  
 -These files contain code generated with help of AI tools.
 -Tool Used: ChatGPT
@@ -10,41 +13,27 @@ the analysis history interface, and some accessible page structures.
 Author designed the information architecture, functional requirements, and displayed content
 
 I have reviewed, tested, and understood the AI-generated code.
--->
+{% endcomment %}
 
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">  
-    <title>CareerPilot</title>
-
-    <!-- common -->
-    <link rel="stylesheet" href="{% static 'analyses/css/base.css' %}?v=0812-profile">
-
-    <!-- User profile modal styles -->
-    <link rel="stylesheet" href="{% static 'analyses/css/profile.css' %}?v=0812-profile">
-
+{% block extra_css %}
     <!-- Home page styles -->
     <link rel="stylesheet" href="{% static 'analyses/css/home.css' %}">
 
     <!-- Logged-in user's upload and analysis form styles -->
     <link rel="stylesheet" href="{% static 'analyses/css/form.css' %}">
-</head>
+{% endblock %}
 
-<body>
-    {% include "analyses/header.html" %}
-
+{% block content %}
     <main>
 
         <h1>AI-CV Assistant</h1>
-        <p>Upload your CV and JD to get personalized analysis and optimization suggestions.</p>
+        <p>Upload your CV and JD to get personalised analysis and optimisation suggestions.</p>
 
         <section class="steps">
             <div class="step">
                 <span>1</span>
                 <h2>Upload CV&JD</h2>
-                <p>Add an existing resume and the target job description.</p>
+                <p>Add an existing CV and the target job description.</p>
             </div>
 
             <div class="step">
@@ -55,7 +44,7 @@ I have reviewed, tested, and understood the AI-generated code.
 
             <div class="step">
                 <span>3</span>
-                <h2>Analyse and Optimize</h2>
+                <h2>Analyse and Optimise</h2>
                 <p>Display matching results and improvement suggestions</p>
             </div>
         </section>
@@ -63,13 +52,13 @@ I have reviewed, tested, and understood the AI-generated code.
         {% if user.is_authenticated %} <!-- verify if user is logged in, if yes, show the upload area -->
             <section class="upload-area">
                 <!-- Upload form card: later -->
-                <div class="analysis-card">
+                <div class="card analysis-card">
 
                     <div class="analysis-card-header">
                         <h2>Start your analysis</h2>
                         <p>
-                            Upload your resume and target job details
-                            to receive a personalized analysis.
+                            Upload your CV and target job details
+                            to receive a personalised analysis.
                         </p>
                     </div>
 
@@ -94,10 +83,10 @@ I have reviewed, tested, and understood the AI-generated code.
                     <!-- left for cv upload, right for jd -->
                     <div class="analysis-grid">
 
-                        <div class="resume-column">
+                        <div>
                             <div class="form-field resume-field">
                                 <label for="{{ analysis_form.resume_file.id_for_label }}">
-                                    Resume
+                                    CV
                                 </label>
 
                                 <div class="custom-file-upload">
@@ -105,7 +94,7 @@ I have reviewed, tested, and understood the AI-generated code.
 
                                     <label
                                         for="{{ analysis_form.resume_file.id_for_label }}"
-                                        class="choose-cv-button">
+                                        class="btn btn-secondary btn-sm">
                                         Choose CV
                                     </label>
 
@@ -155,7 +144,7 @@ I have reviewed, tested, and understood the AI-generated code.
                     </div>
 
                     <div class="analysis-actions">
-                        <button id="analyse-btn" type="submit">Start Analysis</button>
+                        <button class="btn btn-primary btn-lg" type="submit">Start Analysis</button>
                     </div>
                 </form>
 
@@ -175,52 +164,52 @@ I have reviewed, tested, and understood the AI-generated code.
 
                 <div class="example-cards">
                     <!-- example 1 -->
-                    <article class="example-card">
+                    <article class="card example-card">
                         <h3>Upload & Input</h3>
                         <p>Input your CV and target job details</p>
 
                         <a
                             class="example-preview"
-                            href="{% static 'analyses/images/upload and input.png' %}"
-                            target="_blank"
+                            href="{% static 'analyses/images/upload-and-input.webp' %}"
                         >
                             <img
-                                src="{% static 'analyses/images/upload and input.png' %}"
-                                alt="Resume upload and job description input example"
+                                src="{% static 'analyses/images/upload-and-input.webp' %}"
+                                alt="CV upload and job description input example"
+                                loading="lazy"
                             >
                         </a>
                     </article>
 
                     <!-- example2 -->
-                    <article class="example-card">
+                    <article class="card example-card">
                         <h3>Match Overview</h3>
                         <p>Display an overall match score</p>
 
                         <a
                             class="example-preview"
-                            href="{% static 'analyses/images/match score.png' %}"
-                            target="_blank"
+                            href="{% static 'analyses/images/match-score.webp' %}"
                         >
                             <img
-                                src="{% static 'analyses/images/match score.png' %}"
-                                alt="Resume matching score example"
+                                src="{% static 'analyses/images/match-score.webp' %}"
+                                alt="CV matching score example"
+                                loading="lazy"
                             >
                         </a>
                     </article>
 
                     <!-- example -->
-                    <article class="example-card">
+                    <article class="card example-card">
                         <h3>Advanced Suggestions</h3>
                         <p>Give you exclusive analysis and suggestions</p>
 
                         <a
                             class="example-preview"
-                            href="{% static 'analyses/images/Advanced Suggestions.png' %}"
-                            target="_blank"
+                            href="{% static 'analyses/images/advanced-suggestions.webp' %}"
                         >
                             <img
-                                src="{% static 'analyses/images/Advanced Suggestions.png' %}"
-                                alt="Advanced resume suggestions example"
+                                src="{% static 'analyses/images/advanced-suggestions.webp' %}"
+                                alt="Advanced CV suggestions example"
+                                loading="lazy"
                             >
                         </a>
                     </article>
@@ -229,20 +218,20 @@ I have reviewed, tested, and understood the AI-generated code.
             </section>
         
         <section class="start-area">
-            <button id="auth-dialog-open" type="button">
+            <button class="btn btn-primary btn-lg" id="auth-dialog-open" type="button">
                 Start Analysis
             </button>
         </section>
 
         <dialog
             id="auth-dialog"
-            class="auth-dialog"
+            class="modal auth-dialog"
             aria-labelledby="auth-dialog-title">
 
             <div class="auth-dialog-content">
                 <button
                     id="auth-dialog-close"
-                    class="auth-dialog-close"
+                    class="modal-close"
                     type="button"
                     aria-label="Close">
                     ×
@@ -261,13 +250,13 @@ I have reviewed, tested, and understood the AI-generated code.
 
                 <div class="auth-dialog-actions">
                     <a
-                        class="auth-dialog-login"
+                        class="btn btn-secondary"
                         href="{% url 'login' %}">
                         Log in
                     </a>
 
                     <a
-                        class="auth-dialog-register"
+                        class="btn btn-primary"
                         href="{% url 'register' %}">
                         Create account
                     </a>
@@ -275,11 +264,29 @@ I have reviewed, tested, and understood the AI-generated code.
             </div>
         </dialog>
 
+        <!-- Enlarged example image -->
+        <dialog
+            id="image-dialog"
+            class="modal image-dialog"
+            aria-label="Enlarged example image">
+
+            <button
+                id="image-dialog-close"
+                class="modal-close"
+                type="button"
+                aria-label="Close">
+                ×
+            </button>
+
+            <img id="image-dialog-image" alt="">
+        </dialog>
+
         {% endif %}
 
     </main>
+{% endblock %}
+
+{% block extra_js %}
     <!-- popup waiting window -->
     <script src="{% static 'analyses/js/home.js' %}"></script>
-</body>
-
-</html>
+{% endblock %}

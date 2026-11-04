@@ -9,36 +9,8 @@ column-width control, border-detail handling, and assessment badges.
 I have reviewed, tested, and understood the AI-generated code.
 */
 
-
-/* outer card */
-.comparison-card {
-    margin-bottom: 22px;
-    padding: 18px 20px 20px;
-
-    border: 1px solid #d9e1db;
-    border-radius: 14px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 14px rgba(28, 63, 42, 0.06);
-}
-
-.comparison-card h2 {
-    margin: 0 0 14px;
-    color: #1f6538;
-    font-size: 20px;
-}
-
-.comparison-table-wrapper {
-    overflow-x: auto;
-    border: 1px solid #d9e1db;
-    border-radius: 10px;
-}
-
-/* main structure */
 .comparison-table {
-    width: 100%;
     min-width: 850px;
-
-    border-collapse: collapse;
     table-layout: fixed;
 }
 
@@ -55,102 +27,36 @@ I have reviewed, tested, and understood the AI-generated code.
     width: 20%;
 }
 
-
-.comparison-table th,
 .comparison-table td {
-    padding: 12px 16px;
-
-    border-right: 1px solid #d9e1db;
-    border-bottom: 1px solid #d9e1db;
-
-    text-align: left;
-    vertical-align: top;
-    line-height: 1.5;
-}
-
-.comparison-table th:last-child,
-.comparison-table td:last-child {
-    border-right: 0;
-}
-
-
-.comparison-table tbody tr:last-child td {
-    border-bottom: 0;
-}
-
-
-.comparison-table thead {
-    background-color: #edf5ef;
-}
-
-.comparison-table th {
-    color: #26362b;
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.comparison-table td {
-    color: #333333;
     font-size: 14px;
 }
-
-
-.comparison-table tbody tr:hover {
-    background-color: #f8fbf9;
-}
-
-
-.assessment-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    min-width: 96px;
-    padding: 5px 10px;
-
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1.2;
-    white-space: nowrap;
-}
-
 
 .assessment-strong-match {
-    color: #22623a;
-    background-color: #dcefe1;
+    color: var(--color-badge-green);
+    background-color: var(--color-badge-green-bg);
 }
-
 
 .assessment-basic-match {
-    color: #45652c;
-    background-color: #e8f1d9;
+    color: var(--color-badge-olive);
+    background-color: var(--color-badge-olive-bg);
 }
-
 
 .assessment-weak-match {
-    color: #8a5a00;
-    background-color: #fff0c7;
+    color: var(--color-badge-amber);
+    background-color: var(--color-badge-amber-bg);
 }
-
 
 .assessment-gap {
-    color: #a44724;
-    background-color: #ffe0d2;
+    color: var(--color-badge-orange);
+    background-color: var(--color-badge-orange-bg);
 }
-
 
 .assessment-clear-gap {
-    color: #a12626;
-    background-color: #ffdada;
+    color: var(--color-badge-red);
+    background-color: var(--color-badge-red-bg);
 }
 
-
 @media (max-width: 680px) {
-    .comparison-card {
-        padding: 16px;
-    }
-
     .comparison-table {
         min-width: 760px;
     }

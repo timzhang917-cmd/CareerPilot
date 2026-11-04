@@ -2,7 +2,7 @@
     <div class="application-list-heading">
         <h2>My Applications</h2>
 
-        <button class="add-application-button"
+        <button class="btn btn-primary"
                 id="open-application-modal"
                 type="button">
             Add Application
@@ -10,8 +10,8 @@
     </div>
 
     {% if applications %}
-        <div class="application-table-wrapper">
-            <table class="application-table">
+        <div class="table-wrapper">
+            <table class="data-table application-table">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -32,15 +32,15 @@
                             <td>{{ application.progress_notes|default:"—"|linebreaksbr }}</td>
                             <td>
                                 <div class="application-row-actions"> 
-                                    <button class="edit-application-button" 
+                                    <button class="btn btn-secondary btn-sm" 
                                             type="button"
                                             data-edit-application
                                             data-application-id="{{ application.id }}"
                                             data-application-date="{{ application.application_date|date:'Y-m-d' }}"
-                                            data-company-name="{{ application.company_name|escape }}"
-                                            data-position-name="{{ application.position_name|escape }}"
-                                            data-location="{{ application.location|escape }}"
-                                            data-progress-notes="{{ application.progress_notes|escape }}">
+                                            data-company-name="{{ application.company_name }}"
+                                            data-position-name="{{ application.position_name }}"
+                                            data-location="{{ application.location }}"
+                                            data-progress-notes="{{ application.progress_notes }}">
                                         Edit
                                     </button>
 
@@ -55,7 +55,7 @@
                                                name="application_id"
                                                value="{{ application.id }}">
 
-                                        <button class="delete-application-button"
+                                        <button class="btn btn-danger btn-sm"
                                                 type="submit">
                                             Delete
                                         </button>
@@ -68,7 +68,9 @@
             </table>
         </div>
     {% else %}
-        <p>You have not added any application records yet.</p>
+        <div class="empty-state">
+            <p>You have not added any application records yet.</p>
+        </div>
     {% endif %}
 </section>
 

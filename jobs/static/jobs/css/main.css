@@ -25,46 +25,20 @@ I have reviewed, tested, and understood the AI-generated code.
 
 .jobs-heading p {
     margin: 12px 0 0;
-    color: #666666;
+    color: var(--color-text-muted);
     font-size: 17px;
 }
 
-.jobs-tabs {
-    display: flex;
-    gap: 12px;
+.jobs-page .tabs {
     margin-top: 32px;
-    border-bottom: 1px solid #d9e4d7;
-}
-
-.jobs-tab {
-    padding: 12px 26px;
-
-    border-radius: 10px 10px 0 0;
-
-    color: #31543c;
-    background-color: #eef4ec;
-
-    text-decoration: none;
-}
-
-
-.jobs-tab.active {
-    color: #1f4129;
-    background-color: #b3cfaa;
-    font-weight: 700;
-}
-
-
-.jobs-tab:hover {
-    background-color: #dcebd8;
 }
 
 .job-search-panel {
     margin-top: 28px;
     padding: 22px;
-    border: 1px solid #dce6da;
+    border: 1px solid var(--color-border);
     border-radius: 12px;
-    background-color: #f8fbf7;
+    background-color: var(--color-surface);
 }
 
 .job-filter-form {
@@ -74,50 +48,20 @@ I have reviewed, tested, and understood the AI-generated code.
     align-items: end;
 }
 
-.job-filter-field {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
+.job-filter-form .form-field {
     min-width: 0;
+    margin-bottom: 0;
 }
 
-.job-filter-field label {
-    color: #31543c;
-    font-weight: 600;
-}
-
-.job-filter-field input,
-.job-filter-field select {
-    width: 100%;
-    min-width: 0;
+.job-filter-form input,
+.job-filter-form select,
+.job-filter-form .btn {
     height: 48px;
+}
+
+.job-filter-form input,
+.job-filter-form select {
     padding: 0 12px;
-
-    box-sizing: border-box;
-
-    border: 1px solid #cbd9c8;
-    border-radius: 8px;
-
-    color: #222222;
-    background-color: white;
-
-    font: inherit;
-}
-
-.job-filter-field select {
-    cursor: pointer;
-}
-
-.job-search-button {
-    height: 48px;
-    padding: 11px 24px;
-    border: none;
-    border-radius: 8px;
-    background-color: #719966;
-    color: white;
-    font: inherit;
-    cursor: pointer;
 }
 
 .job-results {
@@ -126,7 +70,7 @@ I have reviewed, tested, and understood the AI-generated code.
 
 .job-results > h2 {
     margin: 0 0 18px;
-    color: #1f2b22;
+    color: var(--color-text);
     font-size: 26px;
 }
 
@@ -149,17 +93,11 @@ I have reviewed, tested, and understood the AI-generated code.
     gap: 20px;
 
     padding: 16px 22px;
-
-    border: 1px solid #dce6da;
-    border-radius: 12px;
-    background-color: white;
-
-    box-shadow: 0 4px 12px rgba(45, 76, 52, 0.05);
 }
 
 .job-company-name {
     margin: 0;
-    color: #1f4129;
+    color: var(--color-primary);
     font-size: 19px;
 }
 
@@ -167,7 +105,7 @@ I have reviewed, tested, and understood the AI-generated code.
     margin: 0;
     min-width: 0;
 
-    color: #333333;
+    color: var(--color-text-body);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -177,44 +115,37 @@ I have reviewed, tested, and understood the AI-generated code.
     display: block;
     margin-bottom: 4px;
 
-    color: #718075;
+    color: var(--color-text-subtle);
     font-size: 12px;
     font-weight: 600;
 }
 
-.official-site-button {
-    flex-shrink: 0;
-    padding: 9px 15px;
+@media (max-width: 1100px) {
+    .job-filter-form,
+    .job-card {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-    border: 1px solid #719966;
-    border-radius: 9px;
+    .job-company-name {
+        grid-column: 1 / -1;
+    }
 
-    color: #31543c;
-    background-color: #eef4ec;
-
-    text-decoration: none;
-    font-weight: 600;
+    .job-card .btn {
+        justify-self: start;
+    }
 }
 
-.official-site-button:hover {
-    color: white;
-    background-color: #719966;
-}
+@media (max-width: 680px) {
+    .jobs-page {
+        padding: 32px 20px;
+    }
 
-.job-empty-state {
-    padding: 42px 24px;
-    border: 1px dashed #cbd9c8;
-    border-radius: 14px;
-    text-align: center;
-    background-color: #f8fbf7;
-}
+    .jobs-heading h1 {
+        font-size: 32px;
+    }
 
-.job-empty-state h3 {
-    margin: 0;
-    color: #31543c;
-}
-
-.job-empty-state p {
-    margin: 10px 0 0;
-    color: #666666;
+    .job-filter-form,
+    .job-card {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }

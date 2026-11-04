@@ -1,0 +1,56 @@
+<!-- what the user submitted: each entry opens the side panel next to the results -->
+<section class="input-strip" aria-label="Your inputs">
+    <div class="input-strip-job">
+        <strong title="{{ analysis.job_description.job_title }}">{{ analysis.job_description.job_title }}</strong>
+        <span>{{ analysis.created_at|date:"Y-m-d H:i" }}</span>
+    </div>
+
+    <button type="button" class="btn btn-soft btn-sm" data-input-open="cv">
+        <svg class="input-strip-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M3.5 1.5h6l3 3v10h-9z M9.5 1.5v3h3 M5.5 8h5 M5.5 11h5"/>
+        </svg>
+        CV
+        <small>{{ analysis.resume.file_type }}</small>
+    </button>
+
+    <button type="button" class="btn btn-soft btn-sm" data-input-open="job">Job description</button>
+
+    {% if analysis.supplementary_text %}
+        <button type="button" class="btn btn-soft btn-sm" data-input-open="supplementary">Supplementary</button>
+    {% endif %}
+</section>
+
+<!-- opened without a backdrop, so the results stay readable and scrollable beside it -->
+<dialog id="input-drawer" class="modal input-drawer" aria-label="Your inputs">
+    <div class="modal-header">
+        <div class="tabs">
+            <button type="button" class="tab" data-input-tab="cv">CV</button>
+            <button type="button" class="tab" data-input-tab="job">Job description</button>
+            {% if analysis.supplementary_text %}
+                <button type="button" class="tab" data-input-tab="supplementary">Supplementary</button>
+            {% endif %}
+        </div>
+
+        <button id="input-drawer-close" type="button" class="modal-close" aria-label="Close">×</button>
+    </div>
+
+    <div class="modal-body input-panel" data-input-panel="cv" hidden>
+        {% if analysis.resume.extracted_text %}
+            <p class="field-help">Text extracted from your file. This is what the AI read.</p>
+            <div class="input-text">{{ analysis.resume.extracted_text }}</div>
+        {% else %}
+            <p class="input-text">No text could be extracted from this file, so the AI had no CV content to read.</p>
+        {% endif %}
+    </div>
+
+    <div class="modal-body input-panel" data-input-panel="job" hidden>
+        <h3>{{ analysis.job_description.job_title }}</h3>
+        <div class="input-text">{{ analysis.job_description.content }}</div>
+    </div>
+
+    {% if analysis.supplementary_text %}
+        <div class="modal-body input-panel" data-input-panel="supplementary" hidden>
+            <div class="input-text">{{ analysis.supplementary_text }}</div>
+        </div>
+    {% endif %}
+</dialog>

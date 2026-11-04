@@ -1,0 +1,55 @@
+{% load static %}
+
+<!-- User profile modal -->
+<div id="profile-modal"
+     class="profile-overlay"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="profile-title"
+     hidden>
+
+    <section class="profile-card">
+        <div class="profile-header">
+            <h2 id="profile-title">User Profile</h2>
+
+            <button
+                type="button"
+                id="profile-close-x"
+                class="modal-close"
+                aria-label="Close profile">
+                ×
+            </button>
+        </div>
+
+        <div class="profile-content">
+            <!-- Use the first letter of the username as a temporary avatar -->
+            <div class="profile-avatar">
+                {{ user.username|first|upper }}
+            </div>
+
+            <h3>Hello, {{ user.username }}</h3>
+
+            <div class="profile-information">
+                <div class="profile-row">
+                    <strong>Username</strong>
+                    <span>{{ user.username }}</span>
+                </div>
+
+                <div class="profile-row">
+                    <strong>Joined</strong>
+                    <span>{{ user.date_joined|date:"F j, Y" }}</span>
+                </div>
+            </div>
+
+            <button
+                type="button"
+                id="profile-close-button"
+                class="btn btn-soft profile-close-button">
+                Close
+            </button>
+        </div>
+    </section>
+</div>
+
+<!-- Control the opening and closing of the user profile modal -->
+<script src="{% static 'analyses/js/profile.js' %}"></script>

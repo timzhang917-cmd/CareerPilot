@@ -81,6 +81,9 @@ def home(request): # manage homepage and analysis workflow
             analysis.result_data = analysis_result_data
             analysis.save()
 
+            # the Result tab shows this analysis until the user logs out
+            request.session["latest_analysis_id"] = analysis.id
+
             return redirect("analysis_result")
     
     else:
@@ -98,15 +101,14 @@ def community(request):
 
 @login_required
 def analysis_result(request, analysis_id=None):
-    # display latest result without id, display historical record with id
+    # without id, display the analysis started in this login session
+    # with id, display historical record
 
     if analysis_id is None:
-        analysis = (
-            Analysis.objects
-            .filter(user=request.user)
-            .order_by("-created_at")
-            .first()
-        )
+        analysis = Analysis.objects.filter(
+            id=request.session.get("latest_analysis_id"),
+            user=request.user,
+        ).first()
     else:
         # check id and user to prevent peeking
         analysis = get_object_or_404(

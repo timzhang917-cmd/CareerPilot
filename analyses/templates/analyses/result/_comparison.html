@@ -1,10 +1,10 @@
 <!-- Comparison -->
-<section class="comparison-card">
+<section class="card result-section">
     <h2>Job Requirement Comparison</h2>
 
     <!-- Narrow screen support -->
-    <div class="comparison-table-wrapper">
-        <table class="comparison-table">
+    <div class="table-wrapper">
+        <table class="data-table comparison-table">
             <thead>
                 <tr>
                     <th scope="col">Requirement</th>
@@ -22,7 +22,7 @@
 
                         <td>
                             <span
-                                class="assessment-badge assessment-{{ item.assessment|slugify }}"
+                                class="badge assessment-{{ item.assessment|slugify }}"
                             >
                                 {{ item.assessment }}
                             </span>

@@ -75,7 +75,7 @@ const deleteApplicationForms = document.querySelectorAll(
 deleteApplicationForms.forEach((form) => {
     form.addEventListener("submit", (event) => {
         const confirmed = window.confirm(
-            "Are you sure?"
+            "Delete this application?"
         );
 
         if (!confirmed) {

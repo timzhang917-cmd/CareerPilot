@@ -1,5 +1,5 @@
 <!-- advanced suggestions -->
-<section class="suggestions-card">
+<section class="card result-section">
     <h2>Advanced Suggestions</h2>
 
     {% if result.suggestions %}
@@ -8,7 +8,7 @@
                 <article class="suggestion-item">
                     <div class="suggestion-header">
                         <span
-                            class="priority-badge priority-{{ suggestion.priority|slugify }}"
+                            class="badge priority-{{ suggestion.priority|slugify }}"
                         >
                             {{ suggestion.priority }}
                         </span>
@@ -28,7 +28,7 @@
             {% endfor %}
         </div>
     {% else %}
-        <p class="suggestions-empty">
+        <p class="empty-state empty-state-sm">
             No advanced suggestion is available.
         </p>
     {% endif %}

@@ -1,42 +1,45 @@
+{% extends "analyses/base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login - CareerPilot</title>
+{% block title %}Login - CareerPilot{% endblock %}
 
-    <link rel="stylesheet"
-          href="{% static 'analyses/css/base.css' %}">
+{% block body_class %}auth-page{% endblock %}
 
-    <link rel="stylesheet"
-          href="{% static 'accounts/login.css' %}">
-</head>
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'accounts/auth.css' %}">
+{% endblock %}
 
-<body class="login-page">
-    {% include "analyses/header.html" %}
+{% block content %}
+    <main class="auth-main">
+        <section class="card auth-card auth-card-narrow">
+            <div class="auth-card-header">
+                <h1>Welcome back</h1>
+                <p>Log in to continue using CareerPilot.</p>
+            </div>
 
-    <main class="login-card">
-        <h1>Welcome back</h1>
-        <p class="login-intro">
-            Log in to continue using CareerPilot.
-        </p>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
 
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
+                {% for field in form %}
+                    <div class="form-field">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {{ field.errors }}
+                    </div>
+                {% endfor %}
 
-            <button type="submit">Log in</button>
-        </form>
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Log in</button>
+            </form>
 
-        <p class="login-link">
-            Do not have an account?
-            <a href="{% url 'register' %}">Sign up</a>
-        </p>
+            <p class="auth-alternative">
+                Do not have an account?
+                <a href="{% url 'register' %}">Sign up</a>
+            </p>
 
-        <p class="login-link">
-            <a href="{% url 'home' %}">Back to home</a>
-        </p>
+            <p class="auth-alternative">
+                <a href="{% url 'home' %}">Back to home</a>
+            </p>
+        </section>
     </main>
-</body>
-</html>
+{% endblock %}

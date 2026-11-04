@@ -4,7 +4,7 @@
           method="get"
           action="{% url 'job_search' %}">
 
-        <div class="job-filter-field">
+        <div class="form-field">
             <label for="company">Company Keyword</label>
 
             <input id="company"
@@ -14,7 +14,7 @@
                    placeholder="Search company name">
         </div>
 
-        <div class="job-filter-field">
+        <div class="form-field">
             <label for="position">Position</label>
 
             <select id="position" name="position">
@@ -31,7 +31,7 @@
             </select>
         </div>
 
-        <div class="job-filter-field">
+        <div class="form-field">
             <label for="location">Location</label>
 
             <select id="location" name="location">
@@ -48,7 +48,7 @@
             </select>
         </div>
 
-        <div class="job-filter-field">
+        <div class="form-field">
             <label for="industry">Industry</label>
 
             <select id="industry" name="industry">
@@ -65,7 +65,7 @@
             </select>
         </div>
 
-        <button class="job-search-button" type="submit">
+        <button class="btn btn-primary" type="submit">
             Filter
         </button>
     </form>

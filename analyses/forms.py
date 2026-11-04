@@ -24,7 +24,7 @@ class AnalysisInputForm(forms.Form):
         initial="deepseek",
     )
     
-    resume_file = forms.FileField(label="Resume")
+    resume_file = forms.FileField(label="CV")
 
     job_title = forms.CharField(
         label="Job title",
@@ -53,7 +53,7 @@ class AnalysisInputForm(forms.Form):
 
         if resume_file.size > 5 * 1024 * 1024:
             raise forms.ValidationError(
-                "The resume file must not exceed 5 MB."
+                "The CV file must not exceed 5 MB."
             )
 
         return resume_file

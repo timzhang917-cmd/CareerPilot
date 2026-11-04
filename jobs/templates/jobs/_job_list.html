@@ -3,7 +3,7 @@
 
     <div class="job-card-list">
         {% for job in job_listings %}
-            <article class="job-card">
+            <article class="card job-card">
                 <h3 class="job-company-name">
                     {{ job.company_name }}
                 </h3>
@@ -19,13 +19,13 @@
                     {{ job.location }}
                 </p>
 
-                <p class="job-card-field job-position-field"
+                <p class="job-card-field"
                    title="{{ job.job_positions }}">
                     <span>Positions</span>
                     {{ job.job_positions }}
                 </p>
 
-                <a class="official-site-button"
+                <a class="btn btn-secondary btn-sm"
                    href="{{ job.official_url }}"
                    target="_blank"
                    rel="noopener noreferrer">
@@ -33,7 +33,7 @@
                 </a>
             </article>
         {% empty %}
-            <div class="job-empty-state">
+            <div class="empty-state">
                 <h3>No matching companies found</h3>
                 <p>Try changing or clearing the current filters.</p>
             </div>

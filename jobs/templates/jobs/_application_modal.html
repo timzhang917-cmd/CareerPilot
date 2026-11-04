@@ -1,14 +1,12 @@
-<dialog class="application-modal"
+<dialog class="modal application-modal"
         id="application-modal"
         data-open-automatically="{{ open_application_modal|yesno:'true,false' }}">
-    <div class="application-modal-header">
-        <div>
-            <h2 id="application-modal-title">
-                {% if editing_application %}Edit Application{% else %}Add Application{% endif %}
-            </h2>
-        </div>
+    <div class="modal-header">
+        <h2 id="application-modal-title">
+            {% if editing_application %}Edit Application{% else %}Add Application{% endif %}
+        </h2>
 
-        <button class="application-modal-close"
+        <button class="modal-close"
                 type="button"
                 data-close-application-modal
                 aria-label="Close">
@@ -16,7 +14,7 @@
         </button>
     </div>
 
-    <form method="post" action="{% url 'my_applications' %}">
+    <form class="modal-body" method="post" action="{% url 'my_applications' %}">
         {% csrf_token %}
 
         <input id="application-id"
@@ -27,26 +25,26 @@
         {{ form.non_field_errors }}
 
         <!-- 4 fields keep in the same line -->
-        <div class="application-modal-fields">
-            <div class="application-modal-field">
+        <div class="form-grid application-modal-fields">
+            <div class="form-field">
                 {{ form.application_date.label_tag }}
                 {{ form.application_date }}
                 {{ form.application_date.errors }}
             </div>
 
-            <div class="application-modal-field">
+            <div class="form-field">
                 {{ form.company_name.label_tag }}
                 {{ form.company_name }}
                 {{ form.company_name.errors }}
             </div>
 
-            <div class="application-modal-field">
+            <div class="form-field">
                 {{ form.position_name.label_tag }}
                 {{ form.position_name }}
                 {{ form.position_name.errors }}
             </div>
 
-            <div class="application-modal-field">
+            <div class="form-field">
                 {{ form.location.label_tag }}
                 {{ form.location }}
                 {{ form.location.errors }}
@@ -54,20 +52,20 @@
         </div>
 
         <!-- Progress notes occupy a separate row -->
-        <div class="application-modal-notes">
+        <div class="form-field">
             {{ form.progress_notes.label_tag }}
             {{ form.progress_notes }}
             {{ form.progress_notes.errors }}
         </div>
 
-        <div class="application-modal-actions">
-            <button class="application-modal-cancel"
+        <div class="modal-actions">
+            <button class="btn btn-secondary"
                     type="button"
                     data-close-application-modal>
                 Cancel
             </button>
 
-            <button class="application-modal-save"
+            <button class="btn btn-primary"
                     id="application-modal-save"
                     type="submit">
                 {% if editing_application %}Save Changes{% else %}Save Application{% endif %}

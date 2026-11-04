@@ -1,11 +1,11 @@
 /* HR Dashboard background */
 body {
-    background-color: #f8faf8;
+    background-color: var(--color-surface);
 }
 
 /* Header keeps white to distinguish from main content area */
 header {
-    background-color: #ffffff;
+    background-color: var(--color-white);
 }
 
 /* Dashboard main content width and page margins */
@@ -25,161 +25,62 @@ header {
 }
 
 .hr-dashboard-heading h1 {
-    margin: 0 0 12px;
+    margin: 0;
     font-size: 44px;
     line-height: 1.1;
 }
 
-/* Create Job Post button */
-.create-job-post-button {
-    display: inline-flex;
+.hr-dashboard-heading .btn {
     flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 14px 22px;
-
-    border: none;
-    border-radius: 10px;
-    background-color: #315d3f;
-
-    color: #ffffff;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    box-shadow: 0 6px 16px rgba(49, 93, 63, 0.18);
-
-    transition:
-        background-color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
 }
 
-.create-job-post-button span {
+.hr-dashboard-heading .btn span {
     font-size: 24px;
     font-weight: 400;
     line-height: 1;
 }
 
-.create-job-post-button:hover {
-    background-color: #264d33;
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(49, 93, 63, 0.24);
-}
-
-.create-job-post-button:active {
-    transform: translateY(0);
-}
-
 .job-management-card {
     overflow: hidden;
+}
 
-    border: 1px solid #dbe2dd;
-    border-radius: 14px;
-    background-color: #ffffff;
-
-    box-shadow: 0 8px 26px rgba(30, 60, 45, 0.06);
+.job-management-card .table-wrapper,
+.job-management-card .empty-state {
+    border: none;
+    border-radius: 0;
 }
 
 .job-management-heading {
     padding: 28px 30px 22px;
-    border-bottom: 1px solid #e2e7e3;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .job-management-heading h2 {
-    margin: 0 0 8px;
+    margin: 0;
     font-size: 26px;
 }
 
-.job-post-table-wrapper {
-    overflow-x: auto;
-}
-
 .job-post-table {
-    width: 100%;
     min-width: 1000px;
-    border-collapse: collapse;
 }
 
-.job-post-table th,
 .job-post-table td {
-    padding: 18px 22px;
-    text-align: left;
     vertical-align: middle;
 }
 
-.job-post-table th {
-    background-color: #f7faf7;
-    color: #315d3f;
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.job-post-table td {
-    border-top: 1px solid #e5e9e6;
-    color: #333333;
-    font-size: 15px;
-    line-height: 1.45;
-}
-
-.job-post-table tbody tr {
-    transition: background-color 0.2s ease;
-}
-
-.job-post-table tbody tr:hover {
-    background-color: #fafcfa;
-}
-
 .job-post-table td strong {
-    color: #222222;
+    color: var(--color-text);
     font-size: 16px;
 }
 
-/* url */
 .job-official-link {
-    color: #315d3f;
+    color: var(--color-primary);
     font-weight: 600;
     text-underline-offset: 3px;
 }
 
 .job-official-link:hover {
-    color: #244a31;
-}
-
-/* edit and delete buttons */
-.delete-job-post-button {
-    padding: 8px 14px;
-
-    border-radius: 8px;
-    background-color: #ffffff;
-
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
-}
-
-.delete-job-post-button {
-    border: 1px solid #bd5b5b;
-    color: #a53e3e;
-}
-
-.delete-job-post-button:hover {
-    background-color: #fff1f1;
-    color: #8f2f2f;
-}
-
-.job-post-empty-state {
-    padding: 60px 24px;
-    text-align: center;
+    color: var(--color-primary-dark);
 }
 
 .job-post-empty-icon {
@@ -190,16 +91,11 @@ header {
     place-items: center;
 
     border-radius: 50%;
-    background-color: #e7f0e5;
-    color: #315d3f;
+    background-color: var(--color-surface-green);
+    color: var(--color-primary);
 
     font-size: 30px;
     line-height: 1;
-}
-
-.job-post-empty-state h3 {
-    margin: 0 0 10px;
-    font-size: 22px;
 }
 
 @media (max-width: 800px) {
@@ -216,15 +112,7 @@ header {
         font-size: 34px;
     }
 
-    .create-job-post-button {
-        width: 100%;
-    }
-
     .job-management-heading {
         padding: 24px 20px 18px;
-    }
-
-    .job-post-empty-state {
-        padding: 48px 20px;
     }
 }

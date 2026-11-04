@@ -1,39 +1,25 @@
+{% extends "analyses/base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Analysis History - CareerPilot</title>
+{% block title %}Analysis History - CareerPilot{% endblock %}
 
-    <!-- common styles -->
-    <link rel="stylesheet"
-        href="{% static 'analyses/css/base.css' %}?v=0813">
+{% block extra_css %}
+    <!-- Shared Result and History page layout -->
+    <link rel="stylesheet" href="{% static 'analyses/css/result/layout.css' %}">
 
-    <!-- User profile modal styles -->
-    <link rel="stylesheet"
-        href="{% static 'analyses/css/profile.css' %}?v=0813">
+    <!-- History table and empty message -->
+    <link rel="stylesheet" href="{% static 'analyses/css/result/history.css' %}">
+{% endblock %}
 
-    <!-- History page layout -->
-    <link rel="stylesheet"
-        href="{% static 'analyses/css/result/history.css' %}?v=0813">
-
-    <!-- Result and History fields -->
-    <link rel="stylesheet"
-        href="{% static 'analyses/css/result/tabs.css' %}?v=0813">
-</head>
-
-<body>
-    {% include "analyses/header.html" %}
-
-    <main class="history-page">
+{% block content %}
+    <main class="result-page">
         <h1>Analysis History</h1>
 
         {% include "analyses/result/_tabs.html" %}
 
         {% if analyses %}
-            <div class="history-table-wrapper">
-                <table class="history-table">
+            <div class="table-wrapper">
+                <table class="data-table history-table">
                     <thead>
                         <tr>
                             <th>Analysis Time</th>
@@ -55,7 +41,7 @@
                                 </td>
 
                                 <td>
-                                    {% if analysis.result_data.overall.score %}
+                                    {% if analysis.result_data.overall.score is not None %}
                                         {{ analysis.result_data.overall.score }}%
                                     {% else %}
                                         —
@@ -64,7 +50,7 @@
 
                                 <td>
                                     <a
-                                        class="history-view-button"
+                                        class="btn btn-secondary btn-sm"
                                         href="{% url 'analysis_detail' analysis.id %}"
                                     >
                                         View
@@ -76,11 +62,10 @@
                 </table>
             </div>
         {% else %}
-            <div class="history-empty">
+            <div class="empty-state">
                 <h2>No analysis history yet</h2>
-                <p>Your completed resume analyses will appear here.</p>
+                <p>Your completed CV analyses will appear here.</p>
             </div>
         {% endif %}
     </main>
-</body>
-</html>
+{% endblock %}

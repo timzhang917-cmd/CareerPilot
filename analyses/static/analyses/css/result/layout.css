@@ -1,4 +1,4 @@
-/* Results layout */
+/* Results and History layout */
 .result-page {
     max-width: 1400px;
     margin: 0 auto;
@@ -6,24 +6,46 @@
 }
 
 .result-page h1 {
-    margin-top: 0;
-    margin-bottom: 25px;
+    margin: 0 0 25px;
     font-size: 36px;
 }
 
-/* Results heading */
-.result-heading {
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
+.result-page .tabs {
+    margin-bottom: 28px;
 }
 
-.result-heading h1 {
-    margin: 0;
+/* a full-width block of the analysis result */
+.result-section {
+    margin-bottom: 22px;
+    padding: 18px 20px 20px;
+}
+
+.result-section > h2 {
+    margin: 0 0 14px;
+    color: var(--color-heading);
+    font-size: 20px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 68px;
+    padding: 5px 10px;
+
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
 }
 
 @media (max-width: 680px) {
     .result-page {
         padding: 32px 20px;
+    }
+
+    .result-section {
+        padding: 16px;
     }
 }

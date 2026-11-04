@@ -1,11 +1,11 @@
 
-<div class="jobs-tabs">
-    <a class="jobs-tab {% if active_tab == 'search' %}active{% endif %}"
+<div class="tabs">
+    <a class="tab {% if active_tab == 'search' %}active{% endif %}"
        href="{% url 'job_search' %}">
         Job Search
     </a>
 
-    <a class="jobs-tab {% if active_tab == 'applications' %}active{% endif %}"
+    <a class="tab {% if active_tab == 'applications' %}active{% endif %}"
        href="{% url 'my_applications' %}">
         My Applications
     </a>

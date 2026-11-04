@@ -12,7 +12,7 @@ body.profile-modal-open {
     justify-content: center;
 
     padding: 24px;
-    background-color: rgba(0, 0, 0, 0.52);
+    background-color: var(--color-backdrop);
 }
 
 .profile-overlay[hidden] {
@@ -23,10 +23,10 @@ body.profile-modal-open {
     width: min(520px, 100%);
     overflow: hidden;
 
-    border: 1px solid #b3cfaa;
+    border: 1px solid var(--color-soft);
     border-radius: 16px;
-    background-color: #ffffff;
-    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.22);
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-modal);
 }
 
 .profile-header {
@@ -35,19 +35,11 @@ body.profile-modal-open {
     justify-content: space-between;
 
     padding: 20px 28px;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .profile-header h2 {
     margin: 0;
-}
-
-.profile-close-x {
-    padding: 4px 8px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 28px;
 }
 
 .profile-content {
@@ -65,8 +57,8 @@ body.profile-modal-open {
     margin: 0 auto 16px;
 
     border-radius: 50%;
-    background-color: #b3cfaa;
-    color: #315c3d;
+    background-color: var(--color-soft);
+    color: var(--color-primary);
     font-size: 48px;
     font-weight: bold;
 }
@@ -78,7 +70,7 @@ body.profile-modal-open {
 
 .profile-information {
     margin-bottom: 28px;
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid var(--color-border);
 }
 
 .profile-row {
@@ -86,21 +78,10 @@ body.profile-modal-open {
     grid-template-columns: 1fr 1fr;
 
     padding: 16px 20px;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid var(--color-border);
     text-align: left;
 }
 
 .profile-close-button {
     min-width: 130px;
-    padding: 10px 24px;
-
-    border: none;
-    border-radius: 10px;
-    background-color: #b3cfaa;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.profile-close-button:hover {
-    background-color: #9dcb91;
 }

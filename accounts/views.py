@@ -4,7 +4,7 @@ AI Usage Declaration:
 -Tool Used: ChatGPT
 -Date Generated: 2026-08
 -ChatGPT was used to look up and ensure usage of Django's built-in components,
-and the HR role verification logic (line31-42) was used by AI-generated code.
+and the HR role verification logic (line32-43) was used by AI-generated code.
 
 I have reviewed, tested, and understood the AI-generated code.
 """
@@ -14,6 +14,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import Group
 from django.db import transaction
 from django.shortcuts import redirect, render
+from django.utils.http import url_has_allowed_host_and_scheme
 from .forms import RegisterForm
 
 def decide_where_you_go(user): # jump based on user role
@@ -67,6 +68,16 @@ def login_view(request):  # user login process
         if form.is_valid():
             user = form.get_user()
             login(request, user)
+
+            # return to the page that required login, only if it is on this site
+            next_url = request.GET.get("next", "")
+            if url_has_allowed_host_and_scheme(
+                next_url,
+                allowed_hosts={request.get_host()},
+                require_https=request.is_secure(),
+            ):
+                return redirect(next_url)
+
             # HR enters Dashboard，job seeker enters Home page.
             return redirect(
                 decide_where_you_go(user)

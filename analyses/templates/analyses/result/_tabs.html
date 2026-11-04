@@ -1,14 +1,14 @@
 <!-- CV result page with 2 fields -->
-<nav class="analysis-tabs">
+<nav class="tabs">
     <a
-        class="analysis-tab {% if active_tab == 'result' %}active{% endif %}"
+        class="tab {% if active_tab == 'result' %}active{% endif %}"
         href="{% url 'analysis_result' %}"
     >
         Result
     </a>
 
     <a
-        class="analysis-tab {% if active_tab == 'history' %}active{% endif %}"
+        class="tab {% if active_tab == 'history' %}active{% endif %}"
         href="{% url 'analysis_history' %}"
     >
         History

@@ -1,5 +1,8 @@
-<!-- 
- AI Usage Declaration:
+{% extends "analyses/base.html" %}
+{% load static %}
+
+{% comment %}
+AI Usage Declaration:
  Files: jobs/templates/jobs/ html files
 -These files contain code generated with help of AI tools.
 -Tool Used: ChatGPT
@@ -8,36 +11,19 @@
 The page structure, business workflows, and displayed content were designed by the author.
 
 I have reviewed, tested, and understood the AI-generated code.
--->
+{% endcomment %}
 
+{% block title %}Jobs - CareerPilot{% endblock %}
 
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Jobs - CareerPilot</title>
-
-    <link rel="stylesheet"
-          href="{% static 'analyses/css/base.css' %}?v=0812-profile">
-
-    <link rel="stylesheet"
-          href="{% static 'analyses/css/profile.css' %}?v=0812-profile">
-
-    <link rel="stylesheet"
-          href="{% static 'jobs/css/main.css' %}?v=0812">
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'jobs/css/main.css' %}">
 
     {% if active_tab == "applications" %}
-        <link rel="stylesheet"
-              href="{% static 'jobs/css/application.css' %}?v=0813-edit">
+        <link rel="stylesheet" href="{% static 'jobs/css/application.css' %}">
     {% endif %}
-</head>
+{% endblock %}
 
-<body>
-    <!-- reuse existing top navigation bar -->
-    {% include "analyses/header.html" %}
-
+{% block content %}
     <main class="jobs-page">
         <div class="jobs-heading">
             <h1>Jobs</h1>
@@ -53,9 +39,10 @@ I have reviewed, tested, and understood the AI-generated code.
             {% include "jobs/_application_list.html" %}
         {% endif %}
     </main>
+{% endblock %}
 
+{% block extra_js %}
     {% if active_tab == "applications" %}
-        <script src="{% static 'jobs/js/application_modal.js' %}?v=0813-edit"></script>
+        <script src="{% static 'jobs/js/application_modal.js' %}"></script>
     {% endif %}
-</body>
-</html>
+{% endblock %}

@@ -1,5 +1,3 @@
-{% load static %}
-
 <header>
     <nav>
         <strong>CareerPilot</strong>
@@ -8,6 +6,7 @@
             <button
                 type="button"
                 id="profile-open"
+                class="btn btn-soft btn-sm"
                 aria-haspopup="dialog"
                 aria-controls="profile-modal">
                 Hello, {{ user.username }}
@@ -16,7 +15,7 @@
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
 
-                <button type="submit">
+                <button class="btn btn-soft btn-sm" type="submit">
                     Logout
                 </button>
             </form>
@@ -25,60 +24,5 @@
 </header>
 
 {% if user.is_authenticated %}
-    <!-- User profile modal, hidden by default -->
-    <div id="profile-modal"
-         class="profile-overlay"
-         role="dialog"
-         aria-modal="true"
-         aria-labelledby="profile-title"
-         hidden>
-
-        <section class="profile-card">
-            <div class="profile-header">
-                <h2 id="profile-title">
-                    User Profile
-                </h2>
-
-                <button
-                    type="button"
-                    id="profile-close-x"
-                    class="profile-close-x"
-                    aria-label="Close profile">
-                    ×
-                </button>
-            </div>
-
-            <div class="profile-content">
-                <div class="profile-avatar">
-                    {{ user.username|first|upper }}
-                </div>
-
-                <h3>Hello, {{ user.username }}</h3>
-
-                <div class="profile-information">
-                    <div class="profile-row">
-                        <strong>Username</strong>
-                        <span>{{ user.username }}</span>
-                    </div>
-
-                    <div class="profile-row">
-                        <strong>Joined</strong>
-                        <span>
-                            {{ user.date_joined|date:"F j, Y" }}
-                        </span>
-                    </div>
-                </div>
-
-                <button
-                    type="button"
-                    id="profile-close-button"
-                    class="profile-close-button">
-                    Close
-                </button>
-            </div>
-        </section>
-    </div>
-
-    <script src="{% static 'analyses/js/profile.js' %}?v=0812-profile">
-    </script>
+    {% include "analyses/_profile_modal.html" %}
 {% endif %}

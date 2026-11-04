@@ -72,3 +72,31 @@ if (authDialogOpen && authDialog && authDialogClose) {
         }
     });
 }
+
+// Enlarge an example image on the current page instead of opening a new tab.
+const imageDialog = document.getElementById("image-dialog");
+const imageDialogImage = document.getElementById("image-dialog-image");
+const imageDialogClose = document.getElementById("image-dialog-close");
+
+if (imageDialog && imageDialogImage && imageDialogClose) {
+    document.querySelectorAll(".example-preview").forEach(function (preview) {
+        preview.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            imageDialogImage.src = preview.href;
+            imageDialogImage.alt = preview.querySelector("img").alt;
+            imageDialog.showModal();
+        });
+    });
+
+    imageDialogClose.addEventListener("click", function () {
+        imageDialog.close();
+    });
+
+    // A click on the dialog itself lands on the backdrop, outside the image.
+    imageDialog.addEventListener("click", function (event) {
+        if (event.target === imageDialog) {
+            imageDialog.close();
+        }
+    });
+}

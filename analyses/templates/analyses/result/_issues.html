@@ -1,5 +1,5 @@
 <!-- Must-fix Issues -->
-<section class="issues-card">
+<section class="card result-section issues-card">
     <h2>Must-fix Issues</h2>
 
     {% if result.must_fix_issues %}
@@ -31,7 +31,7 @@
             {% endfor %}
         </div>
     {% else %}
-        <p class="issues-empty">
+        <p class="empty-state empty-state-sm">
             No definite must-fix issue was identified.
         </p>
     {% endif %}

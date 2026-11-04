@@ -12,7 +12,7 @@ I have reviewed, tested, and understood the AI-generated code.
 /* register, login, background */
 .auth-page {
     min-height: 100vh;
-    background-color: #f7f9f7;
+    background-color: var(--color-surface);
 }
 
 .auth-main {
@@ -21,15 +21,14 @@ I have reviewed, tested, and understood the AI-generated code.
     padding: 48px 24px 70px;
 }
 
-/* register card */
 .auth-card {
     width: min(100%, 760px);
-    box-sizing: border-box;
     padding: 36px;
-    border: 1px solid #dfe5e0;
-    border-radius: 16px;
-    background-color: #ffffff;
-    box-shadow: 0 12px 34px rgba(30, 60, 45, 0.1);
+    box-shadow: var(--shadow-raised);
+}
+
+.auth-card-narrow {
+    width: min(100%, 420px);
 }
 
 .auth-card-header {
@@ -44,7 +43,7 @@ I have reviewed, tested, and understood the AI-generated code.
 
 .auth-card-header p {
     margin: 0;
-    color: #666666;
+    color: var(--color-text-muted);
     line-height: 1.5;
 }
 
@@ -90,9 +89,9 @@ I have reviewed, tested, and understood the AI-generated code.
     justify-content: center;
     gap: 9px;
     padding: 22px;
-    border: 1px solid #cfd6d1;
+    border: 1px solid var(--color-border-strong);
     border-radius: 12px;
-    background-color: #ffffff;
+    background-color: var(--color-white);
     text-align: center;
     transition:
         border-color 0.2s ease,
@@ -101,14 +100,14 @@ I have reviewed, tested, and understood the AI-generated code.
 }
 
 .account-type-option:hover .account-type-card {
-    border-color: #7e9e86;
-    background-color: #f8fbf8;
+    border-color: var(--color-accent);
+    background-color: var(--color-surface);
 }
 
 .account-type-option input:checked + .account-type-card {
-    border-color: #527d61;
-    background-color: #f1f7f2;
-    box-shadow: 0 0 0 2px rgba(82, 125, 97, 0.1);
+    border-color: var(--color-accent);
+    background-color: var(--color-surface-green);
+    box-shadow: 0 0 0 2px var(--color-focus-ring);
 }
 
 /* selected state indicator */
@@ -124,14 +123,14 @@ I have reviewed, tested, and understood the AI-generated code.
     place-items: center;
 
     border-radius: 50%;
-    background-color: #527d61;
-    color: #ffffff;
+    background-color: var(--color-accent);
+    color: var(--color-white);
     font-size: 14px;
     font-weight: 700;
 }
 
 .account-type-option input:focus-visible + .account-type-card {
-    outline: 3px solid rgba(82, 125, 97, 0.25);
+    outline: 3px solid var(--color-accent);
     outline-offset: 3px;
 }
 
@@ -142,8 +141,8 @@ I have reviewed, tested, and understood the AI-generated code.
     place-items: center;
 
     border-radius: 50%;
-    background-color: #e7f0e5;
-    color: #41684d;
+    background-color: var(--color-surface-green);
+    color: var(--color-primary);
 }
 
 .account-type-icon svg {
@@ -161,101 +160,27 @@ I have reviewed, tested, and understood the AI-generated code.
 }
 
 .account-type-description {
-    color: #666666;
+    color: var(--color-text-muted);
     font-size: 14px;
     line-height: 1.45;
 }
 
-/* field username and password */
-.auth-field {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 20px;
-}
-
-.auth-field label {
-    font-size: 15px;
-    font-weight: 700;
-}
-
-.auth-field input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 13px 14px;
-
-    border: 1px solid #cfd6d1;
-    border-radius: 10px;
-    background-color: #ffffff;
-
-    color: #222222;
-    font-family: inherit;
-    font-size: 15px;
-}
-
-.auth-field input:focus {
-    outline: none;
-    border-color: #527d61;
-    box-shadow: 0 0 0 3px rgba(82, 125, 97, 0.1);
-}
-
-.field-help {
-    margin: 0;
-    color: #777777;
-    font-size: 13px;
-    line-height: 1.45;
-}
-
-.field-errors {
-    color: #a03232;
-    font-size: 13px;
-}
-
-.field-errors ul,
-.auth-form-errors ul {
-    margin: 0;
-    padding-left: 18px;
-}
-
-/* register button */
-.auth-submit-button {
-    width: 100%;
+.auth-card form .btn {
     margin-top: 8px;
-    padding: 14px 24px;
-
-    border: none;
-    border-radius: 10px;
-    background-color: #315d3f;
-
-    color: #ffffff;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        background-color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.auth-submit-button:hover {
-    background-color: #264d33;
-    transform: translateY(-1px);
-}
-
-.auth-submit-button:active {
-    transform: translateY(0);
 }
 
 .auth-alternative {
     margin: 24px 0 0;
     text-align: center;
-    color: #555555;
+    color: var(--color-text-muted);
+}
+
+.auth-alternative + .auth-alternative {
+    margin-top: 12px;
 }
 
 .auth-alternative a {
-    color: #315d3f;
+    color: var(--color-primary);
     font-weight: 700;
     text-decoration: none;
 }

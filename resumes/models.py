@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from django.conf import settings
 from django.db import models
 
@@ -11,6 +13,10 @@ class Resume(models.Model):  #inherit from Django's built-in model class, which 
     file = models.FileField(upload_to="resumes/")
     extracted_text = models.TextField(blank=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def file_type(self):  # e.g. PDF, shown next to the CV icon on the Result page
+        return Path(self.file.name).suffix.lstrip(".").upper()
 
     def __str__(self):
         return f"{self.user.username} - {self.file.name}"

@@ -1,18 +1,10 @@
 /* Must-fix Issues outer card */
 .issues-card {
-    margin-bottom: 22px;
-    padding: 18px 20px 20px;
-
-    border: 1px solid #ead8d5;
-    border-radius: 14px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 14px rgba(86, 35, 28, 0.06);
+    border-color: var(--color-danger-border);
 }
 
-.issues-card h2 {
-    margin: 0 0 14px;
-    color: #b32f26;
-    font-size: 20px;
+.issues-card > h2 {
+    color: var(--color-danger);
 }
 
 /* Multiple issues stacked vertically */
@@ -29,9 +21,9 @@
     gap: 14px;
 
     padding: 16px;
-    border: 1px solid #f0cbc6;
+    border: 1px solid var(--color-danger-border);
     border-radius: 10px;
-    background-color: #fffafa;
+    background-color: var(--color-danger-surface);
 }
 
 /* Left-side auto numbering */
@@ -41,8 +33,8 @@
     height: 34px;
     place-items: center;
     border-radius: 8px;
-    background-color: #d84a43;
-    color: #ffffff;
+    background-color: var(--color-danger-strong);
+    color: var(--color-white);
     font-size: 15px;
     font-weight: 700;
 }
@@ -56,7 +48,7 @@
 .issue-location {
     margin: 0 0 6px;
 
-    color: #9a4c42;
+    color: var(--color-danger);
     font-size: 13px;
     font-weight: 600;
 }
@@ -65,7 +57,7 @@
 .issue-content h3 {
     margin: 0 0 10px;
 
-    color: #2f2928;
+    color: var(--color-text);
     font-size: 16px;
     line-height: 1.5;
 }
@@ -74,7 +66,7 @@
 .issue-detail {
     margin: 0 0 10px;
 
-    color: #555555;
+    color: var(--color-text-muted);
     font-size: 14px;
     line-height: 1.6;
 }
@@ -84,32 +76,17 @@
     margin: 0;
     padding: 10px 12px;
 
-    border-left: 3px solid #d84a43;
+    border-left: 3px solid var(--color-danger-strong);
     border-radius: 6px;
-    background-color: #fff0ee;
+    background-color: var(--color-white);
 
-    color: #4a3330;
+    color: var(--color-text-body);
     font-size: 14px;
     line-height: 1.6;
 }
 
-/* No must-fix issues message */
-.issues-empty {
-    margin: 0;
-    padding: 14px 16px;
-
-    border-radius: 8px;
-    background-color: #f7f7f7;
-    color: #666666;
-    font-size: 14px;
-}
-
 /* narrow the gap when screen is small */
 @media (max-width: 680px) {
-    .issues-card {
-        padding: 16px;
-    }
-
     .issue-item {
         grid-template-columns: 30px minmax(0, 1fr);
         gap: 10px;

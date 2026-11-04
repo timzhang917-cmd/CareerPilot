@@ -47,8 +47,8 @@ careerpilot/
 - `staticfiles/` – Contains static files collected for deployment.
 - `manage.py` – Provides Django management commands for running and maintaining the project.
 - `requirements.txt` – Lists the dependencies required by the project.
-- `db.sqlite3` – Stores the local SQLite database.
-- `.env` – Stores private environment variables and API keys
+- `db.sqlite3` – SQLite database, used when `DATABASE_URL` is not set.
+- `.env` – Stores private environment variables and API keys, including `DATABASE_URL` for PostgreSQL
 
 ---
 

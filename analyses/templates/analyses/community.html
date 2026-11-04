@@ -1,23 +1,17 @@
+{% extends "analyses/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community | CareerPilot</title>
 
-    <link rel="stylesheet" href="{% static 'analyses/css/base.css' %}?v=0812-profile">
-    <link rel="stylesheet" href="{% static 'analyses/css/profile.css' %}?v=0812-profile">
-</head>
+{% block title %}Community | CareerPilot{% endblock %}
 
-<body>
-    {% include "analyses/header.html" %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'analyses/css/community.css' %}">
+{% endblock %}
 
+{% block content %}
     <main class="community-page">
-        <section class="community-coming-soon">
+        <section class="card community-coming-soon">
             <p class="community-label">Community</p>
-            <h1>开发中，敬请期待</h1>
+            <h1>Coming soon</h1>
         </section>
     </main>
-</body>
-</html>
+{% endblock %}
