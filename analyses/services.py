@@ -1,15 +1,3 @@
-"""
-AI Usage Declaration:
--This file contains code generated with help of AI tools.
--Tool Used: ChatGPT
--Date Generated: 2026-08
--ChatGPT was used to assist in building the basic code framework for the DeepSeek and OpenAI model-calling functions. 
-the author configured the models, output formats, token limits, reasoning effort, and other specific parameters, 
-and further adjusted and optimised these settings based on subsequent testing.
-
-I have reviewed, tested, and understood the AI-generated code.
-"""
-
 import json
 from pathlib import Path  # help with file path construction
 
@@ -55,6 +43,8 @@ def call_deepseek(
     job_title,
     job_description,
     supplementary_text,
+    model_name,
+    reasoning_effort,
 ):
     prompt = analysis_prompt(
         resume_text,
@@ -69,7 +59,7 @@ def call_deepseek(
     )
 
     response = client.chat.completions.create(
-        model=settings.DEEPSEEK_MODEL,
+        model=model_name,
         messages=[
             {
                 "role": "system",
@@ -88,7 +78,7 @@ def call_deepseek(
                 
         temperature=0,  # reduce randomness, from 1 to 0
 
-        reasoning_effort="max",  # none, low, high, max
+        reasoning_effort=reasoning_effort,  # low, high, max
 
         max_tokens=20000,
 
@@ -104,11 +94,13 @@ def call_deepseek(
     return json.loads(response_text)
 
 
-def call_openai( 
+def call_openai(
     resume_text,
     job_title,
     job_description,
     supplementary_text,
+    model_name,
+    reasoning_effort,
 ):
     prompt = analysis_prompt(
         resume_text,
@@ -123,14 +115,14 @@ def call_openai(
     )
 
     response = client.responses.create(
-        model=settings.OPENAI_MODEL,
+        model=model_name,
         instructions=(
             "You are a careful and professional career advisor. "
             "Return the result as one valid JSON object."
         ),  # 对于gpt来说该参数是可选的，input已经包含了实际任务
         input=prompt,
         reasoning={
-            "effort": "low",
+            "effort": reasoning_effort,
         },
         text={
             "format": {

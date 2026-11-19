@@ -14,6 +14,7 @@ I have reviewed, tested, and understood the AI-generated code.
 """
 
 
+from .ai_models import AI_MODELS
 from .services import call_deepseek, call_openai
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
@@ -61,20 +62,23 @@ def home(request): # manage homepage and analysis workflow
                 supplementary_text=analysis_form.cleaned_data["supplementary_text"],
             )
 
-            selected_model = analysis_form.cleaned_data["ai_model"] # model choice
+            # the form only accepts keys of AI_MODELS
+            model_config = AI_MODELS[analysis_form.cleaned_data["ai_model"]]
 
-            if selected_model == "openai":
+            if model_config["provider"] == "openai":
                 call_model = call_openai
             else:
                 call_model = call_deepseek
 
-            # two functions receive the same parameters 
+            # two functions receive the same parameters
             # and return the same structure of JSON dict
             analysis_result_data = call_model(
                 resume.extracted_text,
                 job_description.job_title,
                 job_description.content,
                 analysis.supplementary_text,
+                model_config["model"],
+                model_config["reasoning_effort"],
             )
 
             # JSONField can store a Python dict directly

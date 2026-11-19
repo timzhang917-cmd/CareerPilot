@@ -3,7 +3,7 @@ AI Usage Declaration:
 -This file contains code generated with help of AI tools.
 -Tool Used: ChatGPT
 -Date Generated: 2026-08
--ChatGPT was used to define clean_resume_file() (line 45-59) 
+-ChatGPT was used to define clean_resume_file() (line 44-58)
 
 I have reviewed, tested, and understood the AI-generated code.
 """
@@ -12,16 +12,15 @@ I have reviewed, tested, and understood the AI-generated code.
 from pathlib import Path
 from django import forms
 
+from .ai_models import AI_MODELS, DEFAULT_AI_MODEL
+
 class AnalysisInputForm(forms.Form): 
 # resume and job description input form for AI analysis
 
     ai_model = forms.ChoiceField(
         label="AI model",
-        choices=[
-            ("deepseek", "DeepSeek V4 Pro"),
-            ("openai", "GPT-5.6 Sol"),
-        ],
-        initial="deepseek",
+        choices=[(key, config["label"]) for key, config in AI_MODELS.items()],
+        initial=DEFAULT_AI_MODEL,
     )
     
     resume_file = forms.FileField(label="CV")

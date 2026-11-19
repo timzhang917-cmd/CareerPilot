@@ -32,11 +32,19 @@ DEEPSEEK_MODEL = os.getenv(
     "DEEPSEEK_MODEL",
     "deepseek-v4-pro",
 )
+DEEPSEEK_FLASH_MODEL = os.getenv(
+    "DEEPSEEK_FLASH_MODEL",
+    "deepseek-flash",  # currently DeepSeek-V4.1-Flash-1017
+)
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI_MODEL = os.getenv(
     "OPENAI_MODEL",
     "gpt-5.6-sol",
+)
+OPENAI_ASTRA_MODEL = os.getenv(
+    "OPENAI_ASTRA_MODEL",
+    "gpt-6-astra",
 )
 
 # Quick-start development settings - unsuitable for production
@@ -82,6 +90,7 @@ INSTALLED_APPS = [
     'resumes',
     'analyses', # 7.16 build
     'jobs', # 8.11 build
+    'assistant',
 ]
 
 MIDDLEWARE = [

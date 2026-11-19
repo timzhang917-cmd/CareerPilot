@@ -18,6 +18,8 @@ CareerPilot is an AI-powered career support platform developed for job seekers a
 - Job searching and filtering
 - Personal job application management
 - HR job posting and management
+- Chat box that answers questions about using the site from the help documents (RAG with pgvector; requires PostgreSQL and the `rag/` scripts)
+- Follow-up chat on the Result page, based on that analysis and its saved conversation
 
 ---
 
@@ -27,8 +29,10 @@ CareerPilot is an AI-powered career support platform developed for job seekers a
 careerpilot/
 ├── accounts/
 ├── analyses/
+├── assistant/
 ├── careerpilot/
 ├── jobs/
+├── rag/
 ├── resumes/
 ├── media/
 ├── staticfiles/
@@ -40,8 +44,10 @@ careerpilot/
 
 - `accounts/` – Handles user registration, login, logout, user roles, and HR access control.
 - `analyses/` – Contains the core CV analysis workflow, model API calls, prompts, structured results, and analysis history.
+- `assistant/` – Contains the chat box: help search, analysis follow-up, saved conversations, the chat endpoints, and its interface.
 - `careerpilot/` – Contains the main Django settings, root URL configuration, and deployment entry
 - `jobs/` – Handles job searching, filtering, application records, and HR job posting.
+- `rag/` – Contains the help documents and the scripts that chunk them, create their vectors, and load them into PostgreSQL.
 - `resumes/` – Stores CV and job description data and extracts text from PDF and DOCX files.
 - `media/` – Stores CV files uploaded by users.
 - `staticfiles/` – Contains static files collected for deployment.

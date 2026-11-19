@@ -11,6 +11,11 @@
     <!-- User profile modal styles -->
     <link rel="stylesheet" href="{% static 'analyses/css/profile.css' %}">
 
+    {% if user.is_authenticated %}
+        <!-- Help chat box styles -->
+        <link rel="stylesheet" href="{% static 'assistant/chat.css' %}">
+    {% endif %}
+
     {% block extra_css %}{% endblock %}
 </head>
 
@@ -18,6 +23,10 @@
     {% block header %}{% include "analyses/header.html" %}{% endblock %}
 
     {% block content %}{% endblock %}
+
+    {% if user.is_authenticated %}
+        {% include "assistant/_widget.html" %}
+    {% endif %}
 
     {% block extra_js %}{% endblock %}
 </body>

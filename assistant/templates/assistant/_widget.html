@@ -1,0 +1,54 @@
+{% load static %}
+
+<!-- chat box on every page for logged-in users; on a Result page it also knows that analysis -->
+<div
+    id="chat-widget"
+    class="chat-widget"
+    data-chat-url="{% url 'assistant_chat' %}"
+    {% if analysis and result %}data-history-url="{% url 'assistant_history' analysis.id %}"{% endif %}>
+    <section id="chat-panel" class="chat-panel" aria-label="CareerPilot assistant" hidden>
+        <div class="chat-header">
+            <div class="chat-heading">
+                <h2>CareerPilot Assistant</h2>
+                {% if analysis and result %}
+                    <p title="{{ analysis.job_description.job_title }}">About: {{ analysis.job_description.job_title }}</p>
+                {% endif %}
+            </div>
+            <button id="chat-close" type="button" class="modal-close" aria-label="Close assistant">×</button>
+        </div>
+
+        <div id="chat-messages" class="chat-messages" aria-live="polite">
+            <p class="chat-message chat-message-assistant">{% if analysis and result %}Hi! Ask me anything about this analysis, or about using CareerPilot.{% else %}Hi! Ask me anything about using CareerPilot.{% endif %}</p>
+        </div>
+
+        <form id="chat-form" class="chat-form">
+            {% csrf_token %}
+            {% if analysis and result %}
+                <input type="hidden" name="analysis_id" value="{{ analysis.id }}">
+            {% endif %}
+            <textarea
+                id="chat-question"
+                name="question"
+                rows="2"
+                maxlength="500"
+                placeholder="Ask a question..."
+                aria-label="Your question"
+                required></textarea>
+            <button id="chat-send" class="btn btn-primary btn-sm" type="submit">Send</button>
+        </form>
+    </section>
+
+    <button
+        id="chat-toggle"
+        type="button"
+        class="chat-toggle"
+        aria-label="Open assistant"
+        aria-expanded="false"
+        aria-controls="chat-panel">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 5h16v11H9l-5 4z"/>
+        </svg>
+    </button>
+</div>
+
+<script src="{% static 'assistant/chat.js' %}"></script>

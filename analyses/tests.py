@@ -8,6 +8,7 @@ from django.urls import reverse
 
 from resumes.models import JobDescription, Resume
 
+from .ai_models import AI_MODELS
 from .models import Analysis
 
 START_PROMPT = "先去启动一次分析，然后再来这里查看反馈吧～"
@@ -186,6 +187,50 @@ class AnalysisDisplayTests(TestCase):
             self.client.get(reverse("analysis_result")),
             "New Result",
         )
+
+    @patch("analyses.views.extract_resume_text", return_value="CV text")
+    # autospec fails the test if the view and the function signatures stop matching
+    @patch("analyses.views.call_openai", autospec=True, return_value={"overall": {"score": 80}})
+    @patch("analyses.views.call_deepseek", autospec=True, return_value={"overall": {"score": 80}})
+    def test_each_model_option_calls_its_model(self, call_deepseek, call_openai, _extract):
+        cases = [
+            ("deepseek", call_deepseek, "max"),
+            ("deepseek-flash", call_deepseek, "high"),
+            ("openai", call_openai, "high"),
+            ("openai-astra", call_openai, "high"),
+        ]
+
+        self.assertEqual({case[0] for case in cases}, set(AI_MODELS))
+
+        for choice, expected_call, expected_effort in cases:
+            call_deepseek.reset_mock()
+            call_openai.reset_mock()
+
+            with tempfile.TemporaryDirectory() as media_root:
+                with override_settings(MEDIA_ROOT=media_root):
+                    self.client.post(
+                        reverse("home"),
+                        {
+                            "ai_model": choice,
+                            "resume_file": SimpleUploadedFile("cv.pdf", b"cv"),
+                            "job_title": "Developer",
+                            "job_description": "Build things",
+                        },
+                    )
+
+            expected_call.assert_called_once()
+            self.assertEqual(
+                expected_call.call_args.args[-2:],
+                (AI_MODELS[choice]["model"], expected_effort),
+            )
+            self.assertEqual(call_deepseek.call_count + call_openai.call_count, 1)
+
+    def test_form_offers_every_configured_model(self):
+        response = self.client.get(reverse("home"))
+
+        for key, config in AI_MODELS.items():
+            self.assertContains(response, f'<option value="{key}"')
+            self.assertContains(response, config["label"])
 
     def test_result_page_ignores_analysis_of_another_user(self):
         other_user = User.objects.create_user("other")
