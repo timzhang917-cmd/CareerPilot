@@ -18,6 +18,7 @@ urlpatterns = [
 
     path("analysis/history/", views.analysis_history, name="analysis_history",),
 
+    path("analysis/<int:analysis_id>/pdf/", views.download_analysis_pdf, name="analysis_pdf"),
     path(
         "analysis/<int:analysis_id>/",  # id is not random，from primary key of Analysis model
         views.analysis_result,

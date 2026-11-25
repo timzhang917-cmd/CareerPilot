@@ -16,7 +16,7 @@
 简历必须是 PDF 或 DOCX 文件，大小不能超过 5 MB。如果文件里提取不到文字，分析仍会继续，但 AI 读不到简历内容，结果也就没有参考价值。遇到这种情况，请换一份可以选中文字的文件重新分析。
 
 ## 可选择的 AI 模型
-AI model 下拉框有 DeepSeek V4 Pro、GPT-5.6 Sol、GPT-6 Astra 和 DeepSeek V4.1 Flash 1017 四个选项，默认是 DeepSeek V4 Pro。这些模型输出的结果结构相同，都显示在同一个结果页上。
+AI model 下拉框有 GPT-5.6 Sol、GPT-6.2 Sol 和 DeepSeek V4.1 Flash 1017 三个选项，默认是 GPT-5.6 Sol。这些模型输出的结果结构相同，都显示在同一个结果页上。
 
 ## 如何看分析结果
 分析完成后会自动进入 Results 页面。页面依次显示总体评分和等级、Key Strengths（主要优势）、Main Gaps（主要差距）、Job Requirement Comparison（岗位要求对比）、Must-fix Issues（必须修改的问题）和 Advanced Suggestions（进阶建议）。如果页面显示 This analysis has no result，说明这次分析没有产生结果，需要重新发起。

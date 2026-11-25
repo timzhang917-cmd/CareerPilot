@@ -28,10 +28,6 @@ def get_env_list(name, default=""):
     ]
 
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
-DEEPSEEK_MODEL = os.getenv(
-    "DEEPSEEK_MODEL",
-    "deepseek-v4-pro",
-)
 DEEPSEEK_FLASH_MODEL = os.getenv(
     "DEEPSEEK_FLASH_MODEL",
     "deepseek-flash",  # currently DeepSeek-V4.1-Flash-1017
@@ -42,9 +38,9 @@ OPENAI_MODEL = os.getenv(
     "OPENAI_MODEL",
     "gpt-5.6-sol",
 )
-OPENAI_ASTRA_MODEL = os.getenv(
-    "OPENAI_ASTRA_MODEL",
-    "gpt-6-astra",
+OPENAI_SOL62_MODEL = os.getenv(
+    "OPENAI_SOL62_MODEL",
+    "gpt-6.2-sol",
 )
 
 # Quick-start development settings - unsuitable for production

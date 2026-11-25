@@ -171,7 +171,7 @@ class AnalysisDisplayTests(TestCase):
                 response = self.client.post(
                     reverse("home"),
                     {
-                        "ai_model": "deepseek",
+                        "ai_model": "deepseek-flash",
                         "resume_file": SimpleUploadedFile("cv.pdf", b"cv"),
                         "job_title": "Developer",
                         "job_description": "Build things",
@@ -194,10 +194,9 @@ class AnalysisDisplayTests(TestCase):
     @patch("analyses.views.call_deepseek", autospec=True, return_value={"overall": {"score": 80}})
     def test_each_model_option_calls_its_model(self, call_deepseek, call_openai, _extract):
         cases = [
-            ("deepseek", call_deepseek, "max"),
             ("deepseek-flash", call_deepseek, "high"),
             ("openai", call_openai, "high"),
-            ("openai-astra", call_openai, "high"),
+            ("openai-sol62", call_openai, "high"),
         ]
 
         self.assertEqual({case[0] for case in cases}, set(AI_MODELS))

@@ -10,6 +10,19 @@
     font-size: 36px;
 }
 
+.result-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.result-heading h1 {
+    margin: 0;
+}
+
 .result-page .tabs {
     margin-bottom: 28px;
 }

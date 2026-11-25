@@ -28,7 +28,12 @@
 
 {% block content %}
     <main class="result-page">
-        <h1>Results</h1>
+        <div class="result-heading">
+            <h1>Results</h1>
+            {% if can_download_pdf %}
+                <a class="btn btn-primary" href="{% url 'analysis_pdf' analysis.id %}">Download PDF</a>
+            {% endif %}
+        </div>
 
         {% include "analyses/result/_tabs.html" %}
 

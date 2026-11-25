@@ -33,7 +33,7 @@
     "id": "help-06",
     "source": "rag/help.md",
     "title": "可选择的 AI 模型",
-    "text": "可选择的 AI 模型\nAI model 下拉框有 DeepSeek V4 Pro、GPT-5.6 Sol、GPT-6 Astra 和 DeepSeek V4.1 Flash 1017 四个选项，默认是 DeepSeek V4 Pro。这些模型输出的结果结构相同，都显示在同一个结果页上。"
+    "text": "可选择的 AI 模型\nAI model 下拉框有 GPT-5.6 Sol、GPT-6.2 Sol 和 DeepSeek V4.1 Flash 1017 三个选项，默认是 GPT-5.6 Sol。这些模型输出的结果结构相同，都显示在同一个结果页上。"
   },
   {
     "id": "help-07",

@@ -17,13 +17,17 @@ I have reviewed, tested, and understood the AI-generated code.
 from .ai_models import AI_MODELS
 from .services import call_deepseek, call_openai
 from django.contrib.auth.decorators import login_required
+from django.http import FileResponse, Http404
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.cache import never_cache
+from django.views.decorators.http import require_safe
 
 from resumes.models import JobDescription, Resume
 from resumes.parsers import extract_resume_text
 
 from .forms import AnalysisInputForm
 from .models import Analysis
+from .pdf_report import build_analysis_pdf
 
 
 def home(request): # manage homepage and analysis workflow
@@ -129,8 +133,29 @@ def analysis_result(request, analysis_id=None):
         {
             "analysis": analysis,
             "result": result,
+            "can_download_pdf": isinstance(result, dict) and bool(result),
             "active_tab": "result",
         },
+    )
+
+
+@login_required
+@require_safe
+@never_cache
+def download_analysis_pdf(request, analysis_id):
+    analysis = get_object_or_404(
+        Analysis.objects.select_related("job_description"),
+        id=analysis_id,
+        user=request.user,
+    )
+    if not isinstance(analysis.result_data, dict) or not analysis.result_data:
+        raise Http404("This analysis has no result to download.")
+
+    return FileResponse(
+        build_analysis_pdf(analysis),
+        as_attachment=True,
+        filename=f"CareerPilot-Analysis-{analysis.id}.pdf",
+        content_type="application/pdf",
     )
 
 
